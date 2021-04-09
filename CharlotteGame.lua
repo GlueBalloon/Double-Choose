@@ -65,8 +65,10 @@ charlotteImages.placementGuide = readImage(asset.documents.choices_cup_big)
 charlotteImages.heroineStart = readImage(asset.documents.ccHeroine)
 charlotteImages.heroineDrank = readImage(asset.documents.ccHeroineFlipped)
 charlotteImages.heroineSavedCoffee = readImage(asset.documents.ccHeroine)
-charlotteImages.heroineWithBoyfriend = readImage(asset.documents.ccHeroine)
+charlotteImages.heroineWithBoyfriend = readImage(asset.documents.ccHeroineFlipped)
+charlotteImages.boyfriend = readImage(asset.documents.ccBoyfriend)
 charlotteImages.heroineWithKnight = readImage(asset.documents.ccHeroine)
+charlotteImages.heroineScolded = readImage(asset.documents.ccHeroine)
 charlotteImages.coffee = readImage(asset.documents.choices_cup_small)
 charlotteImages.inventoryCoffee = readImage(asset.documents.choices_cup_big)
 
@@ -116,6 +118,7 @@ end
 
 function boyfriendTells()
     drawBackground(charlotteImages.boyfriendTells)
+    simpleImage("boyfriend", charlotteImages.boyfriend, HEIGHT * 0.0014)
     simpleImage("heroineWithBoyfriend", charlotteImages.heroineWithBoyfriend, HEIGHT * 0.0014)
     drawInventory()
     textArea("Your boyfriend tells you the queen is bored.")
@@ -124,12 +127,21 @@ end
 
 function knightScreen ()
     drawBackground(charlotteImages.knightScreen)
-    simpleImage("heroineWithKnight", charlotteImages.heroineWithKnight, HEIGHT * 0.0014)
+    simpleImage("heroineWithKnight", charlotteImages.heroineWithKnight, HEIGHT * 0.00076)
     drawInventory()
     textArea("You see a knight at the gate.\n\rWhat do you say to him?")
     choice("Hi, having a nice day?", charlotteStart)
-    choice("Just let me in to the castle.", charlotteStart)
+    choice("Just let me in to the castle.", knightScolds)
 end
+
+function knightScolds ()
+    drawBackground(charlotteImages.knightScreen)
+    simpleImage("heroineScolded", charlotteImages.heroineScolded, HEIGHT * 0.00076)
+    drawInventory()
+    textArea("The knight tells you that you have a bad attitude.")
+    choice("go home", charlotteStart)
+end
+
 --[[
 {name = "knightScreen",
 background = "ccKnightScreen",
