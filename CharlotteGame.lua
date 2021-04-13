@@ -68,9 +68,10 @@ charlotteImages.heroineSavedCoffee = readImage(asset.documents.ccHeroine)
 charlotteImages.heroineWithBoyfriend = readImage(asset.documents.ccHeroineFlipped)
 charlotteImages.boyfriend = readImage(asset.documents.ccBoyfriend)
 charlotteImages.heroineWithKnight = readImage(asset.documents.ccHeroine)
-charlotteImages.heroineScolded = readImage(asset.documents.ccHeroine)
+charlotteImages.heroineWithKnight2 = readImage(asset.documents.ccHeroine)
 charlotteImages.coffee = readImage(asset.documents.choices_cup_small)
 charlotteImages.inventoryCoffee = readImage(asset.documents.choices_cup_big)
+charlotteImages.inventoryChocolate = readImage(asset.documents.choices_heart_big)
 
 inventory = {}
 
@@ -92,6 +93,7 @@ function drawInventory()
 end
 
 function charlotteStart()
+    inventory = {}
     drawBackground(charlotteImages.charlotteStart)
     simpleImage("heroineStart", charlotteImages.heroineStart, HEIGHT * 0.00155)
     simpleImage("coffee", charlotteImages.coffee, 1.6)
@@ -130,28 +132,41 @@ function knightScreen ()
     simpleImage("heroineWithKnight", charlotteImages.heroineWithKnight, HEIGHT * 0.00076)
     drawInventory()
     textArea("You see a knight at the gate.\n\rWhat do you say to him?")
-    choice("Hi, having a nice day?", charlotteStart)
+    choice("Hi, having a nice day?", knightGivesHeart)
     choice("Just let me in to the castle.", knightScolds)
 end
 
+function knightGivesHeart ()
+    drawBackground(charlotteImages.knightScreen)
+    simpleImage("heroineScolded", charlotteImages.heroineWithKnight2, HEIGHT * 0.00076)
+    if inventory[1] == "inventoryCoffee" then
+        inventory = {"inventoryCoffee", "inventoryChocolate"}
+    else
+        inventory = {"inventoryChocolate"}
+    end
+    drawInventory()
+    textArea("The knight likes you and gives you a heart box with chocolates in it.")
+    choice("go in to castle", charlotteStart)
+end
+
+
 function knightScolds ()
     drawBackground(charlotteImages.knightScreen)
-    simpleImage("heroineScolded", charlotteImages.heroineScolded, HEIGHT * 0.00076)
+    simpleImage("heroineScolded", charlotteImages.heroineWithKnight2, HEIGHT * 0.00076)
     drawInventory()
     textArea("The knight tells you that you have a bad attitude.")
     choice("go home", charlotteStart)
 end
 
+
 --[[
-{name = "knightScreen",
+{name = "knightGivesHeart",
 background = "ccKnightScreen",
 images = {
 {"heroine", "ccHeroine", WIDTH * 0.2675, HEIGHT * 0.576, heightRatio = 0.61197917} },
-narration = "You see a knight at the gate.\n\rWhat do you say to him?",
+narration = "The knight likes you and gives you a heart box with chocolates in it.",
 choices = {
-{choiceText = "Just let me in to the castle.", resultScreen ="knightScolds" },
-{choiceText = "Hi, having a nice day?", resultScreen = "knightGivesHeart",
-inventoryAdd = {name = "heartBox", icon = "ccHeartBox", heightRatio = 0.22135417} } }
+{choiceText = "go in to castle", resultScreen ="boredQueen" } }
 },
 ]]
 --[[
