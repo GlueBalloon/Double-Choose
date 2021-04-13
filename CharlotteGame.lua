@@ -131,7 +131,7 @@ function knightScreen ()
     drawBackground(charlotteImages.knightScreen)
     simpleImage("heroineWithKnight", charlotteImages.heroineWithKnight, HEIGHT * 0.00076)
     drawInventory()
-    textArea("You see a knight at the gate.\n\rWhat do you say to him?")
+    textArea("You see a knight at the gate.\n\nWhat do you say to him?")
     choice("Hi, having a nice day?", knightGivesHeart)
     choice("Just let me in to the castle.", knightScolds)
 end
@@ -149,7 +149,6 @@ function knightGivesHeart ()
     choice("go in to castle", charlotteStart)
 end
 
-
 function knightScolds ()
     drawBackground(charlotteImages.knightScreen)
     simpleImage("heroineScolded", charlotteImages.heroineWithKnight2, HEIGHT * 0.00076)
@@ -159,14 +158,17 @@ function knightScolds ()
 end
 
 
+
+
 --[[
-{name = "knightGivesHeart",
-background = "ccKnightScreen",
+{name = "homeAfterKnight",
+background = "ccFirst",
 images = {
-{"heroine", "ccHeroine", WIDTH * 0.2675, HEIGHT * 0.576, heightRatio = 0.61197917} },
-narration = "The knight likes you and gives you a heart box with chocolates in it.",
+{"heroineFlipped", "ccHeroineFlipped", WIDTH * 0.390625, HEIGHT * 0.56380208, heightRatio = 0.61197917} },
+narration = "You say to yourself, \"He doesn't like me anyway.\"",
 choices = {
-{choiceText = "go in to castle", resultScreen ="boredQueen" } }
+{choiceText = "start over", resultScreen ="firstScreen",
+inventoryRemove = "allItems" } }
 },
 ]]
 --[[
