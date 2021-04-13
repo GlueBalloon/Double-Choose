@@ -154,10 +154,17 @@ function knightScolds ()
     simpleImage("heroineScolded", charlotteImages.heroineWithKnight2, HEIGHT * 0.00076)
     drawInventory()
     textArea("The knight tells you that you have a bad attitude.")
-    choice("go home", charlotteStart)
+    choice("go home", homeAfterKnight)
 end
 
 
+function homeAfterKnight ()
+    drawBackground(charlotteImages.charlotteStart)
+    simpleImage("heroineScolded", charlotteImages.heroineDrank, HEIGHT * 0.00155)
+    drawInventory()
+    textArea([[You say to yourself, "He doesn't like me anyway."]])
+    choice("begin again", charlotteStart)
+end
 
 
 --[[
