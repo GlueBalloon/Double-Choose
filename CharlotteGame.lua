@@ -166,16 +166,18 @@ function homeAfterKnight ()
     choice("begin again", charlotteStart)
 end
 
+function boredQueen()
+    --do this!
+end
 
 --[[
-{name = "homeAfterKnight",
-background = "ccFirst",
+{name = "boredQueen",
+background = "ccQueenBored",
 images = {
-{"heroineFlipped", "ccHeroineFlipped", WIDTH * 0.390625, HEIGHT * 0.56380208, heightRatio = 0.61197917} },
-narration = "You say to yourself, \"He doesn't like me anyway.\"",
+{"heroine", "ccHeroine", WIDTH * 0.2197, HEIGHT * 0.576, heightRatio = 0.61197917} },
+narration = "The queen tells you she's really bored.",
 choices = {
-{choiceText = "start over", resultScreen ="firstScreen",
-inventoryRemove = "allItems" } }
+{choiceText = "tell her you know a puppet show", resultScreen = "queenSaysShowMe" } }
 },
 ]]
 --[[
