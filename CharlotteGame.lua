@@ -60,12 +60,14 @@ charlotteImages.sizeGuide = readImage(asset.documents.ccSizeGuide)
 charlotteImages.charlotteStart = readImage(asset.documents.ccFirst)
 charlotteImages.boyfriendTells = readImage(asset.documents.ccGenericOutside)
 charlotteImages.knightScreen = readImage(asset.documents.ccKnightScreen)
+charlotteImages.boredQueen = readImage(asset.ccQueenBored)
 --images drawn over background
 charlotteImages.placementGuide = readImage(asset.documents.choices_cup_big)
 charlotteImages.heroineStart = readImage(asset.documents.ccHeroine)
 charlotteImages.heroineDrank = readImage(asset.documents.ccHeroineFlipped)
 charlotteImages.heroineSavedCoffee = readImage(asset.documents.ccHeroine)
 charlotteImages.heroineWithBoyfriend = readImage(asset.documents.ccHeroineFlipped)
+charlotteImages.heroineWithQueen = readImage(asset.documents.ccHeroine)
 charlotteImages.boyfriend = readImage(asset.documents.ccBoyfriend)
 charlotteImages.heroineWithKnight = readImage(asset.documents.ccHeroine)
 charlotteImages.heroineWithKnight2 = readImage(asset.documents.ccHeroine)
@@ -88,7 +90,7 @@ function drawInventory()
     local scaleFactor = HEIGHT * 0.00155
     for i, name in ipairs(inventory) do
         simpleImage(name, charlotteImages[name], scaleFactor, inventoryX, 140)
-        inventoryX = inventoryX + (charlotteImages[name].width * scaleFactor) + 40
+        inventoryX = inventoryX + (charlotteImages[name].width * scaleFactor)
     end
 end
 
@@ -146,7 +148,7 @@ function knightGivesHeart ()
     end
     drawInventory()
     textArea("The knight likes you and gives you a heart box with chocolates in it.")
-    choice("go in to castle", charlotteStart)
+    choice("go in to castle", boredQueen)
 end
 
 function knightScolds ()
@@ -167,7 +169,11 @@ function homeAfterKnight ()
 end
 
 function boredQueen()
-    --do this!
+    drawBackground(charlotteImages.boredQueen)
+    simpleImage("heroineWithQueen", charlotteImages.heroineWithQueen, HEIGHT * 0.0013)
+    drawInventory()
+    textArea("The queen tells you she's really bored.")
+    choice("tell her you know a puppet show", charlotteStart)
 end
 
 --[[
