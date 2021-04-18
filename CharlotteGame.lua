@@ -61,6 +61,7 @@ charlotteImages.charlotteStart = readImage(asset.documents.ccFirst)
 charlotteImages.boyfriendTells = readImage(asset.documents.ccGenericOutside)
 charlotteImages.knightScreen = readImage(asset.documents.ccKnightScreen)
 charlotteImages.boredQueen = readImage(asset.ccQueenBored)
+charlotteImages.genericOutside = readImage(asset.ccGenericOutside)
 --images drawn over background
 charlotteImages.placementGuide = readImage(asset.documents.choices_cup_big)
 charlotteImages.heroineStart = readImage(asset.documents.ccHeroine)
@@ -68,9 +69,12 @@ charlotteImages.heroineDrank = readImage(asset.documents.ccHeroineFlipped)
 charlotteImages.heroineSavedCoffee = readImage(asset.documents.ccHeroine)
 charlotteImages.heroineWithBoyfriend = readImage(asset.documents.ccHeroineFlipped)
 charlotteImages.heroineWithQueen = readImage(asset.documents.ccHeroine)
+charlotteImages.heroineLeavingQueen = readImage(asset.ccHeroineFlipped)
 charlotteImages.boyfriend = readImage(asset.documents.ccBoyfriend)
 charlotteImages.heroineWithKnight = readImage(asset.documents.ccHeroine)
 charlotteImages.heroineWithKnight2 = readImage(asset.documents.ccHeroine)
+charlotteImages.heroineMeetsGrouchy = readImage(asset.ccHeroineFlipped)
+charlotteImages.grouchyPuppeteer = readImage(asset.ccPuppeteerGrumpy)
 charlotteImages.coffee = readImage(asset.documents.choices_cup_small)
 charlotteImages.inventoryCoffee = readImage(asset.documents.choices_cup_big)
 charlotteImages.inventoryChocolate = readImage(asset.documents.choices_heart_big)
@@ -173,19 +177,52 @@ function boredQueen()
     simpleImage("heroineWithQueen", charlotteImages.heroineWithQueen, HEIGHT * 0.0013)
     drawInventory()
     textArea("The queen tells you she's really bored.")
-    choice("tell her you know a puppet show", charlotteStart)
+    choice("tell her you know a puppet show", queenSaysShowMe)
 end
 
+function queenSaysShowMe()
+    drawBackground(charlotteImages.boredQueen)
+    simpleImage("heroineWithQueen", charlotteImages.heroineLeavingQueen, HEIGHT * 0.0013)
+    drawInventory()
+    textArea("You tell the queen you know how to put on a puppet show.\n\rShe says, \"Show me as soon as you can!\"")
+    choice("leave", branchForPuppeteer)
+end
+
+function branchForPuppeteer()
+    if inventory[1] == "inventoryCoffee" then
+        makeScreenChangingAction(puppeteerWithCoffee)()
+    else
+        makeScreenChangingAction(charlotteStart)()
+    end
+end
+
+function puppeteerWithCoffee()
+    drawBackground(charlotteImages.genericOutside)
+    simpleImage("heroineMeetsGrouchy", charlotteImages.heroineMeetsGrouchy, HEIGHT * 0.001)
+    simpleImage("grouchyPuppeteer", charlotteImages.grouchyPuppeteer, HEIGHT * 0.001)
+    drawInventory()
+    textArea("On your way home you see a grouchy puppeteer.")
+    choice("give him your coffee", charlotteStart)
+    choice("go home and practice", charlotteStart)
+end
+
+
+
 --[[
-{name = "boredQueen",
-background = "ccQueenBored",
+{name = "grouchyPuppeteer",
+background = "ccGenericOutside",
 images = {
-{"heroine", "ccHeroine", WIDTH * 0.2197, HEIGHT * 0.576, heightRatio = 0.61197917} },
-narration = "The queen tells you she's really bored.",
+{"heroineFlipped", "ccHeroineFlipped", WIDTH * 0.68359375, HEIGHT * 0.59635417, heightRatio = 0.61197917},
+{"puppeteerGrouchy", "ccPuppeteerGrumpy", WIDTH * 0.31738281, HEIGHT * 0.59635417, heightRatio = 0.67317708} },
+narration = "On your way home you see a grouchy puppeteer.",
 choices = {
-{choiceText = "tell her you know a puppet show", resultScreen = "queenSaysShowMe" } }
+{onlyIfInInventory = "coffee", choiceText = "give him your coffee",
+resultScreen = "happyPuppeteer", inventoryRemove = "coffee" },
+{choiceText = "go home and practice", resultScreen ="queenNotLike" } }
 },
 ]]
+
+
 --[[
 
 {name = "firstScreen",

@@ -248,14 +248,17 @@ end
 
 --choice creates a button whose action changes currentScreen to the specified screen
 function choice(choiceText, resultScreenAsFunction, x, y)
-    local choiceAction = function ()
-        print("you tapped a choice")
-        currentScreen = resultScreenAsFunction
-        uiPieceHandler.shouldUpdateScreenBlur = true
-    end
+    local choiceAction = makeScreenChangingAction(resultScreenAsFunction)
     button(choiceText, choiceAction, x, y, uiPieceHandler.choiceW, uiPieceHandler.choiceH, color(255))
 end
 
+function makeScreenChangingAction(newScreenAsFunction)
+    return function ()
+        print("you tapped a choice")
+        currentScreen = newScreenAsFunction
+        uiPieceHandler.shouldUpdateScreenBlur = true
+    end
+end
 
 --[[
 true mesh rounded rectangle. Original by @LoopSpace
