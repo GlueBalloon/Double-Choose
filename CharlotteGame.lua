@@ -75,6 +75,7 @@ charlotteImages.heroineWithKnight = readImage(asset.documents.ccHeroine)
 charlotteImages.heroineWithKnight2 = readImage(asset.documents.ccHeroine)
 charlotteImages.heroineMeetsGrouchy = readImage(asset.ccHeroineFlipped)
 charlotteImages.grouchyPuppeteer = readImage(asset.ccPuppeteerGrumpy)
+charlotteImages.puppeteerTeaching = readImage(asset.ccPuppeteerHappy)
 charlotteImages.coffee = readImage(asset.documents.choices_cup_small)
 charlotteImages.inventoryCoffee = readImage(asset.documents.choices_cup_big)
 charlotteImages.inventoryChocolate = readImage(asset.documents.choices_heart_big)
@@ -202,23 +203,31 @@ function puppeteerWithCoffee()
     simpleImage("grouchyPuppeteer", charlotteImages.grouchyPuppeteer, HEIGHT * 0.001)
     drawInventory()
     textArea("On your way home you see a grouchy puppeteer.")
-    choice("give him your coffee", charlotteStart)
+    choice("give him your coffee", happyPuppeteer)
     choice("go home and practice", charlotteStart)
 end
 
+function happyPuppeteer()
+    drawBackground(charlotteImages.genericOutside)
+    simpleImage("heroineMeetsGrouchy", charlotteImages.heroineMeetsGrouchy, HEIGHT * 0.001)
+    simpleImage("puppeteerTeaching", charlotteImages.puppeteerTeaching, HEIGHT * 0.001)
+    drawInventory()
+    textArea("He teaches you a new puppet show.")
+    choice("go home and give up", charlotteStart)
+    choice("go show the queen", charlotteStart)
+end
 
 
 --[[
-{name = "grouchyPuppeteer",
+{name = "happyPuppeteer",
 background = "ccGenericOutside",
 images = {
-{"heroineFlipped", "ccHeroineFlipped", WIDTH * 0.68359375, HEIGHT * 0.59635417, heightRatio = 0.61197917},
-{"puppeteerGrouchy", "ccPuppeteerGrumpy", WIDTH * 0.31738281, HEIGHT * 0.59635417, heightRatio = 0.67317708} },
-narration = "On your way home you see a grouchy puppeteer.",
+{"heroineFlipped", "ccHeroineFlipped", WIDTH * 0.67675781, HEIGHT * 0.59635417, heightRatio = 0.61197917},
+{"puppeteerHappy", "ccPuppeteerHappy", WIDTH * 0.31738281, HEIGHT * 0.59635417, heightRatio = 0.66145833} },
+narration = "He teaches you a new puppet show.",
 choices = {
-{onlyIfInInventory = "coffee", choiceText = "give him your coffee",
-resultScreen = "happyPuppeteer", inventoryRemove = "coffee" },
-{choiceText = "go home and practice", resultScreen ="queenNotLike" } }
+{choiceText = "go home and give up", resultScreen ="homeAndSleep" },
+{choiceText = "go show the queen", resultScreen = "queenLovesShow"} }
 },
 ]]
 
