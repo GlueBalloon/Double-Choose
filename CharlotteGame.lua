@@ -56,29 +56,31 @@ end
 
 charlotteImages = {}
 --backgrounds
-charlotteImages.sizeGuide = readImage(asset.documents.ccSizeGuide)
-charlotteImages.charlotteStart = readImage(asset.documents.ccFirst)
-charlotteImages.boyfriendTells = readImage(asset.documents.ccGenericOutside)
-charlotteImages.knightScreen = readImage(asset.documents.ccKnightScreen)
+charlotteImages.sizeGuide = readImage(asset.ccSizeGuide)
+charlotteImages.charlotteStart = readImage(asset.ccFirst)
+charlotteImages.boyfriendTells = readImage(asset.ccGenericOutside)
+charlotteImages.knightScreen = readImage(asset.ccKnightScreen)
 charlotteImages.boredQueen = readImage(asset.ccQueenBored)
 charlotteImages.genericOutside = readImage(asset.ccGenericOutside)
+charlotteImages.queenNotLike = readImage(asset.ccQueenNotLike)
 --images drawn over background
-charlotteImages.placementGuide = readImage(asset.documents.choices_cup_big)
-charlotteImages.heroineStart = readImage(asset.documents.ccHeroine)
-charlotteImages.heroineDrank = readImage(asset.documents.ccHeroineFlipped)
-charlotteImages.heroineSavedCoffee = readImage(asset.documents.ccHeroine)
-charlotteImages.heroineWithBoyfriend = readImage(asset.documents.ccHeroineFlipped)
-charlotteImages.heroineWithQueen = readImage(asset.documents.ccHeroine)
+charlotteImages.placementGuide = readImage(asset.choices_cup_big)
+charlotteImages.heroineStart = readImage(asset.ccHeroine)
+charlotteImages.heroineDrank = readImage(asset.ccHeroineFlipped)
+charlotteImages.heroineSavedCoffee = readImage(asset.ccHeroine)
+charlotteImages.heroineWithBoyfriend = readImage(asset.ccHeroineFlipped)
+charlotteImages.heroineWithQueen = readImage(asset.ccHeroine)
 charlotteImages.heroineLeavingQueen = readImage(asset.ccHeroineFlipped)
-charlotteImages.boyfriend = readImage(asset.documents.ccBoyfriend)
-charlotteImages.heroineWithKnight = readImage(asset.documents.ccHeroine)
-charlotteImages.heroineWithKnight2 = readImage(asset.documents.ccHeroine)
+charlotteImages.boyfriend = readImage(asset.ccBoyfriend)
+charlotteImages.heroineWithKnight = readImage(asset.ccHeroine)
+charlotteImages.heroineWithKnight2 = readImage(asset.ccHeroine)
 charlotteImages.heroineMeetsGrouchy = readImage(asset.ccHeroineFlipped)
+charlotteImages.heroineWithSockPuppets = readImage(asset.ccHeroineWithSockPuppets)
 charlotteImages.grouchyPuppeteer = readImage(asset.ccPuppeteerGrumpy)
 charlotteImages.puppeteerTeaching = readImage(asset.ccPuppeteerHappy)
-charlotteImages.coffee = readImage(asset.documents.choices_cup_small)
-charlotteImages.inventoryCoffee = readImage(asset.documents.choices_cup_big)
-charlotteImages.inventoryChocolate = readImage(asset.documents.choices_heart_big)
+charlotteImages.coffee = readImage(asset.ccCoffeeSmall)
+charlotteImages.inventoryCoffee = readImage(asset.ccCoffeeBig)
+charlotteImages.inventoryChocolate = readImage(asset.ccHeartBox)
 
 inventory = {}
 
@@ -139,8 +141,8 @@ function knightScreen ()
     simpleImage("heroineWithKnight", charlotteImages.heroineWithKnight, HEIGHT * 0.00076)
     drawInventory()
     textArea("You see a knight at the gate.\n\nWhat do you say to him?")
-    choice("Hi, having a nice day?", knightGivesHeart)
     choice("Just let me in to the castle.", knightScolds)
+    choice("Hi, having a nice day?", knightGivesHeart)
 end
 
 function knightGivesHeart ()
@@ -185,7 +187,9 @@ function queenSaysShowMe()
     drawBackground(charlotteImages.boredQueen)
     simpleImage("heroineWithQueen", charlotteImages.heroineLeavingQueen, HEIGHT * 0.0013)
     drawInventory()
-    textArea("You tell the queen you know how to put on a puppet show.\n\rShe says, \"Show me as soon as you can!\"")
+    textArea([[You tell the queen you know how to put on a puppet show.
+    
+    She says, "Show me as soon as you can!"]])
     choice("leave", branchForPuppeteer)
 end
 
@@ -204,7 +208,7 @@ function puppeteerWithCoffee()
     drawInventory()
     textArea("On your way home you see a grouchy puppeteer.")
     choice("give him your coffee", happyPuppeteer)
-    choice("go home and practice", charlotteStart)
+    choice("go home and practice", queenNotLike)
 end
 
 function happyPuppeteer()
@@ -217,17 +221,24 @@ function happyPuppeteer()
     choice("go show the queen", charlotteStart)
 end
 
+function queenNotLike()
+    drawBackground(charlotteImages.queenNotLike)
+    simpleImage("heroineWithSockPuppets", charlotteImages.heroineWithSockPuppets, HEIGHT * 0.0013)
+    drawInventory()
+    textArea("You practice, but the queen doesn't like your show, and you're embarrassed.")
+    choice("give up and go home", charlotteStart)
+end
+
 
 --[[
-{name = "happyPuppeteer",
-background = "ccGenericOutside",
+{name = "queenNotLike",
+background = "ccQueenNotLike",
 images = {
-{"heroineFlipped", "ccHeroineFlipped", WIDTH * 0.67675781, HEIGHT * 0.59635417, heightRatio = 0.61197917},
-{"puppeteerHappy", "ccPuppeteerHappy", WIDTH * 0.31738281, HEIGHT * 0.59635417, heightRatio = 0.66145833} },
-narration = "He teaches you a new puppet show.",
+{"heroineWithSockPuppets", "ccHeroineWithSockPuppets", WIDTH * 0.26464844, HEIGHT * 0.55989583, heightRatio = 0.63932292} },
+narration = "You practice, but the queen doesn't like your show, and you're embarrassed.",
 choices = {
-{choiceText = "go home and give up", resultScreen ="homeAndSleep" },
-{choiceText = "go show the queen", resultScreen = "queenLovesShow"} }
+{choiceText = "start over", resultScreen ="firstScreen",
+inventoryRemove = "allItems" } }
 },
 ]]
 
