@@ -44,8 +44,7 @@ function setup()
     currentScreen = charlotteStart
     --currentOverlay = function() end
     uiPieceHandler.shouldUpdateScreenBlur = true
-    music(asset.documents["Choices_rumble-2.mp3"],true)
-    
+    music(asset.documents["Choices_rumble-2.mp3"],true)    
 end
 
 

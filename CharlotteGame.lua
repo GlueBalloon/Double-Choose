@@ -1,4 +1,22 @@
 
+function homeAndSleep()
+    drawBackground(charlotteImages.homeAndSleep)
+    textArea("You go back home and go to sleep.")
+    choice("start over", charlotteStart)
+end
+    
+    
+    --[[
+    {name = "homeAndSleep",
+        background = "ccHomeAndSleep",
+        narration = "You go back home and go to sleep.",
+        choices = {
+            {choiceText = "start over", resultScreen ="firstScreen",
+                inventoryRemove = "allItems" } }
+                },
+                ]]
+
+
 function testCharlottesGame()
     CodeaUnit.detailed = true
     
@@ -63,6 +81,7 @@ charlotteImages.knightScreen = readImage(asset.ccKnightScreen)
 charlotteImages.boredQueen = readImage(asset.ccQueenBored)
 charlotteImages.genericOutside = readImage(asset.ccGenericOutside)
 charlotteImages.queenNotLike = readImage(asset.ccQueenNotLike)
+charlotteImages.homeAndSleep = readImage(asset.ccHomeAndSleep)
 --images drawn over background
 charlotteImages.placementGuide = readImage(asset.choices_cup_big)
 charlotteImages.heroineStart = readImage(asset.ccHeroine)
@@ -217,7 +236,7 @@ function happyPuppeteer()
     simpleImage("puppeteerTeaching", charlotteImages.puppeteerTeaching, HEIGHT * 0.001)
     drawInventory()
     textArea("He teaches you a new puppet show.")
-    choice("go home and give up", charlotteStart)
+    choice("go home and give up", homeAndSleep)
     choice("go show the queen", charlotteStart)
 end
 
@@ -226,20 +245,18 @@ function queenNotLike()
     simpleImage("heroineWithSockPuppets", charlotteImages.heroineWithSockPuppets, HEIGHT * 0.0013)
     drawInventory()
     textArea("You practice, but the queen doesn't like your show, and you're embarrassed.")
-    choice("give up and go home", charlotteStart)
+    choice("back to start", homeAndSleep)
 end
 
-
+                                                                                                                                
 --[[
-{name = "queenNotLike",
-background = "ccQueenNotLike",
-images = {
-{"heroineWithSockPuppets", "ccHeroineWithSockPuppets", WIDTH * 0.26464844, HEIGHT * 0.55989583, heightRatio = 0.63932292} },
-narration = "You practice, but the queen doesn't like your show, and you're embarrassed.",
-choices = {
-{choiceText = "start over", resultScreen ="firstScreen",
-inventoryRemove = "allItems" } }
-},
+                                                                                                                                {name = "homeAndSleep",
+                                                                                                                                background = "ccHomeAndSleep",
+                                                                                                                                narration = "You go back home and go to sleep.",
+                                                                                                                                choices = {
+                                                                                                                                {choiceText = "start over", resultScreen ="firstScreen",
+                                                                                                                                inventoryRemove = "allItems" } }
+                                                                                                                                },
 ]]
 
 
