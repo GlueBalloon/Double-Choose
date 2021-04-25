@@ -1,22 +1,3 @@
-
-function homeAndSleep()
-    drawBackground(charlotteImages.homeAndSleep)
-    textArea("You go back home and go to sleep.")
-    choice("start over", charlotteStart)
-end
-    
-    
-    --[[
-    {name = "homeAndSleep",
-        background = "ccHomeAndSleep",
-        narration = "You go back home and go to sleep.",
-        choices = {
-            {choiceText = "start over", resultScreen ="firstScreen",
-                inventoryRemove = "allItems" } }
-                },
-                ]]
-
-
 function testCharlottesGame()
     CodeaUnit.detailed = true
     
@@ -73,33 +54,60 @@ end
 
 
 charlotteImages = {}
---backgrounds
-charlotteImages.sizeGuide = readImage(asset.ccSizeGuide)
 charlotteImages.charlotteStart = readImage(asset.ccFirst)
-charlotteImages.boyfriendTells = readImage(asset.ccGenericOutside)
-charlotteImages.knightScreen = readImage(asset.ccKnightScreen)
-charlotteImages.boredQueen = readImage(asset.ccQueenBored)
-charlotteImages.genericOutside = readImage(asset.ccGenericOutside)
-charlotteImages.queenNotLike = readImage(asset.ccQueenNotLike)
-charlotteImages.homeAndSleep = readImage(asset.ccHomeAndSleep)
---images drawn over background
-charlotteImages.placementGuide = readImage(asset.choices_cup_big)
 charlotteImages.heroineStart = readImage(asset.ccHeroine)
-charlotteImages.heroineDrank = readImage(asset.ccHeroineFlipped)
-charlotteImages.heroineSavedCoffee = readImage(asset.ccHeroine)
-charlotteImages.heroineWithBoyfriend = readImage(asset.ccHeroineFlipped)
-charlotteImages.heroineWithQueen = readImage(asset.ccHeroine)
-charlotteImages.heroineLeavingQueen = readImage(asset.ccHeroineFlipped)
-charlotteImages.boyfriend = readImage(asset.ccBoyfriend)
-charlotteImages.heroineWithKnight = readImage(asset.ccHeroine)
-charlotteImages.heroineWithKnight2 = readImage(asset.ccHeroine)
-charlotteImages.heroineMeetsGrouchy = readImage(asset.ccHeroineFlipped)
-charlotteImages.heroineWithSockPuppets = readImage(asset.ccHeroineWithSockPuppets)
-charlotteImages.grouchyPuppeteer = readImage(asset.ccPuppeteerGrumpy)
-charlotteImages.puppeteerTeaching = readImage(asset.ccPuppeteerHappy)
 charlotteImages.coffee = readImage(asset.ccCoffeeSmall)
 charlotteImages.inventoryCoffee = readImage(asset.ccCoffeeBig)
-charlotteImages.inventoryChocolate = readImage(asset.ccHeartBox)
+
+charlotteImages.charlotteImageLoader = coroutine.create(function()
+--backgrounds
+    charlotteImages.sizeGuide = readImage(asset.ccSizeGuide)
+    coroutine.yield()
+    charlotteImages.boyfriendTells = readImage(asset.ccGenericOutside)
+    coroutine.yield()
+    charlotteImages.knightScreen = readImage(asset.ccKnightScreen)
+    coroutine.yield()
+    charlotteImages.boredQueen = readImage(asset.ccQueenBored)
+    coroutine.yield()
+    charlotteImages.genericOutside = readImage(asset.ccGenericOutside)
+    coroutine.yield()
+    charlotteImages.queenNotLike = readImage(asset.ccQueenNotLike)
+    coroutine.yield()
+    charlotteImages.homeAndSleep = readImage(asset.ccHomeAndSleep)
+    coroutine.yield()
+    charlotteImages.queenLovesShow = readImage(asset.ccQueenLoves)
+    coroutine.yield()
+    --images drawn over background
+    charlotteImages.placementGuide = readImage(asset.choices_cup_big)
+    coroutine.yield()
+    charlotteImages.heroineDrank = readImage(asset.ccHeroineFlipped)
+    coroutine.yield()
+    charlotteImages.heroineSavedCoffee = readImage(asset.ccHeroine)
+    coroutine.yield()
+    charlotteImages.heroineWithBoyfriend = readImage(asset.ccHeroineFlipped)
+    coroutine.yield()
+    charlotteImages.heroineWithQueen = readImage(asset.ccHeroine)
+    coroutine.yield()
+    charlotteImages.heroineLeavingQueen = readImage(asset.ccHeroineFlipped)
+    coroutine.yield()
+    charlotteImages.boyfriend = readImage(asset.ccBoyfriend)
+    coroutine.yield()
+    charlotteImages.heroineWithKnight = readImage(asset.ccHeroine)
+    coroutine.yield()
+    charlotteImages.heroineWithKnight2 = readImage(asset.ccHeroine)
+    coroutine.yield()
+    charlotteImages.heroineMeetsGrouchy = readImage(asset.ccHeroineFlipped)
+    coroutine.yield()
+    charlotteImages.heroineWithSockPuppets = readImage(asset.ccHeroineWithSockPuppets)
+    coroutine.yield()
+    charlotteImages.heroineWithMarionettes = readImage(asset.ccHeroineWithMarionettes)
+    coroutine.yield()
+    charlotteImages.grouchyPuppeteer = readImage(asset.ccPuppeteerGrumpy)
+    coroutine.yield()
+    charlotteImages.puppeteerTeaching = readImage(asset.ccPuppeteerHappy)
+    coroutine.yield()
+    charlotteImages.inventoryChocolate = readImage(asset.ccHeartBox)
+end)
 
 inventory = {}
 
@@ -126,8 +134,13 @@ function charlotteStart()
     simpleImage("heroineStart", charlotteImages.heroineStart, HEIGHT * 0.00155)
     simpleImage("coffee", charlotteImages.coffee, 1.6)
     textArea("You woke up.\n\nWhat do you want to do with your coffee?")
-    choice("drink it", drankCoffee)
-    choice("save it for later", savedCoffee)
+    if coroutine.status(charlotteImages.charlotteImageLoader) ~= "dead" then
+        print("still loading")
+        coroutine.resume(charlotteImages.charlotteImageLoader)
+    else
+        choice("drink it", drankCoffee)
+        choice("save it for later", savedCoffee)
+    end
 end
 
 function drankCoffee()
@@ -237,7 +250,7 @@ function happyPuppeteer()
     drawInventory()
     textArea("He teaches you a new puppet show.")
     choice("go home and give up", homeAndSleep)
-    choice("go show the queen", charlotteStart)
+    choice("go show the queen", queenLovesShow)
 end
 
 function queenNotLike()
@@ -248,17 +261,31 @@ function queenNotLike()
     choice("back to start", homeAndSleep)
 end
 
-                                                                                                                                
---[[
-                                                                                                                                {name = "homeAndSleep",
-                                                                                                                                background = "ccHomeAndSleep",
-                                                                                                                                narration = "You go back home and go to sleep.",
-                                                                                                                                choices = {
-                                                                                                                                {choiceText = "start over", resultScreen ="firstScreen",
-                                                                                                                                inventoryRemove = "allItems" } }
-                                                                                                                                },
-]]
+function homeAndSleep()
+    drawBackground(charlotteImages.homeAndSleep)
+    textArea("You go back home and go to sleep.")
+    choice("start over", charlotteStart)
+end
 
+function queenLovesShow()
+    drawBackground(charlotteImages.queenLovesShow)
+    textArea("The queen loves the show!\n\rShe tells you a secret. If you give the princess a heart box with chocolates in it, you will become the new queen.")
+    simpleImage("heroineWithMarionettes", charlotteImages.heroineWithMarionettes, HEIGHT * 0.0013)
+    drawInventory()
+    choice("choose who to give the heart to", charlotteStart)
+end
+
+--[[
+{name = "queenLovesShow",
+background = "ccQueenLoves",
+images = {
+{"heroineWithMarionettes", "ccHeroineWithMarionettes", WIDTH * 0.26464844, HEIGHT * 0.57291667, heightRatio = 0.63932292} },
+narration = "The queen loves the show!\n\rShe tells you a secret. If you give the princess a heart box with chocolates in it, you will become the new queen.",
+choices = {
+{choiceText = "choose who to give the heart to", resultScreen ="chooseHeart" } }
+},
+]]
+                                                                                                                        
 
 --[[
 
