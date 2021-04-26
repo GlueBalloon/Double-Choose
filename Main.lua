@@ -41,6 +41,7 @@ function setup()
     ]]
     currentOverlay = orientationOverlay
     currentScreen = rosieStart
+    screenChangeTime = os.time()
     currentScreen = charlotteStart
     --currentOverlay = function() end
     uiPieceHandler.shouldUpdateScreenBlur = true

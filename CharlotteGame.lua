@@ -54,6 +54,7 @@ end
 
 
 charlotteImages = {}
+
 charlotteImages.charlotteStart = readImage(asset.ccFirst)
 charlotteImages.heroineStart = readImage(asset.ccHeroine)
 charlotteImages.coffee = readImage(asset.ccCoffeeSmall)
@@ -76,6 +77,8 @@ charlotteImages.charlotteImageLoader = coroutine.create(function()
     charlotteImages.homeAndSleep = readImage(asset.ccHomeAndSleep)
     coroutine.yield()
     charlotteImages.queenLovesShow = readImage(asset.ccQueenLoves)
+    coroutine.yield()
+    charlotteImages.genericCastleInterior = readImage(asset.choices_boyfriend_or_princess_light)
     coroutine.yield()
     --images drawn over background
     charlotteImages.placementGuide = readImage(asset.choices_cup_big)
@@ -105,6 +108,10 @@ charlotteImages.charlotteImageLoader = coroutine.create(function()
     charlotteImages.grouchyPuppeteer = readImage(asset.ccPuppeteerGrumpy)
     coroutine.yield()
     charlotteImages.puppeteerTeaching = readImage(asset.ccPuppeteerHappy)
+    coroutine.yield()
+    charlotteImages.heartChoiceBoyfriend = readImage(asset.ccBoyfriend)
+    coroutine.yield()
+    charlotteImages.heartChoicePrincess = readImage(asset.ccPrincess)
     coroutine.yield()
     charlotteImages.inventoryChocolate = readImage(asset.ccHeartBox)
 end)
@@ -272,17 +279,31 @@ function queenLovesShow()
     textArea("The queen loves the show!\n\rShe tells you a secret. If you give the princess a heart box with chocolates in it, you will become the new queen.")
     simpleImage("heroineWithMarionettes", charlotteImages.heroineWithMarionettes, HEIGHT * 0.0013)
     drawInventory()
-    choice("choose who to give the heart to", charlotteStart)
+    choice("choose who to give the heart to", heartChoice)
+end
+
+function heartChoice()
+    drawBackground(charlotteImages.genericCastleInterior)
+    textArea("Do you give the heart to the princess or your boyfriend?")
+    simpleImage("heartChoiceBoyfriend", charlotteImages.heartChoiceBoyfriend, HEIGHT * 0.0013)
+    simpleImage("heartChoicePrincess", charlotteImages.heartChoicePrincess, HEIGHT * 0.0013)
+    drawInventory()
+    choice("princess", charlotteStart)
+    choice("boyfriend", charlotteStart)
 end
 
 --[[
-{name = "queenLovesShow",
-background = "ccQueenLoves",
+{name = "chooseHeart",
+background = "ccGenericCastleInterior",
 images = {
-{"heroineWithMarionettes", "ccHeroineWithMarionettes", WIDTH * 0.26464844, HEIGHT * 0.57291667, heightRatio = 0.63932292} },
-narration = "The queen loves the show!\n\rShe tells you a secret. If you give the princess a heart box with chocolates in it, you will become the new queen.",
+{"princess", "ccPrincess", WIDTH * 0.5, HEIGHT * 0.64453125, heightRatio = 0.72916667},
+{"boyfriend", "ccBoyfriend", WIDTH * 0.23730469, HEIGHT * 0.58854167, heightRatio = 0.65885417} },
+narration = "Do you give the heart to the princess or your boyfriend?",
 choices = {
-{choiceText = "choose who to give the heart to", resultScreen ="chooseHeart" } }
+{choiceText = "princess", resultScreen = "youBecomeQueen",
+inventoryRemove = "heartBox"},
+{choiceText = "boyfriend", resultScreen ="happyInForest",
+inventoryRemove = "heartBox" } }
 },
 ]]
                                                                                                                         
