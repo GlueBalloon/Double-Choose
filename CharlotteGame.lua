@@ -168,8 +168,8 @@ end
 
 function boyfriendTells()
     drawBackground(charlotteImages.boyfriendTells)
-    simpleImage("boyfriend", charlotteImages.boyfriend, HEIGHT * 0.0014)
-    simpleImage("heroineWithBoyfriend", charlotteImages.heroineWithBoyfriend, HEIGHT * 0.0014)
+    simpleImage("boyfriend", charlotteImages.boyfriend, HEIGHT * 0.0012)
+    simpleImage("heroineWithBoyfriend", charlotteImages.heroineWithBoyfriend, HEIGHT * 0.0012)
     drawInventory()
     textArea("Your boyfriend tells you the queen is bored.")
     choice("go see the queen", knightScreen)
@@ -219,7 +219,7 @@ function boredQueen()
     simpleImage("heroineWithQueen", charlotteImages.heroineWithQueen, HEIGHT * 0.0013)
     drawInventory()
     textArea("The queen tells you she's really bored.")
-    choice("tell her you know a puppet show", queenSaysShowMe)
+    choice("suggest a puppet show", queenSaysShowMe)
 end
 
 function queenSaysShowMe()
@@ -276,7 +276,9 @@ end
 
 function queenLovesShow()
     drawBackground(charlotteImages.queenLovesShow)
-    textArea("The queen loves the show!\n\rShe tells you a secret. If you give the princess a heart box with chocolates in it, you will become the new queen.")
+    textArea([[The queen loves the show!
+    
+She tells you a secret. If you give the princess a heart box with chocolates in it, you will become the new queen.]])
     simpleImage("heroineWithMarionettes", charlotteImages.heroineWithMarionettes, HEIGHT * 0.0013)
     drawInventory()
     choice("choose who to give the heart to", heartChoice)
@@ -285,11 +287,11 @@ end
 function heartChoice()
     drawBackground(charlotteImages.genericCastleInterior)
     textArea("Do you give the heart to the princess or your boyfriend?")
+    choice("give to princess", charlotteStart)
+    choice("give to boyfriend", charlotteStart)
     simpleImage("heartChoiceBoyfriend", charlotteImages.heartChoiceBoyfriend, HEIGHT * 0.0013)
     simpleImage("heartChoicePrincess", charlotteImages.heartChoicePrincess, HEIGHT * 0.0013)
     drawInventory()
-    choice("princess", charlotteStart)
-    choice("boyfriend", charlotteStart)
 end
 
 --[[
