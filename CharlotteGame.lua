@@ -92,6 +92,8 @@ charlotteImages.charlotteImageLoader = coroutine.create(function()
     charlotteImages.heroineWithQueen = readImage(asset.ccHeroine)
     coroutine.yield()
     charlotteImages.heroineLeavingQueen = readImage(asset.ccHeroineFlipped)
+    coroutine.yield() 
+    charlotteImages.heroineQueened = readImage(asset.ccHeroineQueened)
     coroutine.yield()
     charlotteImages.boyfriend = readImage(asset.ccBoyfriend)
     coroutine.yield()
@@ -145,7 +147,7 @@ function charlotteStart()
         print("still loading")
         coroutine.resume(charlotteImages.charlotteImageLoader)
     else
-        choice("drink it", drankCoffee)
+        choice("drink it", youBecomeQueen)
         choice("save it for later", savedCoffee)
     end
 end
@@ -228,25 +230,19 @@ function queenSaysShowMe()
     drawInventory()
     textArea([[You tell the queen you know how to put on a puppet show.
     
-    She says, "Show me as soon as you can!"]])
-    choice("leave", branchForPuppeteer)
+She says, "Show me as soon as you can!"]])
+    choice("leave", puppeteer)
 end
 
-function branchForPuppeteer()
-    if inventory[1] == "inventoryCoffee" then
-        makeScreenChangingAction(puppeteerWithCoffee)()
-    else
-        makeScreenChangingAction(charlotteStart)()
-    end
-end
-
-function puppeteerWithCoffee()
+function puppeteer()
     drawBackground(charlotteImages.genericOutside)
     simpleImage("heroineMeetsGrouchy", charlotteImages.heroineMeetsGrouchy, HEIGHT * 0.001)
     simpleImage("grouchyPuppeteer", charlotteImages.grouchyPuppeteer, HEIGHT * 0.001)
     drawInventory()
     textArea("On your way home you see a grouchy puppeteer.")
+    if inventory[1] == "inventoryCoffee" then
     choice("give him your coffee", happyPuppeteer)
+        end
     choice("go home and practice", queenNotLike)
 end
 
@@ -287,25 +283,29 @@ end
 function heartChoice()
     drawBackground(charlotteImages.genericCastleInterior)
     textArea("Do you give the heart to the princess or your boyfriend?")
-    choice("give to princess", charlotteStart)
+    choice("give to princess", youBecomeQueen)
     choice("give to boyfriend", charlotteStart)
     simpleImage("heartChoiceBoyfriend", charlotteImages.heartChoiceBoyfriend, HEIGHT * 0.0013)
-    simpleImage("heartChoicePrincess", charlotteImages.heartChoicePrincess, HEIGHT * 0.0013)
+    simpleImage("heartChoicePrincess", charlotteImages.heartChoicePrincess, HEIGHT * 0.00145)
     drawInventory()
 end
 
+function youBecomeQueen()
+    drawBackground(charlotteImages.genericCastleInterior)
+    textArea("You become the queen!")
+    choice("The End", charlotteStart)
+    simpleImage("heroineQueened", charlotteImages.heroineQueened, HEIGHT * 0.0016)
+end
+
 --[[
-{name = "chooseHeart",
+{name = "youBecomeQueen",
 background = "ccGenericCastleInterior",
 images = {
-{"princess", "ccPrincess", WIDTH * 0.5, HEIGHT * 0.64453125, heightRatio = 0.72916667},
-{"boyfriend", "ccBoyfriend", WIDTH * 0.23730469, HEIGHT * 0.58854167, heightRatio = 0.65885417} },
-narration = "Do you give the heart to the princess or your boyfriend?",
+{"heroineQueened", "ccHeroineQueened", WIDTH * 0.31152344, HEIGHT * 0.58854167, heightRatio = 0.64973958} },
+narration = "You become the queen!",
 choices = {
-{choiceText = "princess", resultScreen = "youBecomeQueen",
-inventoryRemove = "heartBox"},
-{choiceText = "boyfriend", resultScreen ="happyInForest",
-inventoryRemove = "heartBox" } }
+{choiceText = "The End", resultScreen ="firstScreen",
+inventoryRemove = "allItems" } }
 },
 ]]
                                                                                                                         
