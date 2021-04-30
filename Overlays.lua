@@ -9,16 +9,14 @@ function orientationOverlay()
     local banner = "INTENDED FOR LANDSCAPE MODE ONLY"
     local w, h = textSize(banner)
     local horizontalPlace, verticalPlace = WIDTH * 0.5, HEIGHT - (h * 0.6)
-    --doesn't work:
-    --[[
     if CurrentOrientation == PORTRAIT or CurrentOrientation == PORTRAIT_UPSIDE_DOWN then
-    banner = "GET OUT OF PORTRAIT MODE SONNY"
-    verticalPlace = HEIGHT / 2
+        banner = "GET OUT OF PORTRAIT MODE SONNY"
+        verticalPlace = HEIGHT / 2
     end
-    ]]
-    fill(54, 31, 57, 83)
-    text(banner, horizontalPlace, verticalPlace)
-    fill(255, 86, 0, 78)
+fill(54, 31, 57, 83)
+text(banner, horizontalPlace, verticalPlace)
+fill(255, 86, 0, 78)
     text(banner, (horizontalPlace) - 2, verticalPlace + 2)
+
     popStyle()
 end

@@ -34,7 +34,7 @@ function testCharlottesGame()
             boyfriendTells()
             _:expect(inventory).hasnt("inventoryCoffee")
         end)
-
+        
         _:test("Knight screen with coffee", function()
             savedCoffee()
             boyfriendTells()
@@ -55,13 +55,14 @@ end
 
 charlotteImages = {}
 
+--images for the very first screen
 charlotteImages.charlotteStart = readImage(asset.ccFirst)
 charlotteImages.heroineStart = readImage(asset.ccHeroine)
 charlotteImages.coffee = readImage(asset.ccCoffeeSmall)
 charlotteImages.inventoryCoffee = readImage(asset.ccCoffeeBig)
 
 charlotteImages.charlotteImageLoader = coroutine.create(function()
---backgrounds
+    --backgrounds
     charlotteImages.sizeGuide = readImage(asset.ccSizeGuide)
     coroutine.yield()
     charlotteImages.boyfriendTells = readImage(asset.ccGenericOutside)
@@ -80,6 +81,8 @@ charlotteImages.charlotteImageLoader = coroutine.create(function()
     coroutine.yield()
     charlotteImages.genericCastleInterior = readImage(asset.choices_boyfriend_or_princess_light)
     coroutine.yield()
+    charlotteImages.happyInForest = readImage(asset.ccHappyInForest)
+    coroutine.yield()
     --images drawn over background
     charlotteImages.placementGuide = readImage(asset.choices_cup_big)
     coroutine.yield()
@@ -92,7 +95,7 @@ charlotteImages.charlotteImageLoader = coroutine.create(function()
     charlotteImages.heroineWithQueen = readImage(asset.ccHeroine)
     coroutine.yield()
     charlotteImages.heroineLeavingQueen = readImage(asset.ccHeroineFlipped)
-    coroutine.yield() 
+    coroutine.yield()
     charlotteImages.heroineQueened = readImage(asset.ccHeroineQueened)
     coroutine.yield()
     charlotteImages.boyfriend = readImage(asset.ccBoyfriend)
@@ -114,6 +117,8 @@ charlotteImages.charlotteImageLoader = coroutine.create(function()
     charlotteImages.heartChoiceBoyfriend = readImage(asset.ccBoyfriend)
     coroutine.yield()
     charlotteImages.heartChoicePrincess = readImage(asset.ccPrincess)
+    coroutine.yield()
+    charlotteImages.happyFamily = readImage(asset.ccHappyFamily)
     coroutine.yield()
     charlotteImages.inventoryChocolate = readImage(asset.ccHeartBox)
 end)
@@ -146,8 +151,8 @@ function charlotteStart()
     if coroutine.status(charlotteImages.charlotteImageLoader) ~= "dead" then
         print("still loading")
         coroutine.resume(charlotteImages.charlotteImageLoader)
-    else
-        choice("drink it", youBecomeQueen)
+        else
+        choice("drink it", drankCoffee)
         choice("save it for later", savedCoffee)
     end
 end
@@ -191,7 +196,7 @@ function knightGivesHeart ()
     simpleImage("heroineScolded", charlotteImages.heroineWithKnight2, HEIGHT * 0.00076)
     if inventory[1] == "inventoryCoffee" then
         inventory = {"inventoryCoffee", "inventoryChocolate"}
-    else
+        else
         inventory = {"inventoryChocolate"}
     end
     drawInventory()
@@ -230,7 +235,7 @@ function queenSaysShowMe()
     drawInventory()
     textArea([[You tell the queen you know how to put on a puppet show.
     
-She says, "Show me as soon as you can!"]])
+    She says, "Show me as soon as you can!"]])
     choice("leave", puppeteer)
 end
 
@@ -241,8 +246,8 @@ function puppeteer()
     drawInventory()
     textArea("On your way home you see a grouchy puppeteer.")
     if inventory[1] == "inventoryCoffee" then
-    choice("give him your coffee", happyPuppeteer)
-        end
+        choice("give him your coffee", happyPuppeteer)
+    end
     choice("go home and practice", queenNotLike)
 end
 
@@ -284,7 +289,7 @@ function heartChoice()
     drawBackground(charlotteImages.genericCastleInterior)
     textArea("Do you give the heart to the princess or your boyfriend?")
     choice("give to princess", youBecomeQueen)
-    choice("give to boyfriend", charlotteStart)
+    choice("give to boyfriend", happyInForest)
     simpleImage("heartChoiceBoyfriend", charlotteImages.heartChoiceBoyfriend, HEIGHT * 0.0013)
     simpleImage("heartChoicePrincess", charlotteImages.heartChoicePrincess, HEIGHT * 0.00145)
     drawInventory()
@@ -297,18 +302,26 @@ function youBecomeQueen()
     simpleImage("heroineQueened", charlotteImages.heroineQueened, HEIGHT * 0.0016)
 end
 
+function happyInForest()
+    drawBackground(charlotteImages.happyInForest)
+    textArea([[You and your boyfriend end up living in a shack in the forest with your kids.
+    
+    And you are happy.]])
+    choice(" The End ", charlotteStart)
+    simpleImage("happyFamily", charlotteImages.happyFamily, HEIGHT * 0.0028)
+end
+
 --[[
-{name = "youBecomeQueen",
-background = "ccGenericCastleInterior",
+{name = "happyInForest",
+background = "ccHappyInForest",
 images = {
-{"heroineQueened", "ccHeroineQueened", WIDTH * 0.31152344, HEIGHT * 0.58854167, heightRatio = 0.64973958} },
-narration = "You become the queen!",
+{"happyFamily", "ccHappyFamily", WIDTH * 0.31835938, HEIGHT * 0.42057292, heightRatio = 0.286} },
+narration = "You and your boyfriend end up living in a shack in the forest with your kids.\n\rAnd you are happy.",
 choices = {
 {choiceText = "The End", resultScreen ="firstScreen",
 inventoryRemove = "allItems" } }
-},
 ]]
-                                                                                                                        
+
 
 --[[
 
