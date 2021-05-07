@@ -281,8 +281,8 @@ function queenLovesShow()
     
 She tells you a secret. If you give the princess a heart box with chocolates in it, you will become the new queen.]])
     simpleImage("heroineWithMarionettes", charlotteImages.heroineWithMarionettes, HEIGHT * 0.0013)
-    drawInventory()
     choice("choose who to give the heart to", heartChoice)
+    drawInventory()
 end
 
 function heartChoice()

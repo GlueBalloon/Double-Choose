@@ -8,6 +8,7 @@
 	<array>
 		<string>Main</string>
 		<string>setup</string>
+		<string>Menu</string>
 		<string>RosiesGame</string>
 		<string>CharlotteGame</string>
 		<string>Overlays</string>

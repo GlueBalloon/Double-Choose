@@ -3,7 +3,7 @@
 
 viewer.mode = OVERLAY
 --supportedOrientations(LANDSCAPE_ANY)
-
+ 
 function setup()
     --monitor performance
     profiler.init()
@@ -42,7 +42,7 @@ function setup()
     currentOverlay = orientationOverlay
     currentScreen = rosieStart
     screenChangeTime = os.time()
-    currentScreen = charlotteStart
+    currentScreen = mainMenu
     --currentOverlay = function() end
     uiPieceHandler.shouldUpdateScreenBlur = true
     music(asset.documents["Choices_rumble-2.mp3"],true)    
