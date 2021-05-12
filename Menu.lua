@@ -9,6 +9,6 @@ end)
 parameter.watch("menuratio")
 function mainMenu()
     drawBackground(menuImages.menu)
-    simpleImage("menuRosie", menuImages.rosie, HEIGHT * 0.0012969697)
-    simpleImage("menuCharlotte", menuImages.charlotte, HEIGHT * 0.0012969697)
+    button("menuRosie", nil, nil, nil, nil, nil, nil, menuImages.rosie)
+    button("menuCharlotte", nil, nil, nil, nil, nil, nil, menuImages.charlotte)
 end

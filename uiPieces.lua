@@ -2,89 +2,6 @@
 --because I began with the button class, all pieces are called 'buttons' in many places
 --these should all be refactored so that there's a generic 'piece' function
 
---[[
---button only actually needs a name to work, the rest have defaults
-function button(name, action, width, height, fontColor)
-    local newButtonFlag = false
-    --create a default button if none exists under this name
-    if uiPieceHandler.buttons[name] == nil then
-        uiPieceHandler.defaultButton(name)
-        newButtonFlag = true
-    end
-    --set button drawing values, using saved values if none passed in
-    local buttonTable = uiPieceHandler.buttons[name]
-    local x,y = buttonTable.x, buttonTable.y
-    width = width or buttonTable.width
-    height = height or buttonTable.height
-    fontColor = fontColor or buttonTable.fontColor
-    --update the stored values if necessary
-    if width ~= buttonTable.width then
-        uiPieceHandler.buttons[name].width = width
-    end
-    if height ~= buttonTable.height then
-        uiPieceHandler.buttons[name].height = height
-    end
-    if fontColor ~= buttonTable.fontColor then
-        uiPieceHandler.buttons[name].fontColor = fontColor
-    end
-    --'action' must be stored, not retrieved; it's called outside of this function
-    if action ~= nil or buttonTable.action == nil then
-        buttonTable.action = action
-        uiPieceHandler.buttons[name].action = action
-    end
-    --draw the button
-    roundedRectangle{
-    x=x,y=y,w=width,h=height,radius=35,
-    tex=uiPieceHandler.screenBlur,
-    texCoord=vec4(x,y,width,height)}
-    styleSafe(function()
-        fill(fontColor)
-        text(name, x, y)
-    end)
-    --handle touches (wherein action gets called or not)
-    uiPieceHandler.evaluateTouchFor(name)
-    --set the flag that shows we rendered
-    uiPieceHandler.buttons[name].didRenderAlready = true
-    if newButtonFlag == true then
-        print("button: should be saving positions")
-        uiPieceHandler.savePositions() --atm saves *all* button positions, ergg
-    end
-end
-
---textArea is a button that has no action and defaults to black text
-function textArea(textToShow, width, height)
-    --a placeholder action value
-    local action
-    --if first draw, set temporary empty action (in case tapped in first draw)
-    if uiPieceHandler.buttons[name] == nil then
-        action = function() end
-    end
-    --pass all the values to button()--by default setting border transparent (as above)
-    textWrapWidth(uiPieceHandler.narrationW - 80)
-    button(textToShow, action, uiPieceHandler.narrationW, uiPieceHandler.narrationH, color(255))
-    --if button action isn't nil yet, nil it--this will only be needed first time drawn
-    if uiPieceHandler.buttons[textToShow].action ~= nil then
-        uiPieceHandler.buttons[textToShow].action = nil
-    end
-end
-
---choice creates a button whose action changes currentScreen to the specified screen
-function choice(choiceText, resultScreenAsFunction, width, height)
-    --define the change screen action, depending on choicesActive setting
-    local choiceAction
-    width = width or uiPieceHandler.choiceW
-    height = height or uiPieceHandler.choiceH
-    --comparing actions like this won't work:
-    --local actionNotSet = uiPieceHandler.buttons[choiceText].action == uiPieceHandler.defaultButtonAction
-    choiceAction = function ()
-        currentScreen = resultScreenAsFunction
-        uiPieceHandler.shouldUpdateScreenBlur = true
-    end
-    --set custom font color and pass all values to button
-    button(choiceText, choiceAction, width, height, color(255))
-end
-]]
-
 --sends an image to the button(...) function but has parameters ordered by how often they're used: only the first two are actually necessary to draw an image
 function simpleImage(name, imageAsset, scaleFactor, x, y, action, width, height)
     scaleFactor = scaleFactor or 1
@@ -94,7 +11,6 @@ end
 
 --button only actually needs a name to work, the rest have defaults
 function button(name, action, x, y, width, height, fontColor, imageAsset)
-    
     local newButtonFlag = false
     --create a default button if none exists under this name
     if uiPieceHandler.buttons[name] == nil then
@@ -121,15 +37,16 @@ function button(name, action, x, y, width, height, fontColor, imageAsset)
     if height ~= buttonTable.height then
         uiPieceHandler.buttons[name].height = height
     end
-    
     if fontColor ~= buttonTable.fontColor then
         uiPieceHandler.buttons[name].fontColor = fontColor
     end
+    
     --'action' must be stored, not retrieved; it's called outside of this function
     if action ~= nil or buttonTable.action == nil then
         buttonTable.action = action
         uiPieceHandler.buttons[name].action = action
     end
+    
     --draw the button
     local texture = uiPieceHandler.screenBlur
     local texCoordinates = vec4(x,y,width,height)
@@ -144,29 +61,18 @@ function button(name, action, x, y, width, height, fontColor, imageAsset)
     x=x,y=y,w=width,h=height,radius=35,
     tex=texture,
     texCoord=texCoordinates}
+    
+    --if there's an image, draw only that
     if imageAsset ~= nil then
         popStyle()
         sprite(imageAsset, x, y, width, height)
-    else
-    pushStyle()
+    else --otherwise draw text
+        pushStyle()
         textWrapWidth(width-76)
         fill(fontColor)
         text(name, x, y)    
-    popStyle()   
-        end
-    
-    --[[
-    roundedRectangle{
-    x=x,y=y,w=width,h=height,radius=35,
-    tex=uiPieceHandler.screenBlur,
-    texCoord=vec4(x,y,width,height)}
-    pushStyle()
-    textWrapWidth(width-76)
-    fill(fontColor)
-    text(name, x, y)
-    popStyle()
-    ]]
-    
+        popStyle()   
+    end
     --handle touches (wherein action gets called or not)
     uiPieceHandler.evaluateTouchFor(name)
     --set the flag that shows we rendered
@@ -175,59 +81,6 @@ function button(name, action, x, y, width, height, fontColor, imageAsset)
         print("button: should be saving positions")
         uiPieceHandler.savePositions() --atm saves *all* button positions, ergg
     end
-    
-    --[[
-    --if a button already exists by that name, use those values.
-    local buttonTable
-    if uiPieceHandler.buttons[name] == nil then
-        uiPieceHandler.defaultButton(name)
-        uiPieceHandler.buttons[name].x = x or uiPieceHandler.buttons[name].x
-        uiPieceHandler.buttons[name].y = y or uiPieceHandler.buttons[name].y
-        uiPieceHandler.buttons[name].width = width or uiPieceHandler.buttons[name].width
-        uiPieceHandler.buttons[name].height = height or uiPieceHandler.buttons[name].height
-        uiPieceHandler.buttons[name].fontColor = fontColor or uiPieceHandler.buttons[name].fontColor
-    end
-        buttonTable = uiPieceHandler.buttons[name]
-        ]]
-    --set button drawing values, using saved values if none passed in
-    --[[
-    local buttonTable = uiPieceHandler.buttons[name]
-    if buttonTable == nil then
-        --if none exists use defaults or passed-in values
-        buttonTable = uiPieceHandler.defaultButton(name)
-        print(buttonTable.x)
-        buttonTable.x = x or buttonTable.x
-        buttonTable.y = y or buttonTable.y
-        buttonTable.width = width or buttonTable.width
-        buttonTable.height = height or buttonTable.height
-        buttonTable.fontColor = fontColor or buttonTable.fontColor
-        uiPieceHandler.buttons[name] = buttonTable
-    end
-    ]]
-    --[[
-    --'action' must be stored each time, not retrieved; not sure why
-    if action ~= nil or buttonTable.action == nil then
-        buttonTable.action = action
-        uiPieceHandler.buttons[name].action = action
-    end
-    --draw the button
-    roundedRectangle{
-        x=buttonTable.x,y=buttonTable.y,
-        w=buttonTable.width,h=buttonTable.height,
-        radius=40,
-        tex=uiPieceHandler.screenBlur,
-        texCoord=vec4(x,y,width,height)}
-        noTint()
-        styleSafe(function()
-            fill(buttonTable.fontColor)
-            textWrapWidth(width-60)
-        text(name, buttonTable.x, buttonTable.y)
-        end)
-    --handle touches (wherein action gets called or not)
-    uiPieceHandler.evaluateTouchFor(name)
-    --set the flag that shows we rendered
-    --uiPieceHandler.buttons[name].didRenderAlready = true
-    ]]
 end
 
 --textArea is a button that has no action and defaults to black text

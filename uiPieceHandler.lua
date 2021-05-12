@@ -47,8 +47,7 @@ uiPieceHandler.defaultButton = function(name)
 end
 
 uiPieceHandler.defaultButtonAction = function()
-    --report("in 'setup()', use 'buttonAction(name, action)' to define an action for"..
- --   "this button")
+    print("in use 'buttonAction(name, action)' to define an action for this button")
 end
 
 uiPieceHandler.doAction = function(name)
