@@ -9,6 +9,9 @@ end)
 parameter.watch("menuratio")
 function mainMenu()
     drawBackground(menuImages.menu)
-    button("menuRosie", nil, nil, nil, nil, nil, nil, menuImages.rosie)
+    button("menuRosie", function() 
+        uiPieceHandler.shouldUpdateScreenBlur = true 
+        currentScreen = rosieStart 
+    end, nil, nil, nil, nil, nil, menuImages.rosie)
     button("menuCharlotte", nil, nil, nil, nil, nil, nil, menuImages.charlotte)
 end
