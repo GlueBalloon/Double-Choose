@@ -13,5 +13,8 @@ function mainMenu()
         uiPieceHandler.shouldUpdateScreenBlur = true 
         currentScreen = rosieStart 
     end, nil, nil, nil, nil, nil, menuImages.rosie)
-    button("menuCharlotte", nil, nil, nil, nil, nil, nil, menuImages.charlotte)
+    button("menuCharlotte", function() 
+        uiPieceHandler.shouldUpdateScreenBlur = true 
+        currentScreen = charlotteStart 
+    end, nil, nil, nil, nil, nil, menuImages.charlotte)
 end
