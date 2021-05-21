@@ -4,7 +4,7 @@
 uiPieceHandler = {}
 uiPieceHandler.defaultWidth = 160
 uiPieceHandler.defaultHeight = 80
-uiPieceHandler.defaultFontColor = color(89, 75, 75, 255)
+uiPieceHandler.defaultFontColor = color(255)
 uiPieceHandler.buttons = {}
 uiPieceHandler.shouldUpdateScreenBlur = true
 uiPieceHandler.backgroundImage = 0 --not sure how this will be set irl

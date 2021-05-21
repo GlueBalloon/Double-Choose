@@ -20,10 +20,17 @@ function button(name, action, x, y, width, height, fontColor, imageAsset)
     --set button drawing values, using saved values if none passed in
     local buttonTable = uiPieceHandler.buttons[name]
     local x,y = x or buttonTable.x, y or buttonTable.y
-    width = width or buttonTable.width
-    height = height or buttonTable.height
     fontColor = fontColor or buttonTable.fontColor
-    
+    --get the bounds of the button text if any dimension is undefined *and* there is no image asset
+    local boundsW, boundsH
+    if (width == nil or height == nil) and imageAsset == nil then
+        boundsW, boundsH = textSize(name)
+        width = boundsW + 64 
+        height = boundsH + 34 
+    else
+        width = width or buttonTable.width
+        height = height or buttonTable.height
+    end
     --update the stored values if necessary
     if x ~= buttonTable.x then
         uiPieceHandler.buttons[name].x = x
@@ -68,11 +75,12 @@ function button(name, action, x, y, width, height, fontColor, imageAsset)
         sprite(imageAsset, x, y, width, height)
     else --otherwise draw text
         pushStyle()
-        textWrapWidth(width-76)
+       -- textWrapWidth(width-76)
         fill(fontColor)
         text(name, x, y)    
         popStyle()   
     end
+    
     --handle touches (wherein action gets called or not)
     uiPieceHandler.evaluateTouchFor(name)
     --set the flag that shows we rendered

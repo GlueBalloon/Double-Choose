@@ -1,3 +1,14 @@
+Utilities = {}
+
+function Utilities.playSoundAndWaitUntilFinished(soundName)
+    --start the sound playing and assign it to a variable
+    local soundMonitor = sound(soundName)
+    --run an empty loop until the sound is over
+    while soundMonitor.playing == true do
+        --nothing
+    end
+end
+
 -- setReporting &c handles control whether or not report(string) commands get printed
 --[[
 function setReporting(shouldReport)

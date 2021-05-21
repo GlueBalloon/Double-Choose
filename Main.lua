@@ -42,9 +42,9 @@ function setup()
     currentOverlay = orientationOverlay
     currentScreen = rosieStart
     screenChangeTime = os.time()
+    uiPieceHandler.shouldUpdateScreenBlur = true --needs to be called before the new background is first drawn I think
     currentScreen = mainMenu
     --currentOverlay = function() end
-    uiPieceHandler.shouldUpdateScreenBlur = true
     music(asset.documents["Choices_rumble-2.mp3"],true)    
 end
 
