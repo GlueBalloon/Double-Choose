@@ -9,14 +9,12 @@ end)
 parameter.watch("menuratio")
 
 function startRosieIntro()
-        sound(asset["Rosie_game_intro-2.wav"])
-       -- uiPieceHandler.shouldUpdateScreenBlur = true 
+    sound(asset["Rosie_game_intro-2.wav"]) -- lasts 0:04 (4 seconds?)
     currentScreen = rosieIntro 
 end
 
 function mainMenu()
     drawBackground(menuImages.menu)
-    button("test")
     button("menuRosie", startRosieIntro, nil, nil, nil, nil, nil, menuImages.rosie)
     button("menuCharlotte", function() 
         uiPieceHandler.shouldUpdateScreenBlur = true 
@@ -25,16 +23,29 @@ function mainMenu()
 end
 
 function rosieIntro()
+    --menu background
     drawBackground(menuImages.menu)
-pushStyle()
-fill(19, 161)
- rect(WIDTH/2, HEIGHT/2, WIDTH, HEIGHT)
-    popStyle()
+    --tint and dark rounded rect
     pushStyle()
- fontSize(80)
-    button("Hi!")
+    fill(19, 161)
+    strokeWidth(0)
+    rect(WIDTH/2, HEIGHT/2, WIDTH + 4, HEIGHT + 4)
+    strokeWidth(3)
+    button("not visible text", rosieStart, WIDTH/2, HEIGHT/2, WIDTH*5/6, HEIGHT - (WIDTH*1/6), color(255, 0))
     popStyle()
-
-simpleImage("rosieIntroFace", menuImages.rosie, 0.5)
+    
+    pushStyle()
+    --text balloons
+    fill(26, 161)
+    textWrapWidth(WIDTH/3)
+    fontSize(70)
+    strokeWidth(4)
+    button("I'm Rosie and this is my game!", rosieStart)
+    fontSize(80)
+    strokeWidth(4)
+    button("Hi!", rosieStart)
+    --image
+    simpleImage("rosieIntroFace", menuImages.rosie, 0.95)
+    popStyle()
 
 end

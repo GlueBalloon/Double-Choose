@@ -2,7 +2,7 @@
 -- The great code for rounded rectangles with transparent-blur backgrounds is pulled from yojimbo2000's amazing SODA project
 
 viewer.mode = OVERLAY
---supportedOrientations(LANDSCAPE_ANY)
+supportedOrientations(LANDSCAPE_ANY)
  
 function setup()
     --monitor performance
