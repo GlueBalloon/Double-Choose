@@ -14,6 +14,9 @@ rosieImages.tellYourSecret = readImage(asset.documents.rcTellYourSecret)
 rosieImages.youreQueen = readImage(asset.documents.rcYoureQueen)
     
 function rosieStart()
+    if readLocalData("firstRunOfRosiesGame") then
+        show info
+    end
     drawBackground(rosieImages.first)
     textArea("Do you want to have an adventure?")
     choice("adventure", theAdventureIs)

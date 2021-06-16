@@ -121,6 +121,7 @@ charlotteImages.charlotteImageLoader = coroutine.create(function()
     charlotteImages.happyFamily = readImage(asset.ccHappyFamily)
     coroutine.yield()
     charlotteImages.inventoryChocolate = readImage(asset.ccHeartBox)
+    print("charlotte images loaded")
 end)
 
 inventory = {}

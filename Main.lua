@@ -39,9 +39,7 @@ function setup()
     startScreen = screenSizedImage(readImage(asset.documents.rcFirst))
     uiPieceHandler.backgroundImage = startScreen
     ]]
-    currentOverlay = orientationOverlay
-    currentScreen = rosieStart
-    screenChangeTime = os.time()
+
     uiPieceHandler.shouldUpdateScreenBlur = true --needs to be called before the new background is first drawn I think
     currentScreen = mainMenu
     --currentOverlay = function() end

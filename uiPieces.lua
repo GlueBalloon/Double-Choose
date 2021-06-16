@@ -209,7 +209,6 @@ function roundedRectangle(t)
             rr.shader.fragmentProgram = rrectshad.fragTex
             rr.texture = t.tex
 
-            
             local w,h = t.tex.width,t.tex.height
             local textureOffsetX,textureOffsetY = texCoord.x,texCoord.y
             
