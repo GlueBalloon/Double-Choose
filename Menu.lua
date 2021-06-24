@@ -3,13 +3,16 @@ menuImages.menu = readImage(asset.doubleMenuBackground)
 menuImages.charlotte = readImage(asset.doubleMenuCharlotte)
 menuImages.rosie = readImage(asset.doubleMenuRosie)
 menuratio = 0.0014
+--[[
     parameter.number("menuratio", 0.0012, 0.002, menuratio, function()
     print(menuratio)
 end)
 parameter.watch("menuratio")
 
+]]
+
 function startRosieIntroSound()
-    sound(asset["Rosie_game_intro-2.wav"]) -- lasts 0:04 (4 seconds?)
+    sound(asset["Rosie_game_intro-2.wav"])
     currentScreen = rosieGreetingText 
 end
 

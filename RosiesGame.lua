@@ -13,9 +13,23 @@ rosieImages.secretOrQueen = readImage(asset.documents.rcSecretOrQueen)
 rosieImages.tellYourSecret = readImage(asset.documents.rcTellYourSecret)
 rosieImages.youreQueen = readImage(asset.documents.rcYoureQueen)
     
+function rosieGameInfo()
+    fontSize(WIDTH * 0.021)
+    textWrapWidth(WIDTH * 0.6)
+    button([[This is a short adventure game that Rodie designed, wrote, and drew when she was 9. 
+    
+It's a game where the real fun is losing!
+    
+To get the most out of it, try to find all the endings, so you can sample each delicious emotional torment the heroine endures.
+    
+We were inspired by 'The Story of Choices' by Behold Studios. Both girls roughly copied its plot, but their differences give us vivid glimpses of the values they were forming their personalities around. Here, behind Rosie's playful exaggerations, we can see how deeply she cares about forming and maintaining strong friendships. 
+]])
+end
+    
 function rosieStart()
-    if readLocalData("firstRunOfRosiesGame") then
-        show info
+    if not readLocalData("infoShown") then
+        currentOverlay = rosieGameInfo
+        saveLocalData("infoShown", "true")
     end
     drawBackground(rosieImages.first)
     textArea("Do you want to have an adventure?")

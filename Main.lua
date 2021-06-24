@@ -5,6 +5,11 @@ viewer.mode = OVERLAY
 supportedOrientations(LANDSCAPE_ANY)
  
 function setup()
+    parameter.action("Clear local data", function()
+        clearLocalData()
+        local dataList = listLocalData()
+        print("local data keys: ", #dataList)
+    end)
     --monitor performance
     profiler.init()
     --toggle for reporting debug messages
