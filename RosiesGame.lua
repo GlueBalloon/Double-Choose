@@ -14,27 +14,51 @@ rosieImages.tellYourSecret = readImage(asset.documents.rcTellYourSecret)
 rosieImages.youreQueen = readImage(asset.documents.rcYoureQueen)
     
 function rosieGameInfo()
-    fontSize(WIDTH * 0.021)
-    textWrapWidth(WIDTH * 0.6)
-    button([[This is a short adventure game that Rodie designed, wrote, and drew when she was 9. 
+    drawBackground(rosieImages.first)
+    --tinted overlay
+    pushStyle()
+    fill(19, 161)
+    strokeWidth(0)
+    rect(WIDTH/2, HEIGHT/2, WIDTH + 4, HEIGHT + 4)
+    popStyle()
+    --info
+    pushStyle()
+    fontSize(WIDTH * 0.025)
+    textWrapWidth(WIDTH * 0.73)
+    fill(55, 161)
+    button([[Rosie designed, wrote, and drew this little story game when she was 9. 
     
 It's a game where the real fun is losing!
     
-To get the most out of it, try to find all the endings, so you can sample each delicious emotional torment the heroine endures.
+To get the most out of it, try to find all of the excellent emotional torments Rosie makes the heroine endure.
     
-We were inspired by 'The Story of Choices' by Behold Studios. Both girls roughly copied its plot, but their differences give us vivid glimpses of the values they were forming their personalities around. Here, behind Rosie's playful exaggerations, we can see how deeply she cares about forming and maintaining strong friendships. 
-]])
+Both girls roughly copied the plot of the game that inspired this, 'The Story of Choices' by Behold Studios. But they each put their own spin on it, giving us a unique glimpse of the kinds of things that were rolling around in their young minds at the time.]], rosieStart, WIDTH/2, HEIGHT/2)
+    popStyle()
 end
     
-function rosieStart()
+function rosieFirstScreenDecider()
     if not readLocalData("infoShown") then
-        currentOverlay = rosieGameInfo
+        currentScreen = rosieGameInfo
         saveLocalData("infoShown", "true")
+    else
+        currentScreen = rosieStart
     end
+end
+
+function rosieStart()
     drawBackground(rosieImages.first)
     textArea("Do you want to have an adventure?")
     choice("adventure", theAdventureIs)
     choice("stay in bed", sleepForDays)
+    pushStyle()
+    stroke(0, 0)
+    font("Inconsolata")
+    fontSize(fontSize() * 1.015)
+  --  fill(236, 228, 228, 201)
+    local textColor = color(0, 177)
+    button("x", nil, nil, nil, nil, nil, nil, nil, 15)
+    button("i",nil, nil, nil, nil, nil, nil, nil, 15)
+    popStyle()
 end
 
 function theAdventureIs()

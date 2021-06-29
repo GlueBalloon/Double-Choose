@@ -10,7 +10,7 @@ end
 
 
 --button only actually needs a name to work, the rest have defaults
-function button(name, action, x, y, width, height, fontColor, imageAsset)
+function button(name, action, x, y, width, height, fontColor, imageAsset, radius)
     local newButtonFlag = false
     --create a default button if none exists under this name
     if uiPieceHandler.buttons[name] == nil then
@@ -65,7 +65,7 @@ function button(name, action, x, y, width, height, fontColor, imageAsset)
         stroke(236, 76, 67, 0)
     end
     roundedRectangle{
-    x=x,y=y,w=width,h=height,radius=35,
+    x=x,y=y,w=width,h=height,radius=radius or 35,
     tex=texture,
     texCoord=texCoordinates}
     
@@ -99,8 +99,11 @@ function textArea(textToShow, x, y)
     if uiPieceHandler.buttons[textToShow] == nil then
         action = function() end
     end
+    pushStyle()
+    textWrapWidth(uiPieceHandler.narrationW * 0.95)
     --pass all the values to button()--by default setting border transparent (as above)
     button(textToShow, action, x, y, uiPieceHandler.narrationW, uiPieceHandler.narrationH, color(255))
+    popStyle()
     --if button action isn't nil yet, nil it--this will only be needed first time drawn
     if uiPieceHandler.buttons[textToShow].action ~= nil then
         uiPieceHandler.buttons[textToShow].action = nil
