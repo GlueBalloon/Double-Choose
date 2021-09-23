@@ -1,10 +1,15 @@
 -- Double Choose, but redone with better UI and cleaner code
 -- The great code for rounded rectangles with transparent-blur backgrounds is pulled from yojimbo2000's amazing SODA project
 
-viewer.mode = OVERLAY
+viewer.mode = FULLSCREEN_NO_BUTTONS
 supportedOrientations(LANDSCAPE_ANY)
  
 function setup()
+    fill(255)
+    r,g,b,a = fill()
+    print(r)
+    fill(216, 87, 80)
+    print(fill())
     parameter.action("Clear local data", function()
         clearLocalData()
         local dataList = listLocalData()

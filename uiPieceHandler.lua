@@ -58,6 +58,10 @@ uiPieceHandler.doAction = function(name)
     end
 end
 
+uiPieceHandler.explicitColorFromFill = function()
+    local r, g, b, a = fill()
+    return color(r, g, b, a)
+end
 
 --evaluateTouchFor: called by each button inside the button() function
 --precondition: to use CurrentTouch, pass nothing to the touch value

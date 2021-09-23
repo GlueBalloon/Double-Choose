@@ -124,6 +124,45 @@ charlotteImages.charlotteImageLoader = coroutine.create(function()
     print("charlotte images loaded")
 end)
 
+function charlotteFirstScreenDecider()
+    if not readLocalData("charlotteInfoShown") then
+        currentScreen = charlotteGameInfo
+        saveLocalData("charlotteInfoShown", "true")
+    else
+        currentScreen = charlotteStart
+    end
+end
+
+function charlotteMusicStarter()
+    music(asset.CharlottesGameBGMusicMP3,true)
+end
+
+function charlotteGameInfo()
+    drawBackground(charlotteImages.charlotteStart)
+    --tinted overlay
+    pushStyle()
+    fill(19, 161)
+    strokeWidth(0)
+    rect(WIDTH/2, HEIGHT/2, WIDTH + 4, HEIGHT + 4)
+    popStyle()
+    --info
+    pushStyle()
+    fontSize(WIDTH * 0.025)
+    textWrapWidth(WIDTH * 0.73)
+    fill(55, 161)
+button([[Charlotte designed, wrote, and art directed this little story game when she was 8. She also drew one of the happy ending screens.
+    
+Clearly Charlotte was taken with the actual mechanics of games.
+
+She made up a genuine puzzle for her game, showing a grasp of branching-choice story structure that was quite precocious for an 8-year-old.
+    
+Both girls roughly copied the plot of the game that inspired this, 'The Story of Choices' by Behold Studios. 
+
+But what's great is how, in their different spins on it, we get to see how their young brains were forming themselves.]], 
+function() currentScreen = charlotteStart end, WIDTH/2, HEIGHT/2, nil, nil, color(255))
+popStyle()
+end
+
 inventory = {}
 
 function inventoryList()
@@ -152,10 +191,15 @@ function charlotteStart()
     if coroutine.status(charlotteImages.charlotteImageLoader) ~= "dead" then
         print("still loading")
         coroutine.resume(charlotteImages.charlotteImageLoader)
-        else
+    else
         choice("drink it", drankCoffee)
         choice("save it for later", savedCoffee)
     end
+    pushStyle()
+    stroke(0, 0)
+    button(" info ", function() currentScreen = charlotteGameInfo end, nil, nil, nil, nil, nil, nil, 40)
+    button(" exit ", function() currentScreen = mainMenu end, nil, nil, nil, nil, nil, nil, 40)
+    popStyle()
 end
 
 function drankCoffee()
@@ -253,6 +297,9 @@ function puppeteer()
 end
 
 function happyPuppeteer()
+    if inventory[1] == "inventoryCoffee" then
+        table.remove(inventory, 1)
+    end
     drawBackground(charlotteImages.genericOutside)
     simpleImage("heroineMeetsGrouchy", charlotteImages.heroineMeetsGrouchy, HEIGHT * 0.001)
     simpleImage("puppeteerTeaching", charlotteImages.puppeteerTeaching, HEIGHT * 0.001)

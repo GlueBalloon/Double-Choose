@@ -3,13 +3,6 @@ menuImages.menu = readImage(asset.doubleMenuBackground)
 menuImages.charlotte = readImage(asset.doubleMenuCharlotte)
 menuImages.rosie = readImage(asset.doubleMenuRosie)
 menuratio = 0.0014
---[[
-    parameter.number("menuratio", 0.0012, 0.002, menuratio, function()
-    print(menuratio)
-end)
-parameter.watch("menuratio")
-
-]]
 
 function mainMenu()
     drawBackground(menuImages.menu)
@@ -18,21 +11,19 @@ function mainMenu()
             currentScreen = rosieGreetingText 
         end, nil, nil, nil, nil, nil, menuImages.rosie)
     button("menuCharlotte", function() 
-        uiPieceHandler.shouldUpdateScreenBlur = true 
-        currentScreen = charlotteStart 
+        sound(asset["Charlotte_Game_intro-3.wav"])
+        currentScreen = charlotteGreetingText 
     end, nil, nil, nil, nil, nil, menuImages.charlotte)
 end
 
 function rosieGreetingText()
     --menu background
     drawBackground(menuImages.menu)
-    --tint and dark rounded rect
+    --'tint'
     pushStyle()
     fill(19, 161)
-    strokeWidth(0)
-    rect(WIDTH/2, HEIGHT/2, WIDTH + 4, HEIGHT + 4)
     strokeWidth(3)
-    button("not visible text", prepRosiesGame, WIDTH/2, HEIGHT/2, WIDTH*5/6, HEIGHT - (WIDTH*1/6), color(255, 0))
+    button("not visible text", prepRosiesGame, WIDTH/2, HEIGHT/2, WIDTH * 1.1, HEIGHT * 1.1, color(255, 0))
     popStyle()
     
     pushStyle()
@@ -41,17 +32,45 @@ function rosieGreetingText()
     textWrapWidth(WIDTH/3)
     fontSize(70)
     strokeWidth(4)
-    button("I'm Rosie and this is my game!", prepRosiesGame)
-    fontSize(80)
+    button("I'm Rosie and this is my game!", prepRosiesGame, nil, nil, nil, nil, color(255) )
+    fontSize(100)
     strokeWidth(4)
-    button("Hi!", prepRosiesGame)
-    --image
+    button("Hi!", prepRosiesGame, nil, nil, nil, nil, color(255))
     simpleImage("rosieIntroFace", menuImages.rosie, 0.95)
     popStyle()
-
 end
 
 function prepRosiesGame()
     uiPieceHandler.shouldUpdateScreenBlur = true 
     currentScreen = rosieFirstScreenDecider
+end
+
+function charlotteGreetingText()
+    --menu background
+    drawBackground(menuImages.menu)
+    --'tint'
+    pushStyle()
+    fill(19, 161)
+    strokeWidth(3)
+    button("not visible text", prepCharlottesGame, WIDTH/2, HEIGHT/2, WIDTH * 1.1, HEIGHT * 1.1, color(255, 0))
+    popStyle()
+    
+    pushStyle()
+    --text balloons
+    fill(26, 161)
+    textWrapWidth(WIDTH/3)
+    fontSize(70)
+    strokeWidth(4)
+    button("I'm Charlotte and this is my game!", prepCharlottesGame, nil, nil, nil, nil, color(255) )
+    fontSize(100)
+    strokeWidth(4)
+    button("Hi!", prepCharlottesGame, nil, nil, nil, nil, color(255))
+    simpleImage("charlotteIntroFace", menuImages.charlotte, 0.95)
+    popStyle()
+end
+
+function prepCharlottesGame()
+    uiPieceHandler.shouldUpdateScreenBlur = true 
+    currentScreen = charlotteFirstScreenDecider
+    charlotteMusicStarter()
 end

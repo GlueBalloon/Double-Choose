@@ -12,7 +12,16 @@ rosieImages.everybodysDisappointed = readImage(asset.documents.rcEverybodysDisap
 rosieImages.secretOrQueen = readImage(asset.documents.rcSecretOrQueen)
 rosieImages.tellYourSecret = readImage(asset.documents.rcTellYourSecret)
 rosieImages.youreQueen = readImage(asset.documents.rcYoureQueen)
-    
+
+function rosieFirstScreenDecider()
+    if not readLocalData("rosieInfoShown") then
+        currentScreen = rosieGameInfo
+        saveLocalData("rosieInfoShown", "true")
+    else
+        currentScreen = rosieStart
+    end
+end
+
 function rosieGameInfo()
     drawBackground(rosieImages.first)
     --tinted overlay
@@ -32,17 +41,11 @@ It's a game where the real fun is losing!
     
 To get the most out of it, try to find all of the excellent emotional torments Rosie makes the heroine endure.
     
-Both girls roughly copied the plot of the game that inspired this, 'The Story of Choices' by Behold Studios. But they each put their own spin on it, giving us a unique glimpse of the kinds of things that were rolling around in their young minds at the time.]], rosieStart, WIDTH/2, HEIGHT/2)
-    popStyle()
-end
+Both girls roughly copied the plot of the game that inspired this, 'The Story of Choices' by Behold Studios. 
     
-function rosieFirstScreenDecider()
-    if not readLocalData("infoShown") then
-        currentScreen = rosieGameInfo
-        saveLocalData("infoShown", "true")
-    else
-        currentScreen = rosieStart
-    end
+But they each put their own spin on it, giving us a wonderful glimpse of the things that were clanking around in their young minds at the time.]], 
+        function() currentScreen = rosieStart end, WIDTH/2, HEIGHT/2, nil, nil, color(255))
+    popStyle()
 end
 
 function rosieStart()
@@ -52,12 +55,8 @@ function rosieStart()
     choice("stay in bed", sleepForDays)
     pushStyle()
     stroke(0, 0)
-    font("Inconsolata")
-    fontSize(fontSize() * 1.015)
-  --  fill(236, 228, 228, 201)
-    local textColor = color(0, 177)
-    button("x", nil, nil, nil, nil, nil, nil, nil, 15)
-    button("i",nil, nil, nil, nil, nil, nil, nil, 15)
+    button("info", function() currentScreen = rosieGameInfo end, nil, nil, nil, nil, nil, nil, 40)
+    button("exit", function() currentScreen = mainMenu end, nil, nil, nil, nil, nil, nil, 40)
     popStyle()
 end
 
@@ -88,7 +87,7 @@ end
 
 function breakup()
     drawBackground(rosieImages.breakup)
-    textArea('You break up and he gets a girlfriend prettier than you and you cry.',narrationWidth,narrationHeight)
+    textArea('You break up and he gets a girlfriend prettier than you and you cry.',narrationWidth, narrationHeight)
     choice("The End!", rosieStart)
 end
 

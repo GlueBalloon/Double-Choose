@@ -11,6 +11,7 @@ end
 
 --button only actually needs a name to work, the rest have defaults
 function button(name, action, x, y, width, height, fontColor, imageAsset, radius)
+    --TODO: make parameter list into varargs and detect image and color?
     local newButtonFlag = false
     --create a default button if none exists under this name
     if uiPieceHandler.buttons[name] == nil then
@@ -20,18 +21,18 @@ function button(name, action, x, y, width, height, fontColor, imageAsset, radius
     --set button drawing values, using saved values if none passed in
     local buttonTable = uiPieceHandler.buttons[name]
     local x,y = x or buttonTable.x, y or buttonTable.y
-    fontColor = fontColor or buttonTable.fontColor
+    fontColor = fontColor or uiPieceHandler.explicitColorFromFill()
     --get the bounds of the button text if any dimension is undefined *and* there is no image asset
     local boundsW, boundsH
     if (width == nil or height == nil) and imageAsset == nil then
         boundsW, boundsH = textSize(name)
-        width = boundsW + 64 
-        height = boundsH + 34 
+        width = boundsW + 74 
+        height = boundsH + 64 
     else
         width = width or buttonTable.width
         height = height or buttonTable.height
     end
-    --update the stored values if necessary
+    --  update the stored values if necessary
     if x ~= buttonTable.x then
         uiPieceHandler.buttons[name].x = x
     end
@@ -41,10 +42,10 @@ function button(name, action, x, y, width, height, fontColor, imageAsset, radius
     if width ~= buttonTable.width then
         uiPieceHandler.buttons[name].width = width
     end
-    if height ~= buttonTable.height then
+    if height ~= buttonTable.height and height ~= nil then
         uiPieceHandler.buttons[name].height = height
     end
-    if fontColor ~= buttonTable.fontColor then
+    if fontColor ~= buttonTable.fontColor and fontColor ~= nil then
         uiPieceHandler.buttons[name].fontColor = fontColor
     end
     
@@ -100,7 +101,7 @@ function textArea(textToShow, x, y)
         action = function() end
     end
     pushStyle()
-    textWrapWidth(uiPieceHandler.narrationW * 0.95)
+    textWrapWidth(uiPieceHandler.narrationW * 0.9)
     --pass all the values to button()--by default setting border transparent (as above)
     button(textToShow, action, x, y, uiPieceHandler.narrationW, uiPieceHandler.narrationH, color(255))
     popStyle()
