@@ -6,23 +6,17 @@
 	<string>Unknown</string>
 	<key>Buffer Order</key>
 	<array>
-		<string>SupportedOrientations</string>
 		<string>Main</string>
-		<string>setup</string>
 		<string>Menu</string>
 		<string>RosiesGame</string>
 		<string>CharlotteGame</string>
-		<string>Overlays</string>
-		<string>uiModes</string>
 		<string>uiPieces</string>
 		<string>uiPieceHandler</string>
 		<string>uiPieceTables</string>
 		<string>fullScreenBlur</string>
-		<string>blur</string>
 		<string>Utilities</string>
-		<string>defaults</string>
-		<string>Tests</string>
 		<string>CodeaUnit</string>
+		<string>SupportedOrientations</string>
 	</array>
 	<key>Created</key>
 	<string>2021-03-15 06:55:49 +0000</string>

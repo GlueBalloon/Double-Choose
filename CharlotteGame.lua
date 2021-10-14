@@ -134,7 +134,7 @@ function charlotteFirstScreenDecider()
 end
 
 function charlotteMusicStarter()
-    music(asset.CharlottesGameBGMusicMP3,true)
+    music(asset.CharlottesGameBGMusicMP3,true, 0.2)
 end
 
 function charlotteGameInfo()
@@ -150,15 +150,13 @@ function charlotteGameInfo()
     fontSize(WIDTH * 0.025)
     textWrapWidth(WIDTH * 0.73)
     fill(55, 161)
-button([[Charlotte designed, wrote, and art directed this little story game when she was 8. She also drew one of the happy ending screens.
+button([[Charlotte made this game at 8, and she designed, wrote, art directed, and drew one of the ending screens for it. Later (at 13) she made its backround music.
     
-Clearly Charlotte was taken with the actual mechanics of games.
-
-She made up a genuine puzzle for her game, showing a grasp of branching-choice story structure that was quite precocious for an 8-year-old.
+I was and am impressed that Charlotte made a genuine branching-choice inventory-based story puzzle, precocious for an 8-year-old. Plus it's a sweet bit of grace that she gave her heroine two possible happy endings.
     
 Both girls roughly copied the plot of the game that inspired this, 'The Story of Choices' by Behold Studios. 
 
-But what's great is how, in their different spins on it, we get to see how their young brains were forming themselves.]], 
+But in their different spins on it we get a great glimpse of how their young brains were busy forming themselves.]], 
 function() currentScreen = charlotteStart end, WIDTH/2, HEIGHT/2, nil, nil, color(255))
 popStyle()
 end
@@ -198,7 +196,7 @@ function charlotteStart()
     pushStyle()
     stroke(0, 0)
     button(" info ", function() currentScreen = charlotteGameInfo end, nil, nil, nil, nil, nil, nil, 40)
-    button(" exit ", function() currentScreen = mainMenu end, nil, nil, nil, nil, nil, nil, 40)
+    button(" exit ", function() currentScreen = mainMenuStarter end, nil, nil, nil, nil, nil, nil, 40)
     popStyle()
 end
 
@@ -358,201 +356,3 @@ function happyInForest()
     choice(" The End ", charlotteStart)
     simpleImage("happyFamily", charlotteImages.happyFamily, HEIGHT * 0.0028)
 end
-
---[[
-{name = "happyInForest",
-background = "ccHappyInForest",
-images = {
-{"happyFamily", "ccHappyFamily", WIDTH * 0.31835938, HEIGHT * 0.42057292, heightRatio = 0.286} },
-narration = "You and your boyfriend end up living in a shack in the forest with your kids.\n\rAnd you are happy.",
-choices = {
-{choiceText = "The End", resultScreen ="firstScreen",
-inventoryRemove = "allItems" } }
-]]
-
-
---[[
-
-{name = "firstScreen",
-background = "ccFirst",
-images = {
-{"heroine", "ccHeroine", WIDTH * 0.23, HEIGHT * 0.576, heightRatio = 0.61197917},
-{"coffeeSmall", "ccCoffeeSmall", WIDTH * 0.457, HEIGHT * 0.57161, heightRatio = 0.0625} },
-narration = "You woke up.\n\rWhat do you want to do with your coffee?",
-choices = {
-{choiceText = "drink it", resultScreen = "drankCoffee"},
-{choiceText = "save it for later", resultScreen ="savedCoffee",
-inventoryAdd = {name = "coffee", icon = "ccCoffeeBig", heightRatio = 0.21875} } }
-},
-
-{name = "drankCoffee",
-background = "ccFirst",
-images = {
-{"heroine", "ccHeroine", WIDTH * 0.23, HEIGHT * 0.576, heightRatio = 0.61197917} },
-narration = "It tastes good.",
-choices = {
-{choiceText = "go outside", resultScreen = "boyfriendTellsAboutQueen"} },
-},
-
-{name = "savedCoffee",
-background = "ccFirst",
-images = {
-{"heroine", "ccHeroine", WIDTH * 0.23, HEIGHT * 0.576, heightRatio = 0.61197917} },
-narration = "You keep it with you for later.",
-choices = {
-{choiceText = "go outside", resultScreen = "boyfriendTellsAboutQueen"} },
-},
-
-{name = "boyfriendTellsAboutQueen",
-background = "ccGenericOutside",
-images = {
-{"heroine", "ccHeroine", WIDTH * 0.3115, HEIGHT * 0.576, heightRatio = 0.61197917},
-{"boyfriend", "ccBoyfriend", WIDTH * 0.54003906, HEIGHT * 0.5859375, heightRatio = 0.65885417} },
-narration = "Your boyfriend tells you the queen is bored.",
-choices = {
-{choiceText = "go to see the queen", resultScreen = "knightScreen"} }
-},
-
-{name = "knightScreen",
-background = "ccKnightScreen",
-images = {
-{"heroine", "ccHeroine", WIDTH * 0.2675, HEIGHT * 0.576, heightRatio = 0.61197917} },
-narration = "You see a knight at the gate.\n\rWhat do you say to him?",
-choices = {
-{choiceText = "Just let me in to the castle.", resultScreen ="knightScolds" },
-{choiceText = "Hi, having a nice day?", resultScreen = "knightGivesHeart",
-inventoryAdd = {name = "heartBox", icon = "ccHeartBox", heightRatio = 0.22135417} } }
-},
-
-{name = "knightGivesHeart",
-background = "ccKnightScreen",
-images = {
-{"heroine", "ccHeroine", WIDTH * 0.2675, HEIGHT * 0.576, heightRatio = 0.61197917} },
-narration = "The knight likes you and gives you a heart box with chocolates in it.",
-choices = {
-{choiceText = "go in to castle", resultScreen ="boredQueen" } }
-},
-
-{name = "knightScolds",
-background = "ccKnightScreen",
-images = {
-{"heroine", "ccHeroine", WIDTH * 0.23, HEIGHT * 0.576, heightRatio = 0.61197917} },
-narration = "The knight tells you that you have a bad attitude.",
-choices = {
-{choiceText = "go home", resultScreen ="homeAfterKnight" } }
-},
-
-{name = "homeAfterKnight",
-background = "ccFirst",
-images = {
-{"heroineFlipped", "ccHeroineFlipped", WIDTH * 0.390625, HEIGHT * 0.56380208, heightRatio = 0.61197917} },
-narration = "You say to yourself, \"He doesn't like me anyway.\"",
-choices = {
-{choiceText = "start over", resultScreen ="firstScreen",
-inventoryRemove = "allItems" } }
-},
-
-{name = "boredQueen",
-background = "ccQueenBored",
-images = {
-{"heroine", "ccHeroine", WIDTH * 0.2197, HEIGHT * 0.576, heightRatio = 0.61197917} },
-narration = "The queen tells you she's really bored.",
-choices = {
-{choiceText = "tell her you know a puppet show", resultScreen = "queenSaysShowMe" } }
-},
-
-{name = "queenSaysShowMe",
-background = "ccQueenBored",
-images = {
-{"heroine", "ccHeroine", WIDTH * 0.2246, HEIGHT * 0.576, heightRatio = 0.61197917} },
-narration = "You tell the queen you know how to put on a puppet show.\n\rShe says, \"Show me as soon as you can!\"",
-choices = {
-{choiceText = "leave", resultScreen = "grouchyPuppeteer" } }
-},
-
-{name = "grouchyPuppeteer",
-background = "ccGenericOutside",
-images = {
-{"heroineFlipped", "ccHeroineFlipped", WIDTH * 0.68359375, HEIGHT * 0.59635417, heightRatio = 0.61197917},
-{"puppeteerGrouchy", "ccPuppeteerGrumpy", WIDTH * 0.31738281, HEIGHT * 0.59635417, heightRatio = 0.67317708} },
-narration = "On your way home you see a grouchy puppeteer.",
-choices = {
-{onlyIfInInventory = "coffee", choiceText = "give him your coffee",
-resultScreen = "happyPuppeteer", inventoryRemove = "coffee" },
-{choiceText = "go home and practice", resultScreen ="queenNotLike" } }
-},
-
-{name = "happyPuppeteer",
-background = "ccGenericOutside",
-images = {
-{"heroineFlipped", "ccHeroineFlipped", WIDTH * 0.67675781, HEIGHT * 0.59635417, heightRatio = 0.61197917},
-{"puppeteerHappy", "ccPuppeteerHappy", WIDTH * 0.31738281, HEIGHT * 0.59635417, heightRatio = 0.66145833} },
-narration = "He teaches you a new puppet show.",
-choices = {
-{choiceText = "go home and give up", resultScreen ="homeAndSleep" },
-{choiceText = "go show the queen", resultScreen = "queenLovesShow"} }
-},
-
-{name = "queenNotLike",
-background = "ccQueenNotLike",
-images = {
-{"heroineWithSockPuppets", "ccHeroineWithSockPuppets", WIDTH * 0.26464844, HEIGHT * 0.55989583, heightRatio = 0.63932292} },
-narration = "You practice, but the queen doesn't like your show, and you're embarrassed.",
-choices = {
-{choiceText = "start over", resultScreen ="firstScreen",
-inventoryRemove = "allItems" } }
-},
-
-{name = "homeAndSleep",
-background = "ccHomeAndSleep",
-narration = "You go back home and go to sleep.",
-choices = {
-{choiceText = "start over", resultScreen ="firstScreen",
-inventoryRemove = "allItems" } }
-},
-
-{name = "queenLovesShow",
-background = "ccQueenLoves",
-images = {
-{"heroineWithMarionettes", "ccHeroineWithMarionettes", WIDTH * 0.26464844, HEIGHT * 0.57291667, heightRatio = 0.63932292} },
-narration = "The queen loves the show!\n\rShe tells you a secret. If you give the princess a heart box with chocolates in it, you will become the new queen.",
-choices = {
-{choiceText = "choose who to give the heart to", resultScreen ="chooseHeart" } }
-},
-
-{name = "chooseHeart",
-background = "ccGenericCastleInterior",
-images = {
-{"princess", "ccPrincess", WIDTH * 0.5, HEIGHT * 0.64453125, heightRatio = 0.72916667},
-{"boyfriend", "ccBoyfriend", WIDTH * 0.23730469, HEIGHT * 0.58854167, heightRatio = 0.65885417} },
-narration = "Do you give the heart to the princess or your boyfriend?",
-choices = {
-{choiceText = "princess", resultScreen = "youBecomeQueen",
-inventoryRemove = "heartBox"},
-{choiceText = "boyfriend", resultScreen ="happyInForest",
-inventoryRemove = "heartBox" } }
-},
-
-{name = "youBecomeQueen",
-background = "ccGenericCastleInterior",
-images = {
-{"heroineQueened", "ccHeroineQueened", WIDTH * 0.31152344, HEIGHT * 0.58854167, heightRatio = 0.64973958} },
-narration = "You become the queen!",
-choices = {
-{choiceText = "The End", resultScreen ="firstScreen",
-inventoryRemove = "allItems" } }
-},
-
-{name = "happyInForest",
-background = "ccHappyInForest",
-images = {
-{"happyFamily", "ccHappyFamily", WIDTH * 0.31835938, HEIGHT * 0.42057292, heightRatio = 0.286} },
-narration = "You and your boyfriend end up living in a shack in the forest with your kids.\n\rAnd you are happy.",
-choices = {
-{choiceText = "The End", resultScreen ="firstScreen",
-inventoryRemove = "allItems" } }
-}
-)
-
-
-]]

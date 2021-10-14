@@ -119,7 +119,6 @@ end
 
 function makeScreenChangingAction(newScreenAsFunction)
     return function ()
-        print("you tapped a choice")
         currentScreen = newScreenAsFunction
         uiPieceHandler.shouldUpdateScreenBlur = true
     end

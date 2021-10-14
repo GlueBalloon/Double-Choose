@@ -4,6 +4,13 @@ menuImages.charlotte = readImage(asset.doubleMenuCharlotte)
 menuImages.rosie = readImage(asset.doubleMenuRosie)
 menuratio = 0.0014
 
+function mainMenuStarter()
+    drawBackground(menuImages.menu)
+    uiPieceHandler.shouldUpdateScreenBlur = true --needs to be called before the new background is first drawn I think
+    currentScreen = mainMenu
+    music(asset.documents["Choices_rumble-2.mp3"],true)   
+end
+
 function mainMenu()
     drawBackground(menuImages.menu)
     button("menuRosie", function()
@@ -25,9 +32,8 @@ function rosieGreetingText()
     strokeWidth(3)
     button("not visible text", prepRosiesGame, WIDTH/2, HEIGHT/2, WIDTH * 1.1, HEIGHT * 1.1, color(255, 0))
     popStyle()
-    
-    pushStyle()
     --text balloons
+    pushStyle()
     fill(26, 161)
     textWrapWidth(WIDTH/3)
     fontSize(70)
@@ -40,11 +46,6 @@ function rosieGreetingText()
     popStyle()
 end
 
-function prepRosiesGame()
-    uiPieceHandler.shouldUpdateScreenBlur = true 
-    currentScreen = rosieFirstScreenDecider
-end
-
 function charlotteGreetingText()
     --menu background
     drawBackground(menuImages.menu)
@@ -54,9 +55,8 @@ function charlotteGreetingText()
     strokeWidth(3)
     button("not visible text", prepCharlottesGame, WIDTH/2, HEIGHT/2, WIDTH * 1.1, HEIGHT * 1.1, color(255, 0))
     popStyle()
-    
-    pushStyle()
     --text balloons
+    pushStyle()
     fill(26, 161)
     textWrapWidth(WIDTH/3)
     fontSize(70)
@@ -73,4 +73,9 @@ function prepCharlottesGame()
     uiPieceHandler.shouldUpdateScreenBlur = true 
     currentScreen = charlotteFirstScreenDecider
     charlotteMusicStarter()
+end
+
+function prepRosiesGame()
+    uiPieceHandler.shouldUpdateScreenBlur = true 
+    currentScreen = rosieFirstScreenDecider
 end
