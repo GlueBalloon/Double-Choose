@@ -8,7 +8,7 @@ function mainMenuStarter()
     drawBackground(menuImages.menu)
     uiPieceHandler.shouldUpdateScreenBlur = true --needs to be called before the new background is first drawn I think
     currentScreen = mainMenu
-    music(asset.documents["Choices_rumble-2.mp3"],true)   
+    music(asset["Choices_rumble-2.mp3"],true)   
 end
 
 function mainMenu()
