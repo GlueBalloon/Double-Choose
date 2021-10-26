@@ -16,7 +16,8 @@ function mainMenu()
     button("menuRosie", function()
             sound(asset["Rosie_game_intro-2.wav"])
             currentScreen = rosieGreetingText 
-        end, nil, nil, nil, nil, nil, menuImages.rosie)
+    end, 0.29245973645681	* WIDTH, 	0.3994140625 * HEIGHT
+    , nil, nil, nil, menuImages.rosie)
     button("menuCharlotte", function() 
         sound(asset["Charlotte_Game_intro-3.wav"])
         currentScreen = charlotteGreetingText 
