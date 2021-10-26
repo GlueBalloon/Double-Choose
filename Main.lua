@@ -2,12 +2,13 @@
 -- The great code for rounded rectangles with transparent-blur backgrounds is pulled from yojimbo2000's amazing SODA project
 
 viewer.mode = FULLSCREEN_NO_BUTTONS
-supportedOrientations(LANDSCAPE_ANY)
  
 function setup()
     
-    doSupportedOrientations()
+    initSupportedOrientations()
     supportedOrientations(LANDSCAPE_ANY)
+    
+    deviceWnH = vec2(WIDTH, HEIGHT)
     
     --when need to reset as if first time opened
     parameter.action("Clear local data", function()

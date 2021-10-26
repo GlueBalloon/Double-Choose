@@ -8,7 +8,7 @@ end
 
 --draws backgroundImage and updates blur if needed
 drawBackground = function(backgroundImage)
-    sprite(backgroundImage, WIDTH / 2, HEIGHT/2,WIDTH,HEIGHT)
+    sprite(backgroundImage, WIDTH / 2, HEIGHT/2, WIDTH,HEIGHT)
     if uiPieceHandler.shouldUpdateScreenBlur then
         uiPieceHandler.screenBlur = tintedBlurredScreenSizedImage(backgroundImage)
         uiPieceHandler.shouldUpdateScreenBlur = false

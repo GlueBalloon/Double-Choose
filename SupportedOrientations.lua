@@ -11,7 +11,7 @@ return
 end
 ]]
 
-function doSupportedOrientations()
+function initSupportedOrientations()
     
     -- Global shadow table & remappings
     local shadow = nil
