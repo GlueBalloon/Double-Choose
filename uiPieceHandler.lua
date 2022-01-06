@@ -9,13 +9,13 @@ uiPieceHandler.buttons = {}
 uiPieceHandler.shouldUpdateScreenBlur = true
 uiPieceHandler.backgroundImage = 0 --not sure how this will be set irl
 uiPieceHandler.screenBlur = 0 --0 means "none drawn yet"; will normally be an image
-uiPieceHandler.narrationW = WIDTH / 2.15
-uiPieceHandler.narrationH = HEIGHT / 3.4
+uiPieceHandler.narrationW = WIDTH / 2.13
+uiPieceHandler.narrationH = HEIGHT / 2.7
 uiPieceHandler.narrationX = WIDTH - (uiPieceHandler.narrationW / 2) - 66
 uiPieceHandler.narrationY = HEIGHT / 2.1
 --specify the size of the choice buttons
 uiPieceHandler.choiceW = uiPieceHandler.narrationW
-uiPieceHandler.choiceH = HEIGHT / 13.9
+uiPieceHandler.choiceH = HEIGHT / 7
 --align the horizontal position of the buttons with the narration box
 uiPieceHandler.choice1X = uiPieceHandler.narrationX
 uiPieceHandler.choice2X = uiPieceHandler.choice1X
@@ -107,10 +107,10 @@ end
 --uiPieceHandler.touchIsInside: calculated using touch's distance from this piece
 --preconditions: name and touch cannot be nil, and touched object is basically rectangular
 uiPieceHandler.touchIsInside = function(name, touch) 
-    local xDistance = math.abs(touch.x-uiPieceHandler.buttons[name].x)
-    local yDistance = math.abs(touch.y-uiPieceHandler.buttons[name].y)
-    insideX = xDistance < uiPieceHandler.buttons[name].width /2
-    insideY = yDistance < uiPieceHandler.buttons[name].height /2
+    local xDistance = math.abs(touch.x-uiPieceHandler.buttons[name].x * adjstmt.x)
+    local yDistance = math.abs(touch.y-uiPieceHandler.buttons[name].y * adjstmt.y)
+    insideX = xDistance < uiPieceHandler.buttons[name].width / 2 * adjstmt.x
+    insideY = yDistance < uiPieceHandler.buttons[name].height / 2 * adjstmt.y
     if insideX and insideY then
         return true
     else
@@ -144,8 +144,8 @@ end
 
 uiPieceHandler.evaluateDrag = function (name, touch)
     if touch.state == MOVING then
-        uiPieceHandler.buttons[name].x = touch.x
-        uiPieceHandler.buttons[name].y = touch.y
+        uiPieceHandler.buttons[name].x = touch.x / adjstmt.x
+        uiPieceHandler.buttons[name].y = touch.y / adjstmt.y
     end
 end
 

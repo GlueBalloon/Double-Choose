@@ -3,9 +3,12 @@
 --these should all be refactored so that there's a generic 'piece' function
 
 --sends an image to the button(...) function but has parameters ordered by how often they're used: only the first two are actually necessary to draw an image
+--if scaleFactor is given as well as width and/or height, the direct values will be used instead of applying the scaleFactor
 function simpleImage(name, imageAsset, scaleFactor, x, y, action, width, height)
     scaleFactor = scaleFactor or 1
-    button(name, action, x, y, imageAsset.width * scaleFactor, imageAsset.height * scaleFactor, nil, imageAsset)
+    width = width or imageAsset.width * scaleFactor
+    height = height or imageAsset.height * scaleFactor
+    button(name, action, x, y, width, height, nil, imageAsset)
 end
 
 
@@ -26,8 +29,8 @@ function button(name, action, x, y, width, height, fontColor, imageAsset, radius
     local boundsW, boundsH
     if (width == nil or height == nil) and imageAsset == nil then
         boundsW, boundsH = textSize(name)
-        width = boundsW + 74 
-        height = boundsH + 64 
+        width = boundsW + (74 * adjstmt.x) 
+        height = boundsH + (64 * adjstmt.y) 
     else
         width = width or buttonTable.width
         height = height or buttonTable.height
@@ -54,6 +57,16 @@ function button(name, action, x, y, width, height, fontColor, imageAsset, radius
         buttonTable.action = action
         uiPieceHandler.buttons[name].action = action
     end
+    
+    --adjust stored values for screen size
+    x = x * adjstmt.x
+    y = y * adjstmt.y
+    if imageAsset then
+        width = width * adjstmt.x
+        height = height * adjstmt.y
+    end
+    radius = radius or 35
+    radius = radius * adjstmt.x
     
     --draw the button
     local texture = uiPieceHandler.screenBlur

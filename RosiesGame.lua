@@ -32,8 +32,8 @@ function rosieGameInfo()
     popStyle()
     --info
     pushStyle()
-    fontSize(WIDTH * 0.025)
-    textWrapWidth(WIDTH * 0.73)
+    fontSize(WIDTH * 0.03)
+    textWrapWidth(WIDTH * 0.8)
     fill(55, 161)
     button([[Rosie designed, wrote, and drew this little story game when she was 9. 
     
@@ -44,7 +44,7 @@ To get the most out of it, try to find all of the excellent emotional torments R
 Both girls roughly copied the plot of the game that inspired this, 'The Story of Choices' by Behold Studios. 
     
 But they each put their own spin on it, giving us a wonderful glimpse of the things that were clanking around in their young minds at the time.]], 
-        function() currentScreen = rosieStart end, WIDTH/2, HEIGHT/2, nil, nil, color(255))
+        function() currentScreen = rosieStart end, nil, nil, nil, nil, color(255))
     popStyle()
 end
 
