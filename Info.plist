@@ -6,12 +6,12 @@
 	<string>Unknown</string>
 	<key>Buffer Order</key>
 	<array>
+		<string>uiPieceHandler</string>
 		<string>Main</string>
 		<string>Menu</string>
 		<string>RosiesGame</string>
 		<string>CharlotteGame</string>
 		<string>uiPieces</string>
-		<string>uiPieceHandler</string>
 		<string>uiPieceTables</string>
 		<string>fullScreenBlur</string>
 		<string>Utilities</string>

@@ -123,6 +123,15 @@ charlotteImages.charlotteImageLoader = coroutine.create(function()
     charlotteImages.inventoryChocolate = readImage(asset.ccHeartBox)
     print("charlotte images loaded")
 end)
+charlotteInfoText = 
+[[Charlotte made this game at 8, and she designed, wrote, art directed, and drew one of the ending screens for it. Later (at 13) she made its backround music.
+
+I was and am impressed that Charlotte made a genuine branching-choice inventory-based story puzzle, precocious for an 8-year-old. Plus it's a sweet bit of grace that she gave her heroine two possible happy endings.
+
+Both girls roughly copied the plot of the game that inspired this, 'The Story of Choices' by Behold Studios. 
+
+But in their different spins on it we get a great glimpse of how their young brains were busy forming themselves.]]
+
 
 function charlotteFirstScreenDecider()
     if not readLocalData("charlotteInfoShown") then
@@ -131,6 +140,7 @@ function charlotteFirstScreenDecider()
     else
         currentScreen = charlotteStart
     end
+    charlotteInfoFontSize = uiPieceHandler.fontSizeForRect(charlotteInfoText, WIDTH * 0.85, HEIGHT * 0.8)
 end
 
 function charlotteMusicStarter()
@@ -150,14 +160,9 @@ function charlotteGameInfo()
     fontSize(WIDTH * 0.025)
     textWrapWidth(WIDTH * 0.73)
     fill(55, 161)
-button([[Charlotte made this game at 8, and she designed, wrote, art directed, and drew one of the ending screens for it. Later (at 13) she made its backround music.
-    
-I was and am impressed that Charlotte made a genuine branching-choice inventory-based story puzzle, precocious for an 8-year-old. Plus it's a sweet bit of grace that she gave her heroine two possible happy endings.
-    
-Both girls roughly copied the plot of the game that inspired this, 'The Story of Choices' by Behold Studios. 
-
-But in their different spins on it we get a great glimpse of how their young brains were busy forming themselves.]], 
-function() currentScreen = charlotteStart end, WIDTH/2, HEIGHT/2, nil, nil, color(255))
+button(
+charlotteInfoText, 
+    function() currentScreen = charlotteStart end, nil, nil, WIDTH * 0.92, HEIGHT * 0.9, color(255))
 popStyle()
 end
 

@@ -33,7 +33,6 @@ function rosieFirstScreenDecider()
     end
     --messy! shouldn't be here!
     rosieInfoFontSize = uiPieceHandler.fontSizeForRect(rosieInfoText, WIDTH * 0.85, HEIGHT * 0.8)
-    print("rosieInfoFontSize ", rosieInfoFontSize)
 end
 
 function rosieGameInfo()

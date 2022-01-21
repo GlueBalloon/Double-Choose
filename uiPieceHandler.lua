@@ -1,7 +1,11 @@
 -- uiPieceHandler: provides various functions for UI pieces:
 --  enables pieces to be initialized with defaults
 --  manages how pieces look and behave
+
+deviceWnH = vec2(math.max(WIDTH, HEIGHT), math.min(WIDTH, HEIGHT))
+
 uiPieceHandler = {}
+uiPieceHandler.fontSizeDefault = deviceWnH.x * 0.028
 uiPieceHandler.defaultWidth = 160
 uiPieceHandler.defaultHeight = 80
 uiPieceHandler.defaultFontColor = color(255)
@@ -9,13 +13,14 @@ uiPieceHandler.buttons = {}
 uiPieceHandler.shouldUpdateScreenBlur = true
 uiPieceHandler.backgroundImage = 0 --not sure how this will be set irl
 uiPieceHandler.screenBlur = 0 --0 means "none drawn yet"; will normally be an image
-uiPieceHandler.narrationW = WIDTH / 2.13
-uiPieceHandler.narrationH = HEIGHT / 2.7
-uiPieceHandler.narrationX = WIDTH - (uiPieceHandler.narrationW / 2) - 66
-uiPieceHandler.narrationY = HEIGHT / 2.1
+uiPieceHandler.narrationW = deviceWnH.x / 2.45
+uiPieceHandler.narrationH = deviceWnH.y / 2.17
+uiPieceHandler.narrationX = deviceWnH.x - (uiPieceHandler.narrationW / 2) - 66
+uiPieceHandler.narrationY = deviceWnH.y / 2.1
+uiPieceHandler.narrationWrap = uiPieceHandler.narrationW * 0.84
 --specify the size of the choice buttons
 uiPieceHandler.choiceW = uiPieceHandler.narrationW
-uiPieceHandler.choiceH = HEIGHT / 7
+uiPieceHandler.choiceH = deviceWnH.y / 8.5
 --align the horizontal position of the buttons with the narration box
 uiPieceHandler.choice1X = uiPieceHandler.narrationX
 uiPieceHandler.choice2X = uiPieceHandler.choice1X
@@ -47,7 +52,7 @@ uiPieceHandler.defaultButton = function(name)
 end
 
 uiPieceHandler.defaultButtonAction = function()
-    print("in use 'buttonAction(name, action)' to define an action for this button")
+    print("use 'buttonAction(name, action)' to define an action for this button")
 end
 
 uiPieceHandler.doAction = function(name)
