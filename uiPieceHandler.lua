@@ -166,3 +166,52 @@ uiPieceHandler.savePositions = function (name, position)
     saveProjectTab("uiPieceTables",dataString)
     print("uiPieceHandler.savePositions: saved")
 end
+
+uiPieceHandler.fontSizeForRect = function(textToFit, w, h)
+    local fSize, fontSizeNotSet = 0, true
+    pushStyle()
+    textWrapWidth(w)
+    while fontSizeNotSet do
+        fontSize(fSize)
+        local _, boundsY = textSize(textToFit)
+        if boundsY < h then
+            fSize = fSize + 0.01
+        elseif boundsY > h then
+            fSize = fSize - 0.01
+            fontSizeNotSet = false
+        else                
+            fontSizeNotSet = false
+        end
+    end    
+    popStyle()
+    return fSize 
+end
+
+uiPieceHandler.textFitToRect = function(textToFit, x, y, w, h) 
+    bounds = bounds
+    local fSize, fontSizeNotSet, testString, acceptableInset
+    fSize = fontSize()
+    fontSizeNotSet = true
+    testString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-/:;()$&@.,?!'[]{}#%^*+=_\\|~<>€£¥•\""
+    
+    pushStyle()
+    rectMode(CENTER)
+    textWrapWidth(w)
+    while fontSizeNotSet do
+        bounds = vec2(textSize(textToFit))
+        pushStyle()
+        textWrapWidth(500000000)
+        _, acceptableInset = textSize(testString)
+        popStyle()
+        if math.floor(bounds.y) < math.floor(h - acceptableInset) then
+            fSize = fSize + 0.1
+        elseif math.floor(bounds.y) > math.floor(h) then
+            fSize = fSize - 0.1
+        else                
+            fontSizeNotSet = false
+        end
+        fontSize(fSize)
+    end    
+    text(textToFit, x, y)
+    popStyle()
+end
