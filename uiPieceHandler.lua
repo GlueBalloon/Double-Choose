@@ -3,6 +3,7 @@
 --  manages how pieces look and behave
 
 deviceWnH = vec2(math.max(WIDTH, HEIGHT), math.min(WIDTH, HEIGHT))
+adjstmt = vec2(deviceWnH.x / 1366, deviceWnH.y / 1024)
 
 uiPieceHandler = {}
 uiPieceHandler.fontSizeDefault = deviceWnH.x * 0.028

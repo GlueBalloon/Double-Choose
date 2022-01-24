@@ -10,8 +10,7 @@ function setup()
     
     initSupportedOrientations()
     supportedOrientations(LANDSCAPE_ANY)
-    
-    adjstmt = coordinateMultipliers(1366, 1024)
+
     --when need to reset as if first time opened
     parameter.action("Clear local data", function()
         clearLocalData()

@@ -131,6 +131,10 @@ I was and am impressed that Charlotte made a genuine branching-choice inventory-
 Both girls roughly copied the plot of the game that inspired this, 'The Story of Choices' by Behold Studios. 
 
 But in their different spins on it we get a great glimpse of how their young brains were busy forming themselves.]]
+charlotteImageScale = 0.0045 * adjstmt.x * deviceWnH.x
+charKnightScale = charlotteImageScale * 0.55
+charQueenScale = charlotteImageScale * 0.825
+charPuppeteerScale = charlotteImageScale * 0.785
 
 
 function charlotteFirstScreenDecider()
@@ -157,8 +161,8 @@ function charlotteGameInfo()
     popStyle()
     --info
     pushStyle()
-    fontSize(WIDTH * 0.025)
-    textWrapWidth(WIDTH * 0.73)
+    fontSize(charlotteInfoFontSize)
+    textWrapWidth(WIDTH * 0.85)
     fill(55, 161)
 button(
 charlotteInfoText, 
@@ -178,18 +182,17 @@ end
 
 function drawInventory()
     local inventoryX = 167--309.5
-    local scaleFactor = HEIGHT * 0.00155
     for i, name in ipairs(inventory) do
-        simpleImage(name, charlotteImages[name], scaleFactor, inventoryX, 140)
-        inventoryX = inventoryX + (charlotteImages[name].width * scaleFactor)
+        simpleImage(name, charlotteImages[name], charlotteImageScale, inventoryX, 140)
+        inventoryX = inventoryX + (charlotteImages[name].width * charlotteImageScale)
     end
 end
 
 function charlotteStart()
     inventory = {}
     drawBackground(charlotteImages.charlotteStart)
-    simpleImage("heroineStart", charlotteImages.heroineStart, HEIGHT * 0.00155)
-    simpleImage("coffee", charlotteImages.coffee, 1.6)
+    simpleImage("heroineStart", charlotteImages.heroineStart, charlotteImageScale)
+    simpleImage("coffee", charlotteImages.coffee, 1.6 * charlotteImageScale)
     textArea("You woke up.\n\nWhat do you want to do with your coffee?")
     if coroutine.status(charlotteImages.charlotteImageLoader) ~= "dead" then
         print("still loading")
@@ -207,14 +210,14 @@ end
 
 function drankCoffee()
     drawBackground(charlotteImages.charlotteStart)
-    simpleImage("heroineDrank", charlotteImages.heroineDrank, HEIGHT * 0.00155)
+    simpleImage("heroineDrank", charlotteImages.heroineDrank, charlotteImageScale)
     textArea("It tastes good.")
     choice("go outside", boyfriendTells)
 end
 
 function savedCoffee()
     drawBackground(charlotteImages.charlotteStart)
-    simpleImage("heroineSaved", charlotteImages.heroineSavedCoffee, HEIGHT * 0.00155)
+    simpleImage("heroineSaved", charlotteImages.heroineSavedCoffee, charlotteImageScale)
     inventory = {"inventoryCoffee"}
     drawInventory()
     textArea("You keep it with you for later.")
@@ -223,8 +226,8 @@ end
 
 function boyfriendTells()
     drawBackground(charlotteImages.boyfriendTells)
-    simpleImage("boyfriend", charlotteImages.boyfriend, HEIGHT * 0.0012)
-    simpleImage("heroineWithBoyfriend", charlotteImages.heroineWithBoyfriend, HEIGHT * 0.0012)
+simpleImage("boyfriend", charlotteImages.boyfriend, charlotteImageScale * 0.8)
+    simpleImage("heroineWithBoyfriend", charlotteImages.heroineWithBoyfriend, charlotteImageScale * 0.8)
     drawInventory()
     textArea("Your boyfriend tells you the queen is bored.")
     choice("go see the queen", knightScreen)
@@ -232,7 +235,7 @@ end
 
 function knightScreen ()
     drawBackground(charlotteImages.knightScreen)
-    simpleImage("heroineWithKnight", charlotteImages.heroineWithKnight, HEIGHT * 0.00076)
+simpleImage("heroineWithKnight", charlotteImages.heroineWithKnight, charKnightScale)
     drawInventory()
     textArea("You see a knight at the gate.\n\nWhat do you say to him?")
     choice("Just let me in to the castle.", knightScolds)
@@ -241,7 +244,7 @@ end
 
 function knightGivesHeart ()
     drawBackground(charlotteImages.knightScreen)
-    simpleImage("heroineScolded", charlotteImages.heroineWithKnight2, HEIGHT * 0.00076)
+    simpleImage("heroineScolded", charlotteImages.heroineWithKnight2, charKnightScale)
     if inventory[1] == "inventoryCoffee" then
         inventory = {"inventoryCoffee", "inventoryChocolate"}
         else
@@ -254,7 +257,7 @@ end
 
 function knightScolds ()
     drawBackground(charlotteImages.knightScreen)
-    simpleImage("heroineScolded", charlotteImages.heroineWithKnight2, HEIGHT * 0.00076)
+    simpleImage("heroineScolded", charlotteImages.heroineWithKnight2, charKnightScale)
     drawInventory()
     textArea("The knight tells you that you have a bad attitude.")
     choice("go home", homeAfterKnight)
@@ -263,7 +266,7 @@ end
 
 function homeAfterKnight ()
     drawBackground(charlotteImages.charlotteStart)
-    simpleImage("heroineScolded", charlotteImages.heroineDrank, HEIGHT * 0.00155)
+    simpleImage("heroineScolded", charlotteImages.heroineDrank, charlotteImageScale)
     drawInventory()
     textArea([[You say to yourself, "He doesn't like me anyway."]])
     choice("begin again", charlotteStart)
@@ -271,7 +274,7 @@ end
 
 function boredQueen()
     drawBackground(charlotteImages.boredQueen)
-    simpleImage("heroineWithQueen", charlotteImages.heroineWithQueen, HEIGHT * 0.0013)
+    simpleImage("heroineWithQueen", charlotteImages.heroineWithQueen, charQueenScale)
     drawInventory()
     textArea("The queen tells you she's really bored.")
     choice("suggest a puppet show", queenSaysShowMe)
@@ -279,7 +282,7 @@ end
 
 function queenSaysShowMe()
     drawBackground(charlotteImages.boredQueen)
-    simpleImage("heroineWithQueen", charlotteImages.heroineLeavingQueen, HEIGHT * 0.0013)
+    simpleImage("heroineWithQueen", charlotteImages.heroineLeavingQueen, charQueenScale)
     drawInventory()
     textArea([[You tell the queen you know how to put on a puppet show.
     
@@ -289,8 +292,8 @@ end
 
 function puppeteer()
     drawBackground(charlotteImages.genericOutside)
-    simpleImage("heroineMeetsGrouchy", charlotteImages.heroineMeetsGrouchy, HEIGHT * 0.001)
-    simpleImage("grouchyPuppeteer", charlotteImages.grouchyPuppeteer, HEIGHT * 0.001)
+    simpleImage("heroineMeetsGrouchy", charlotteImages.heroineMeetsGrouchy, charPuppeteerScale)
+    simpleImage("grouchyPuppeteer", charlotteImages.grouchyPuppeteer, charPuppeteerScale)
     drawInventory()
     textArea("On your way home you see a grouchy puppeteer.")
     if inventory[1] == "inventoryCoffee" then
@@ -304,8 +307,8 @@ function happyPuppeteer()
         table.remove(inventory, 1)
     end
     drawBackground(charlotteImages.genericOutside)
-    simpleImage("heroineMeetsGrouchy", charlotteImages.heroineMeetsGrouchy, HEIGHT * 0.001)
-    simpleImage("puppeteerTeaching", charlotteImages.puppeteerTeaching, HEIGHT * 0.001)
+    simpleImage("heroineMeetsGrouchy", charlotteImages.heroineMeetsGrouchy, charPuppeteerScale)
+simpleImage("puppeteerTeaching", charlotteImages.puppeteerTeaching, charPuppeteerScale)
     drawInventory()
     textArea("He teaches you a new puppet show.")
     choice("go home and give up", homeAndSleep)
@@ -314,7 +317,7 @@ end
 
 function queenNotLike()
     drawBackground(charlotteImages.queenNotLike)
-    simpleImage("heroineWithSockPuppets", charlotteImages.heroineWithSockPuppets, HEIGHT * 0.0013)
+    simpleImage("heroineWithSockPuppets", charlotteImages.heroineWithSockPuppets, charQueenScale)
     drawInventory()
     textArea("You practice, but the queen doesn't like your show, and you're embarrassed.")
     choice("back to start", homeAndSleep)
@@ -331,7 +334,7 @@ function queenLovesShow()
     textArea([[The queen loves the show!
     
 She tells you a secret. If you give the princess a heart box with chocolates in it, you will become the new queen.]])
-    simpleImage("heroineWithMarionettes", charlotteImages.heroineWithMarionettes, HEIGHT * 0.0013)
+    simpleImage("heroineWithMarionettes", charlotteImages.heroineWithMarionettes, charQueenScale)
     choice("choose who to give the heart to", heartChoice)
     drawInventory()
 end
@@ -341,8 +344,8 @@ function heartChoice()
     textArea("Do you give the heart to the princess or your boyfriend?")
     choice("give to princess", youBecomeQueen)
     choice("give to boyfriend", happyInForest)
-    simpleImage("heartChoiceBoyfriend", charlotteImages.heartChoiceBoyfriend, HEIGHT * 0.0013)
-    simpleImage("heartChoicePrincess", charlotteImages.heartChoicePrincess, HEIGHT * 0.00145)
+    simpleImage("heartChoiceBoyfriend", charlotteImages.heartChoiceBoyfriend, charlotteImageScale)
+    simpleImage("heartChoicePrincess", charlotteImages.heartChoicePrincess, charlotteImageScale * 0.9)
     drawInventory()
 end
 
@@ -350,7 +353,7 @@ function youBecomeQueen()
     drawBackground(charlotteImages.genericCastleInterior)
     textArea("You become the queen!")
     choice("The End", charlotteStart)
-    simpleImage("heroineQueened", charlotteImages.heroineQueened, HEIGHT * 0.0016)
+    simpleImage("heroineQueened", charlotteImages.heroineQueened, charlotteImageScale * 1.2)
 end
 
 function happyInForest()
@@ -359,5 +362,5 @@ function happyInForest()
     
     And you are happy.]])
     choice(" The End ", charlotteStart)
-    simpleImage("happyFamily", charlotteImages.happyFamily, HEIGHT * 0.0028)
+    simpleImage("happyFamily", charlotteImages.happyFamily, charlotteImageScale * 0.65)
 end
