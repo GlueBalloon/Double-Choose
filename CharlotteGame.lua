@@ -362,5 +362,5 @@ function happyInForest()
     
     And you are happy.]])
     choice(" The End ", charlotteStart)
-    simpleImage("happyFamily", charlotteImages.happyFamily, charlotteImageScale * 0.65)
+    simpleImage("happyFamily", charlotteImages.happyFamily, charlotteImageScale * 1.65)
 end
