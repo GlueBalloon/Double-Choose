@@ -114,7 +114,7 @@ function textArea(textToShow, x, y)
         action = function() end
     end
     pushStyle()
-    textWrapWidth(uiPieceHandler.narrationW * 0.9)
+    textWrapWidth(uiPieceHandler.narrationWrap)
     --pass all the values to button()--by default setting border transparent (as above)
     button(textToShow, action, x, y, uiPieceHandler.narrationW, uiPieceHandler.narrationH, color(255))
     popStyle()

@@ -1,7 +1,12 @@
 -- uiPieceHandler: provides various functions for UI pieces:
 --  enables pieces to be initialized with defaults
 --  manages how pieces look and behave
+
+deviceWnH = vec2(math.max(WIDTH, HEIGHT), math.min(WIDTH, HEIGHT))
+adjstmt = vec2(deviceWnH.x / 1366, deviceWnH.y / 1024)
+
 uiPieceHandler = {}
+uiPieceHandler.fontSizeDefault = deviceWnH.x * 0.028
 uiPieceHandler.defaultWidth = 160
 uiPieceHandler.defaultHeight = 80
 uiPieceHandler.defaultFontColor = color(255)
@@ -9,13 +14,14 @@ uiPieceHandler.buttons = {}
 uiPieceHandler.shouldUpdateScreenBlur = true
 uiPieceHandler.backgroundImage = 0 --not sure how this will be set irl
 uiPieceHandler.screenBlur = 0 --0 means "none drawn yet"; will normally be an image
-uiPieceHandler.narrationW = WIDTH / 2.13
-uiPieceHandler.narrationH = HEIGHT / 2.7
-uiPieceHandler.narrationX = WIDTH - (uiPieceHandler.narrationW / 2) - 66
-uiPieceHandler.narrationY = HEIGHT / 2.1
+uiPieceHandler.narrationW = deviceWnH.x / 2.45
+uiPieceHandler.narrationH = deviceWnH.y / 2.17
+uiPieceHandler.narrationX = deviceWnH.x - (uiPieceHandler.narrationW / 2) - 66
+uiPieceHandler.narrationY = deviceWnH.y / 2.1
+uiPieceHandler.narrationWrap = uiPieceHandler.narrationW * 0.84
 --specify the size of the choice buttons
 uiPieceHandler.choiceW = uiPieceHandler.narrationW
-uiPieceHandler.choiceH = HEIGHT / 7
+uiPieceHandler.choiceH = deviceWnH.y / 8.5
 --align the horizontal position of the buttons with the narration box
 uiPieceHandler.choice1X = uiPieceHandler.narrationX
 uiPieceHandler.choice2X = uiPieceHandler.choice1X
@@ -47,7 +53,7 @@ uiPieceHandler.defaultButton = function(name)
 end
 
 uiPieceHandler.defaultButtonAction = function()
-    print("in use 'buttonAction(name, action)' to define an action for this button")
+    print("use 'buttonAction(name, action)' to define an action for this button")
 end
 
 uiPieceHandler.doAction = function(name)
@@ -165,4 +171,53 @@ uiPieceHandler.savePositions = function (name, position)
     end
     saveProjectTab("uiPieceTables",dataString)
     print("uiPieceHandler.savePositions: saved")
+end
+
+uiPieceHandler.fontSizeForRect = function(textToFit, w, h)
+    local fSize, fontSizeNotSet = 0, true
+    pushStyle()
+    textWrapWidth(w)
+    while fontSizeNotSet do
+        fontSize(fSize)
+        local _, boundsY = textSize(textToFit)
+        if boundsY < h then
+            fSize = fSize + 0.01
+        elseif boundsY > h then
+            fSize = fSize - 0.01
+            fontSizeNotSet = false
+        else                
+            fontSizeNotSet = false
+        end
+    end    
+    popStyle()
+    return fSize 
+end
+
+uiPieceHandler.textFitToRect = function(textToFit, x, y, w, h) 
+    bounds = bounds
+    local fSize, fontSizeNotSet, testString, acceptableInset
+    fSize = fontSize()
+    fontSizeNotSet = true
+    testString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-/:;()$&@.,?!'[]{}#%^*+=_\\|~<>€£¥•\""
+    
+    pushStyle()
+    rectMode(CENTER)
+    textWrapWidth(w)
+    while fontSizeNotSet do
+        bounds = vec2(textSize(textToFit))
+        pushStyle()
+        textWrapWidth(500000000)
+        _, acceptableInset = textSize(testString)
+        popStyle()
+        if math.floor(bounds.y) < math.floor(h - acceptableInset) then
+            fSize = fSize + 0.1
+        elseif math.floor(bounds.y) > math.floor(h) then
+            fSize = fSize - 0.1
+        else                
+            fontSizeNotSet = false
+        end
+        fontSize(fSize)
+    end    
+    text(textToFit, x, y)
+    popStyle()
 end

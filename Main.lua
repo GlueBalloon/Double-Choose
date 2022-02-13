@@ -4,13 +4,13 @@
 viewer.mode = FULLSCREEN_NO_BUTTONS
 --654.7518075904	 	547.1759527936
 -- originally coded on 1366 x 1024
+
+
 function setup()
     
     initSupportedOrientations()
     supportedOrientations(LANDSCAPE_ANY)
-    
-    deviceWnH = vec2(WIDTH, HEIGHT)
-    adjstmt = coordinateMultipliers(1366, 1024)
+
     --when need to reset as if first time opened
     parameter.action("Clear local data", function()
         clearLocalData()
@@ -19,19 +19,17 @@ function setup()
     end)
     
     --set global styles
+    fontSize(uiPieceHandler.fontSizeDefault)
     rectMode(CENTER)
     font("HelveticaNeue-Light")
-    fontSize(WIDTH * 0.037)
     stroke(255, 255, 255, 255)
     strokeWidth(1)
     fill(255, 255, 255, 255)
-
     mainMenuStarter()
-    
 end
 
 function coordinateMultipliers(originalW, originalH)
-    local multX, multY = WIDTH / originalW, HEIGHT / originalH
+    local multX, multY = deviceWnH.x / originalW, deviceWnH.y / originalH
     return vec2(multX, multY)
 end
 

@@ -12,6 +12,17 @@ rosieImages.everybodysDisappointed = readImage(asset.rcEverybodysDisappointed)
 rosieImages.secretOrQueen = readImage(asset.rcSecretOrQueen)
 rosieImages.tellYourSecret = readImage(asset.rcTellYourSecret)
 rosieImages.youreQueen = readImage(asset.rcYoureQueen)
+rosieInfoText = 
+[[Rosie designed, wrote, and drew this little story game when she was 9. 
+
+It's a game where the real fun is losing!
+
+To get the most out of it, try to find all of the excellent emotional torments Rosie makes the heroine endure.
+
+Both girls roughly copied the plot of the game that inspired this, 'The Story of Choices' by Behold Studios. 
+
+But they each put their own spin on it, giving us a wonderful glimpse of the things that were clanking around in their young minds at the time.]]
+
 
 function rosieFirstScreenDecider()
     if not readLocalData("rosieInfoShown") then
@@ -20,6 +31,8 @@ function rosieFirstScreenDecider()
     else
         currentScreen = rosieStart
     end
+    --messy! shouldn't be here!
+    rosieInfoFontSize = uiPieceHandler.fontSizeForRect(rosieInfoText, WIDTH * 0.85, HEIGHT * 0.8)
 end
 
 function rosieGameInfo()
@@ -32,21 +45,11 @@ function rosieGameInfo()
     popStyle()
     --info
     pushStyle()
-    fontSize(WIDTH * 0.03)
-    textWrapWidth(WIDTH * 0.8)
+    fontSize(rosieInfoFontSize)
+    textWrapWidth(WIDTH * 0.85)
     fill(55, 161)
-    fontSize(WIDTH * 0.025)
-    textWrapWidth(WIDTH * 0.73)
-    button([[Rosie designed, wrote, and drew this little story game when she was 9. 
-    
-It's a game where the real fun is losing!
-    
-To get the most out of it, try to find all of the excellent emotional torments Rosie makes the heroine endure.
-    
-Both girls roughly copied the plot of the game that inspired this, 'The Story of Choices' by Behold Studios. 
-    
-But they each put their own spin on it, giving us a wonderful glimpse of the things that were clanking around in their young minds at the time.]], 
-        function() currentScreen = rosieStart end, nil, nil, nil, nil, color(255))
+    button(rosieInfoText, 
+    function() currentScreen = rosieStart end, nil, nil, WIDTH * 0.92, HEIGHT * 0.9, color(255))
     popStyle()
 end
 
