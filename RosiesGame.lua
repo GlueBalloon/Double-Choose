@@ -35,6 +35,8 @@ function rosieGameInfo()
     fontSize(WIDTH * 0.03)
     textWrapWidth(WIDTH * 0.8)
     fill(55, 161)
+    fontSize(WIDTH * 0.025)
+    textWrapWidth(WIDTH * 0.73)
     button([[Rosie designed, wrote, and drew this little story game when she was 9. 
     
 It's a game where the real fun is losing!
