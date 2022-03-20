@@ -69,11 +69,13 @@ end
 
 function prepCharlottesGame()
     uiPieceHandler.shouldUpdateScreenBlur = true 
+    simpleButtons.shouldUpdateScreenBlur = true
     currentScreen = charlotteFirstScreenDecider
     charlotteMusicStarter()
 end
 
 function prepRosiesGame()
     uiPieceHandler.shouldUpdateScreenBlur = true 
+    simpleButtons.shouldUpdateScreenBlur = true
     currentScreen = rosieFirstScreenDecider
 end

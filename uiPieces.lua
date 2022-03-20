@@ -70,6 +70,7 @@ function button(name, action, x, y, width, height, fontColor, imageAsset, radius
     
     --draw the button
     local texture = uiPieceHandler.screenBlur
+
     local texCoordinates = vec4(x,y,width,height)
     if imageAsset ~= nil then
         texture = nil
@@ -134,6 +135,7 @@ function makeScreenChangingAction(newScreenAsFunction)
     return function ()
         currentScreen = newScreenAsFunction
         uiPieceHandler.shouldUpdateScreenBlur = true
+        simpleButtons.shouldUpdateScreenBlur = true
     end
 end
 
