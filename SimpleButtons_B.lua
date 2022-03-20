@@ -396,7 +396,7 @@ function button(bText, action, x, y, width, height, fontColor, imageAsset, radiu
     
     --draw button
     roundedRectangle{
-        x=x,y=y,w=width,h=height,radius=simpleButtons.cornerRadius,
+        x=x,y=y,w=width,h=height,radius=radius or simpleButtons.cornerRadius,
         tex=texture,
         texCoord=texCoordinates}
     
