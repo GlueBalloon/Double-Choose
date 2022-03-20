@@ -181,10 +181,12 @@ function inventoryList()
 end
 
 function drawInventory()
+    
     local inventoryX = 167--309.5
+    local scaleFactor = HEIGHT * 0.00155
     for i, name in ipairs(inventory) do
-        simpleImage(name, charlotteImages[name], charlotteImageScale, inventoryX, 140)
-        inventoryX = inventoryX + (charlotteImages[name].width * charlotteImageScale)
+        simpleImage(name, charlotteImages[name], scaleFactor, inventoryX, 140)
+        inventoryX = inventoryX + (charlotteImages[name].width * scaleFactor)
     end
 end
 
@@ -192,7 +194,7 @@ function charlotteStart()
     inventory = {}
     drawBackground(charlotteImages.charlotteStart)
     simpleImage("heroineStart", charlotteImages.heroineStart, HEIGHT * 0.00155)
-    simpleImage("coffee", charlotteImages.coffee, 1.6)
+    simpleImage("coffee", charlotteImages.coffee, HEIGHT * 0.00155)
     textArea("You woke up.\n\nWhat do you want to do with your coffee?")
     if coroutine.status(charlotteImages.charlotteImageLoader) ~= "dead" then
         print("still loading")
@@ -203,7 +205,6 @@ function charlotteStart()
     end
     pushStyle()
     stroke(0, 0)
-    fontSize(charlotteInfoFontSize * 0.75)
     --function button(bText, action, x, y, width, height, fontColor, imageAsset, radius)
     button("i", function() currentScreen = charlotteGameInfo end, nil, nil)
     button("x", function() currentScreen = mainMenuStarter end, nil, nil)
