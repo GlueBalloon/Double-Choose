@@ -27,7 +27,7 @@ simpleButtons.marginPaddingH = simpleButtons.baseFontSize * 0.55
 simpleButtons.marginPaddingW = simpleButtons.baseFontSize
 simpleButtons.ui = {}
 simpleButtons.useGrid = false
-simpleButtons.gridSpacing = math.min(WIDTH, HEIGHT) / 80
+simpleButtons.gridSpacing = math.min(WIDTH, HEIGHT) / 120
 
 simpleButtons.hasCheckedForDependency = false
 simpleButtons.isBeingRunAsDependency = function()
@@ -266,13 +266,13 @@ function button(bText, action, x, y, width, height, fontColor, imageAsset, radiu
     --get traceback info 
     --buttons have to be indexed by traceback
     --this lets different buttons have the same texts
-    local trace = simpleButtons.secondLineInfoFrom(debug.traceback())
+    local trace = debug.traceback()
     --check for existing table matching key
-    local tableToDraw = simpleButtons.ui[trace.all]
+    local tableToDraw = simpleButtons.ui[trace]
     --reject the table if the text doesn't match, though
     if tableToDraw and tableToDraw.text ~= bText then
         --store table that was found under a modified key, so table doesn't get overwritten, for inspection later
-        local newKey = trace.all.."+"..tableToDraw.text
+        local newKey = trace.."+"..tableToDraw.text
         simpleButtons.ui[newKey] = tableToDraw
         tableToDraw = nil
     end
@@ -300,7 +300,7 @@ function button(bText, action, x, y, width, height, fontColor, imageAsset, radiu
         end 
         --if only 1 button matches text, use its values but replace its key
         if #textMatches == 1 then
-            setTableToDrawUsingNewId(trace.all, textMatches[1], textMatches[1].key)  
+            setTableToDrawUsingNewId(trace, textMatches[1], textMatches[1].key)  
             --if more than one button matches text
         elseif #textMatches > 1 then 
             --find out how many match this tab and function
@@ -316,7 +316,7 @@ function button(bText, action, x, y, width, height, fontColor, imageAsset, radiu
             end
             --if only 1 button matches tab and function and text, use it
             if #matchers == 1 then
-                setTableToDrawUsingNewId(trace.all, matchers[1], matchers[1].key)  
+                setTableToDrawUsingNewId(trace, matchers[1], matchers[1].key)  
                 --if more than one button matches tab and function and text
             elseif #matchers > 1 then 
                 --just gonna have to guess!
@@ -324,9 +324,9 @@ function button(bText, action, x, y, width, height, fontColor, imageAsset, radiu
                 for _, buttonTable in ipairs(matchers) do 
                     if not buttonTable.assigned then 
                         --update it to use *this* traceback id
-                        setTableToDrawUsingNewId(trace.all, buttonTable, buttonTable.key)
+                        setTableToDrawUsingNewId(trace, buttonTable, buttonTable.key)
                         --mark it 'assigned'
-                        simpleButtons[trace.all].assigned = true
+                        simpleButtons[trace].assigned = true
                     end
                 end 
             end
@@ -334,7 +334,7 @@ function button(bText, action, x, y, width, height, fontColor, imageAsset, radiu
     end
     --if there's still not a tableToDraw, make a new one
     if not tableToDraw or tableToDraw.text ~= bText then
-        tableToDraw = simpleButtons.defaultButton(bText, trace.all)
+        tableToDraw = simpleButtons.defaultButton(bText, trace)
     end
     tableToDraw.specTable = specTable
     --if x and y were explicitly stated, they should be ordinary numbers
@@ -355,17 +355,12 @@ function button(bText, action, x, y, width, height, fontColor, imageAsset, radiu
     --the saved values should already be percentages
     local x,y = x or tableToDraw.x, y or tableToDraw.y
     --update the stored values if necessary
-    if x ~= tableToDraw.x then
-        simpleButtons.ui[trace.all].x = x
-    end
-    if y ~= tableToDraw.y then
-        simpleButtons.ui[trace.all].y = y
-    end
-    if width ~= tableToDraw.width then
-        simpleButtons.ui[trace.all].width = width
-    end
-    if height ~= tableToDraw.height then
-        simpleButtons.ui[trace.all].height = height
+    if x ~= tableToDraw.x or y ~= tableToDraw.y or 
+    width ~= tableToDraw.width or height ~= tableToDraw.height then 
+        simpleButtons.ui[trace].x = x
+        simpleButtons.ui[trace].y = y
+        simpleButtons.ui[trace].width = width
+        simpleButtons.ui[trace].height = height
     end
     
     --can't use fill() as font color so default to white
@@ -373,7 +368,7 @@ function button(bText, action, x, y, width, height, fontColor, imageAsset, radiu
     
     --'action' is called outside of this function
     if action then
-        simpleButtons.ui[trace.all].action = action
+        simpleButtons.ui[trace].action = action
     end
     
     --get the actual x and y from the percentages
@@ -420,12 +415,12 @@ function button(bText, action, x, y, width, height, fontColor, imageAsset, radiu
         text(bText, x, y)
         popStyle()
     end
-    simpleButtons.ui[trace.all].isTapped = false
+    simpleButtons.ui[trace].isTapped = false
     --handle touches (wherein action gets called or not)
-    simpleButtons.evaluateTouchFor(trace.all)
+    simpleButtons.evaluateTouchFor(trace)
     --set the flag that shows we rendered (used with blurring)
-    simpleButtons.ui[trace.all].didRenderAlready = true
-    return simpleButtons.ui[trace.all]
+    simpleButtons.ui[trace].didRenderAlready = true
+    return simpleButtons.ui[trace]
 end
 
 --button only actually needs a name to work, the rest have defaults
