@@ -205,9 +205,11 @@ function charlotteStart()
     end
     pushStyle()
     stroke(0, 0)
-    --function button(bText, action, x, y, width, height, fontColor, imageAsset, radius)
-    button("i", function() currentScreen = charlotteGameInfo end, nil, nil)
-    button("x", function() currentScreen = mainMenuStarter end, nil, nil)
+  --  fontSize(simpleButtons.baseFontSize * 1.5)
+    local circleButtonSize = WIDTH * 0.07
+   -- function button(bText, action, x, y, width, height, fontColor, imageAsset, radius)
+    button("i", function() currentScreen = charlotteGameInfo end, nil, nil, circleButtonSize, circleButtonSize, nil, nil, circleButtonSize/2)
+    button("x", function() currentScreen = mainMenuStarter end, nil, nil, circleButtonSize, circleButtonSize, nil, nil, circleButtonSize/2)
     popStyle()
 end
 
