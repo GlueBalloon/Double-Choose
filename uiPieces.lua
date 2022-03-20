@@ -101,7 +101,7 @@ function button(name, action, x, y, width, height, fontColor, imageAsset, radius
     uiPieceHandler.buttons[name].didRenderAlready = true
     if newButtonFlag == true then
         print("button: should be saving positions")
-        uiPieceHandler.savePositions() --atm saves *all* button positions, ergg
+        --uiPieceHandler.savePositions() --atm saves *all* button positions, ergg
     end
 end
 

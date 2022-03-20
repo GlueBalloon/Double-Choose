@@ -6,7 +6,8 @@ deviceWnH = vec2(math.max(WIDTH, HEIGHT), math.min(WIDTH, HEIGHT))
 adjstmt = vec2(deviceWnH.x / 1366, deviceWnH.y / 1024)
 
 uiPieceHandler = {}
-uiPieceHandler.fontSizeDefault = deviceWnH.x * 0.028
+uiPieceHandler.fontSizeDefault = deviceWnH.x * 0.025
+print(uiPieceHandler.fontSizeDefault)
 uiPieceHandler.defaultWidth = 160
 uiPieceHandler.defaultHeight = 80
 uiPieceHandler.defaultFontColor = color(255)
@@ -14,8 +15,8 @@ uiPieceHandler.buttons = {}
 uiPieceHandler.shouldUpdateScreenBlur = true
 uiPieceHandler.backgroundImage = 0 --not sure how this will be set irl
 uiPieceHandler.screenBlur = 0 --0 means "none drawn yet"; will normally be an image
-uiPieceHandler.narrationW = deviceWnH.x / 2.45
-uiPieceHandler.narrationH = deviceWnH.y / 2.17
+uiPieceHandler.narrationW = deviceWnH.x / 2.7
+uiPieceHandler.narrationH = deviceWnH.y / 2.7
 uiPieceHandler.narrationX = deviceWnH.x - (uiPieceHandler.narrationW / 2) - 66
 uiPieceHandler.narrationY = deviceWnH.y / 2.1
 uiPieceHandler.narrationWrap = uiPieceHandler.narrationW * 0.84
