@@ -124,9 +124,9 @@ charlotteImages.charlotteImageLoader = coroutine.create(function()
     print("charlotte images loaded")
 end)
 charlotteInfoText = 
-[[Charlotte made this game at 8, and she designed, wrote, art directed, and drew one of the ending screens for it. Later (at 13) she made its backround music.
+[[Sun (who went by Charlotte then) made this game at 8, and she designed, wrote, art directed, and drew one of the ending screens for it. Later (at 13) she made its backround music.
 
-I was and am impressed that Charlotte made a genuine branching-choice inventory-based story puzzle, precocious for an 8-year-old. Plus it's a sweet bit of grace that she gave her heroine two possible happy endings.
+I was and am impressed that Sun made a genuine branching-choice inventory-based story puzzle, precocious for an 8-year-old. Plus it's a sweet bit of grace that she gave her heroine two possible happy endings.
 
 Both girls roughly copied the plot of the game that inspired this, 'The Story of Choices' by Behold Studios. 
 
@@ -144,7 +144,9 @@ function charlotteFirstScreenDecider()
     else
         currentScreen = charlotteStart
     end
-    charlotteInfoFontSize = uiPieceHandler.fontSizeForRect(charlotteInfoText, WIDTH * 0.85, HEIGHT * 0.8)
+    fontSize(simpleButtons.baseFontSize)
+    charlotteInfoFontSize = uiPieceHandler.fontSizeForRect(charlotteInfoText, WIDTH * 0.6, HEIGHT * 0.8)
+    print("size", charlotteInfoFontSize)
 end
 
 function charlotteMusicStarter()
@@ -162,11 +164,11 @@ function charlotteGameInfo()
     --info
     pushStyle()
     fontSize(charlotteInfoFontSize)
-    textWrapWidth(WIDTH * 0.85)
+    textWrapWidth(WIDTH * 0.7)
     fill(55, 161)
 button(
 charlotteInfoText, 
-    function() currentScreen = charlotteStart end, nil, nil, WIDTH * 0.92, HEIGHT * 0.9, color(255))
+    function() currentScreen = charlotteStart end, nil, nil, WIDTH * 0.9, HEIGHT * 0.9, color(255))
 popStyle()
 end
 
@@ -205,9 +207,7 @@ function charlotteStart()
     end
     pushStyle()
     stroke(0, 0)
-  --  fontSize(simpleButtons.baseFontSize * 1.5)
     local circleButtonSize = WIDTH * 0.07
-   -- function button(bText, action, x, y, width, height, fontColor, imageAsset, radius)
     button("i", function() currentScreen = charlotteGameInfo end, nil, nil, circleButtonSize, circleButtonSize, nil, nil, circleButtonSize/2)
     button("x", function() currentScreen = mainMenuStarter end, nil, nil, circleButtonSize, circleButtonSize, nil, nil, circleButtonSize/2)
     popStyle()

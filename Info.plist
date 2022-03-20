@@ -7,13 +7,13 @@
 	<key>Buffer Order</key>
 	<array>
 		<string>uiPieceHandler</string>
+		<string>uiPieces</string>
+		<string>fullScreenBlur</string>
+		<string>uiPieceTables</string>
 		<string>Main</string>
 		<string>Menu</string>
 		<string>RosiesGame</string>
 		<string>CharlotteGame</string>
-		<string>uiPieces</string>
-		<string>uiPieceTables</string>
-		<string>fullScreenBlur</string>
 		<string>SimpleButtons_B</string>
 		<string>ButtonTables</string>
 		<string>Utilities</string>

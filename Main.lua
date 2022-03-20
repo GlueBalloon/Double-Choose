@@ -19,7 +19,6 @@ function setup()
     end)
     
     --set global styles
-    fontSize(uiPieceHandler.fontSizeDefault)
     rectMode(CENTER)
     font("HelveticaNeue")
     stroke(255, 255, 255, 255)
