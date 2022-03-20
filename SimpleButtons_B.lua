@@ -406,13 +406,20 @@ function button(bText, action, x, y, width, height, fontColor, imageAsset, radiu
         texCoord=texCoordinates}
     
     --draw the text
+    
     if tableToDraw.isTapped == true then
         fill(startingFill)
     else
         fill(fontColor)
     end
-    text(bText, x, y)
-    popStyle()
+    --if there's an image, draw only that
+    if imageAsset ~= nil then
+        popStyle()
+        sprite(imageAsset, x, y, width, height)
+    else --otherwise draw text
+        text(bText, x, y)
+        popStyle()
+    end
     simpleButtons.ui[trace.all].isTapped = false
     --handle touches (wherein action gets called or not)
     simpleButtons.evaluateTouchFor(trace.all)
