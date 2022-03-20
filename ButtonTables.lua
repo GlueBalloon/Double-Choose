@@ -1,21 +1,24 @@
-simpleButtons.ui[ [[Menu,mainMenu,16]] ] = 
-    {text = [[menuRosie]],
-    x = 0.24780380673499, y = 0.4697265625,
-    width = 127.018, height = 42.8099,
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	uiPieces:11: in function 'simpleImage'
+	CharlotteGame:195: in function 'charlotteStart'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[coffee]],
+    x = 0.50600292825769, y = 0.575,
+    width = 91.2, height = 76.8,
     action = simpleButtons.defaultButtonAction
 }
 
-simpleButtons.ui[ [[Menu,charlotteGreetingText,55]] ] = 
-    {text = [[not visible text]],
-    x = 0.0025622254758419, y = 0.25634765625,
-    width = 733.7, height = 412.5,
-    action = simpleButtons.defaultButtonAction
-}
-
-simpleButtons.ui[ [[uiPieces,choice,131+The End!]] ] = 
-    {text = [[The End!]],
-    x = 0.73682284040996, y = 0.3212890625,
-    width = 557.55102040816, height = 120.47058823529,
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	uiPieces:120: in function 'textArea'
+	CharlotteGame:217: in function 'drankCoffee'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[It tastes good.]],
+    x = 0.7623688155922, y = 0.584,
+    width = 557.55102040816, height = 471.88940092166,
     action = simpleButtons.defaultButtonAction
 }
 
@@ -26,6 +29,97 @@ simpleButtons.ui[ [[Menu,rosieGreetingText,41]] ] =
     action = simpleButtons.defaultButtonAction
 }
 
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	uiPieces:120: in function 'textArea'
+	CharlotteGame:196: in function 'charlotteStart'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[You woke up.
+
+What do you want to do with your coffee?]],
+    x = 0.76212786725232, y = 0.63333333333333,
+    width = 557.55102040816, height = 471.88940092166,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	CharlotteGame:167: in function 'charlotteGameInfo'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[Charlotte made this game at 8, and she designed, wrote, art directed, and drew one of the ending screens for it. Later (at 13) she made its backround music.
+
+I was and am impressed that Charlotte made a genuine branching-choice inventory-based story puzzle, precocious for an 8-year-old. Plus it's a sweet bit of grace that she gave her heroine two possible happy endings.
+
+Both girls roughly copied the plot of the game that inspired this, 'The Story of Choices' by Behold Studios. 
+
+But in their different spins on it we get a great glimpse of how their young brains were busy forming themselves.]],
+    x = 0.5, y = 0.5,
+    width = 1256.72, height = 921.6,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[uiPieces,choice,131+first go see your boyfriend]] ] = 
+    {text = [[first go see your boyfriend]],
+    x = 0.71852122986823, y = 0.3583984375,
+    width = 557.55102040816, height = 120.47058823529,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[uiPieces,textArea,120+The adventure is: help everybody!]] ] = 
+    {text = [[The adventure is: help everybody!]],
+    x = 0.73718887262079, y = 0.74951171875,
+    width = 557.55102040816, height = 471.88940092166,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	uiPieces:11: in function 'simpleImage'
+	CharlotteGame:216: in function 'drankCoffee'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[heroineDrank]],
+    x = 0.10344827586207, y = 0.46266666666667,
+    width = 1401.516, height = 2889.09,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	uiPieces:131: in function 'choice'
+	CharlotteGame:201: in function 'charlotteStart'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[drink it]],
+    x = 0.76212786725232, y = 0.31666666666667,
+    width = 557.55102040816, height = 120.47058823529,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	Menu:20: in function 'mainMenu'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[menuCharlotte]],
+    x = 0.71705710102489, y = 0.5419921875,
+    width = 316.764, height = 86.5702,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	Menu:55: in function 'charlotteGreetingText'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[not visible text]],
+    x = 0.0025622254758419, y = 0.25634765625,
+    width = 1502.6, height = 1126.4,
+    action = simpleButtons.defaultButtonAction
+}
+
 simpleButtons.ui[ [[uiPieces,choice,131+secret]] ] = 
     {text = [[secret]],
     x = 0.67203513909224, y = 0.29736328125,
@@ -33,91 +127,36 @@ simpleButtons.ui[ [[uiPieces,choice,131+secret]] ] =
     action = simpleButtons.defaultButtonAction
 }
 
-simpleButtons.ui[ [[uiPieces,choice,131+save it for later]] ] = 
-    {text = [[save it for later]],
-    x = 0.76354319180088, y = 0.42333984375,
-    width = 272.24489795918, height = 44.117647058824,
-    action = simpleButtons.defaultButtonAction
-}
-
-simpleButtons.ui[ [[uiPieces,choice,131+drink it]] ] = 
-    {text = [[drink it]],
-    x = 0.76354319180088, y = 0.42333984375,
-    width = 272.24489795918, height = 44.117647058824,
-    action = simpleButtons.defaultButtonAction
-}
-
-simpleButtons.ui[ [[uiPieces,textArea,120+Do you want to have an adventure?]] ] = 
-    {text = [[Do you want to have an adventure?]],
-    x = 0.76281112737921, y = 0.42333984375,
-    width = 557.55102040816, height = 471.88940092166,
-    action = simpleButtons.defaultButtonAction
-}
-
-simpleButtons.ui[ [[uiPieces,simpleImage,11+coffee]] ] = 
-    {text = [[coffee]],
-    x = 0.0069546120058565, y = 0.2783203125,
-    width = 133.6621124451, height = 112.55756837482,
-    action = simpleButtons.defaultButtonAction
-}
-
-simpleButtons.ui[ [[uiPieces,choice,131+stay in bed]] ] = 
-    {text = [[stay in bed]],
-    x = 0.48060029282577, y = 0.7607421875,
-    width = 557.55102040816, height = 120.47058823529,
-    action = simpleButtons.defaultButtonAction
-}
-
-simpleButtons.ui[ [[uiPieces,textArea,120+You woke up.
-
-What do you want to do with your coffee?]] ] = 
-    {text = [[You woke up.
-
-What do you want to do with your coffee?]],
-    x = 0.75146412884334, y = 0.7529296875,
-    width = 272.24489795918, height = 172.81105990783,
-    action = simpleButtons.defaultButtonAction
-}
-
-simpleButtons.ui[ [[Menu,mainMenu,20]] ] = 
-    {text = [[menuCharlotte]],
-    x = 0.71705710102489, y = 0.5419921875,
-    width = 155.018, height = 42.8099,
-    action = simpleButtons.defaultButtonAction
-}
-
-simpleButtons.ui[ [[Menu,charlotteGreetingText,65]] ] = 
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	Menu:65: in function 'charlotteGreetingText'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
     {text = [[Hi!]],
     x = 0.67166910688141, y = 0.50341796875,
-    width = 92.018, height = 77.8099,
+    width = 186.764, height = 158.5702,
     action = simpleButtons.defaultButtonAction
 }
 
-simpleButtons.ui[ [[uiPieces,choice,131+break up]] ] = 
-    {text = [[break up]],
-    x = 0.67203513909224, y = 0.29736328125,
-    width = 557.55102040816, height = 120.47058823529,
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	Menu:63: in function 'charlotteGreetingText'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[I'm Charlotte and this is my game!]],
+    x = 0.79685212298682, y = 0.7353515625,
+    width = 508.764, height = 288.5702,
     action = simpleButtons.defaultButtonAction
 }
 
-simpleButtons.ui[ [[uiPieces,textArea,120+You break up and he gets a girlfriend prettier than you and you cry.]] ] = 
-    {text = [[You break up and he gets a girlfriend prettier than you and you cry.]],
-    x = 0.63360175695461, y = 0.72265625,
-    width = 557.55102040816, height = 471.88940092166,
-    action = simpleButtons.defaultButtonAction
-}
-
-simpleButtons.ui[ [[uiPieces,simpleImage,11+heroineStart]] ] = 
-    {text = [[heroineStart]],
-    x = 0.0069546120058565, y = 0.2783203125,
-    width = 334.15528111274, height = 688.82886896047,
-    action = simpleButtons.defaultButtonAction
-}
-
-simpleButtons.ui[ [[uiPieces,simpleImage,11]] ] = 
-    {text = [[heroineDrank]],
-    x = 0.10344827586207, y = 0.46266666666667,
-    width = 334.15528111274, height = 688.82886896047,
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	CharlotteGame:210: in function 'charlotteStart'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[x]],
+    x = 0.049975597852611, y = 0.93333333333333,
+    width = 90.764, height = 82.5702,
     action = simpleButtons.defaultButtonAction
 }
 
@@ -128,10 +167,15 @@ simpleButtons.ui[ [[uiPieces,textArea,120+Your boyfriend says, "Do you want to k
     action = simpleButtons.defaultButtonAction
 }
 
-simpleButtons.ui[ [[CharlotteGame,charlotteStart,207]] ] = 
-    {text = [[ exit ]],
-    x = 0.75439238653001, y = 0.11474609375,
-    width = 75.018, height = 42.8099,
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	uiPieces:11: in function 'simpleImage'
+	CharlotteGame:233: in function 'boyfriendTells'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[heroineWithBoyfriend]],
+    x = 0.5, y = 0.5,
+    width = 1121.2128, height = 2311.272,
     action = simpleButtons.defaultButtonAction
 }
 
@@ -142,24 +186,84 @@ simpleButtons.ui[ [[RosiesGame,rosieStart,64]] ] =
     action = simpleButtons.defaultButtonAction
 }
 
-simpleButtons.ui[ [[uiPieces,textArea,120]] ] = 
-    {text = [[It tastes good.]],
-    x = 0.7623688155922, y = 0.584,
-    width = 272.24489795918, height = 172.81105990783,
+simpleButtons.ui[ [[uiPieces,textArea,120+Do you want to have an adventure?]] ] = 
+    {text = [[Do you want to have an adventure?]],
+    x = 0.76281112737921, y = 0.42333984375,
+    width = 557.55102040816, height = 471.88940092166,
     action = simpleButtons.defaultButtonAction
 }
 
-simpleButtons.ui[ [[CharlotteGame,charlotteStart,206]] ] = 
-    {text = [[ info ]],
-    x = 0.5614934114202, y = 0.1171875,
-    width = 76.018, height = 42.8099,
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	uiPieces:120: in function 'textArea'
+	CharlotteGame:235: in function 'boyfriendTells'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[Your boyfriend tells you the queen is bored.]],
+    x = 0.5, y = 0.5,
+    width = 557.55102040816, height = 471.88940092166,
     action = simpleButtons.defaultButtonAction
 }
 
-simpleButtons.ui[ [[Menu,charlotteGreetingText,63]] ] = 
-    {text = [[I'm Charlotte and this is my game!]],
-    x = 0.79685212298682, y = 0.7353515625,
-    width = 249.018, height = 140.8099,
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	uiPieces:11: in function 'simpleImage'
+	CharlotteGame:232: in function 'boyfriendTells'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[boyfriend]],
+    x = 0.5, y = 0.5,
+    width = 1352.34, height = 2488.3056,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	uiPieces:11: in function 'simpleImage'
+	CharlotteGame:194: in function 'charlotteStart'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[heroineStart]],
+    x = 0.27486578818936, y = 0.56666666666667,
+    width = 361.8816, height = 745.984,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	uiPieces:131: in function 'choice'
+	CharlotteGame:236: in function 'boyfriendTells'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[go see the queen]],
+    x = 0.5, y = 0.5,
+    width = 557.55102040816, height = 120.47058823529,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[uiPieces,choice,131+The End!]] ] = 
+    {text = [[The End!]],
+    x = 0.73682284040996, y = 0.3212890625,
+    width = 557.55102040816, height = 120.47058823529,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	uiPieces:11: in function 'simpleImage'
+	Menu:66: in function 'charlotteGreetingText'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[charlotteIntroFace]],
+    x = 0.69509516837482, y = 0.30322265625,
+    width = 358.15, height = 380.0,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[uiPieces,choice,131+stay in bed]] ] = 
+    {text = [[stay in bed]],
+    x = 0.48060029282577, y = 0.7607421875,
+    width = 557.55102040816, height = 120.47058823529,
     action = simpleButtons.defaultButtonAction
 }
 
@@ -167,6 +271,87 @@ simpleButtons.ui[ [[RosiesGame,rosieStart,63]] ] =
     {text = [[info]],
     x = 0.27306002928258, y = 0.19140625,
     width = 132.764, height = 86.5702,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[CharlotteGame,charlotteStart,206+ info ]] ] = 
+    {text = [[ info ]],
+    x = 0.5614934114202, y = 0.1171875,
+    width = 76.018, height = 42.8099,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[uiPieces,choice,131+break up]] ] = 
+    {text = [[break up]],
+    x = 0.67203513909224, y = 0.29736328125,
+    width = 557.55102040816, height = 120.47058823529,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	CharlotteGame:209: in function 'charlotteStart'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[i]],
+    x = 0.12493899463153, y = 0.93333333333333,
+    width = 80.764, height = 82.5702,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[uiPieces,simpleImage,11+rosieIntroFace]] ] = 
+    {text = [[rosieIntroFace]],
+    x = 0.5, y = 0.5,
+    width = 468.35, height = 391.4,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	Menu:16: in function 'mainMenu'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[menuRosie]],
+    x = 0.24780380673499, y = 0.4697265625,
+    width = 258.764, height = 86.5702,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[uiPieces,textArea,120+You break up and he gets a girlfriend prettier than you and you cry.]] ] = 
+    {text = [[You break up and he gets a girlfriend prettier than you and you cry.]],
+    x = 0.63360175695461, y = 0.72265625,
+    width = 557.55102040816, height = 471.88940092166,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	uiPieces:131: in function 'choice'
+	CharlotteGame:218: in function 'drankCoffee'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[go outside]],
+    x = 0.76761619190405, y = 0.224,
+    width = 557.55102040816, height = 120.47058823529,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[stack traceback:
+	SimpleButtons_B:269: in function 'button'
+	uiPieces:131: in function 'choice'
+	CharlotteGame:202: in function 'charlotteStart'
+	Main:37: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
+    {text = [[save it for later]],
+    x = 0.76212786725232, y = 0.18333333333333,
+    width = 557.55102040816, height = 120.47058823529,
+    action = simpleButtons.defaultButtonAction
+}
+
+simpleButtons.ui[ [[CharlotteGame,charlotteStart,207+ exit ]] ] = 
+    {text = [[ exit ]],
+    x = 0.75439238653001, y = 0.11474609375,
+    width = 75.018, height = 42.8099,
     action = simpleButtons.defaultButtonAction
 }
 
@@ -182,41 +367,6 @@ Both girls roughly copied the plot of the game that inspired this, 'The Story of
 But they each put their own spin on it, giving us a wonderful glimpse of the things that were clanking around in their young minds at the time.]],
     x = 0.5, y = 0.5,
     width = 1256.72, height = 921.6,
-    action = simpleButtons.defaultButtonAction
-}
-
-simpleButtons.ui[ [[uiPieces,textArea,120+The adventure is: help everybody!]] ] = 
-    {text = [[The adventure is: help everybody!]],
-    x = 0.73718887262079, y = 0.74951171875,
-    width = 557.55102040816, height = 471.88940092166,
-    action = simpleButtons.defaultButtonAction
-}
-
-simpleButtons.ui[ [[uiPieces,simpleImage,11+charlotteIntroFace]] ] = 
-    {text = [[charlotteIntroFace]],
-    x = 0.69509516837482, y = 0.30322265625,
-    width = 358.15, height = 380.0,
-    action = simpleButtons.defaultButtonAction
-}
-
-simpleButtons.ui[ [[uiPieces,simpleImage,11+rosieIntroFace]] ] = 
-    {text = [[rosieIntroFace]],
-    x = 0.5, y = 0.5,
-    width = 468.35, height = 391.4,
-    action = simpleButtons.defaultButtonAction
-}
-
-simpleButtons.ui[ [[uiPieces,choice,131+first go see your boyfriend]] ] = 
-    {text = [[first go see your boyfriend]],
-    x = 0.71852122986823, y = 0.3583984375,
-    width = 557.55102040816, height = 120.47058823529,
-    action = simpleButtons.defaultButtonAction
-}
-
-simpleButtons.ui[ [[uiPieces,choice,131]] ] = 
-    {text = [[go outside]],
-    x = 0.76761619190405, y = 0.224,
-    width = 272.24489795918, height = 44.117647058824,
     action = simpleButtons.defaultButtonAction
 }
 
