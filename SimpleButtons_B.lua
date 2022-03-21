@@ -412,6 +412,7 @@ function button(bText, action, x, y, width, height, fontColor, imageAsset, radiu
         popStyle()
         sprite(imageAsset, x, y, width, height)
     else --otherwise draw text
+        fontSize(simpleButtons.baseFontSize)
         text(bText, x, y)
         popStyle()
     end
