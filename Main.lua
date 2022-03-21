@@ -18,6 +18,13 @@ function setup()
         print("local data keys: ", #dataList)
     end)
     
+    print(258.69 / math.max(WIDTH, HEIGHT)) --0.3878
+    print(144 / math.max(WIDTH, HEIGHT)) --0.2159
+    
+    parameter.number("vFontSize", 1, 30, math.max(WIDTH, HEIGHT) * 0.0245)
+    parameter.number("vTextWidth", 1, 800, math.max(WIDTH, HEIGHT) * 0.3878)
+    parameter.number("vTextHeight", 1, 800, math.max(WIDTH, HEIGHT) * 0.21)
+
     --set global styles
     rectMode(CENTER)
     font("HelveticaNeue")
@@ -37,4 +44,8 @@ function draw()
     if currentOverlay then
         currentOverlay()
     end
+    simpleButtons.baseFontSize = vFontSize
+    uiPieceHandler.narrationW = vTextWidth
+    uiPieceHandler.narrationH = vTextHeight
+    uiPieceHandler.choiceW = vTextWidth
 end
