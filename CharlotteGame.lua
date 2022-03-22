@@ -1,3 +1,17 @@
+--[[
+SimpleButtons_B:329: attempt to index a nil value (field '?')
+stack traceback:
+	SimpleButtons_B:329: in function 'button'
+	uiPieces:11: in function 'simpleImage'
+	CharlotteGame:190: in function 'drawInventory'
+	CharlotteGame:227: in function 'savedCoffee'
+	Main:43: in global '_wrap_draw'
+	SupportedOrientations:262: in function <SupportedOrientations:244>
+
+]]
+    
+    
+    
 function testCharlottesGame()
     CodeaUnit.detailed = true
     
