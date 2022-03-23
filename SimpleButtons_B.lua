@@ -6,6 +6,7 @@
 --  manages how pieces look and behave
 
 simpleButtons = {}
+simpleButtons.ui = {}
 simpleButtons.standardLineHeight = function() 
     pushStyle()
     textWrapWidth(0)
@@ -25,7 +26,6 @@ simpleButtons.baseFontSize = math.max(WIDTH, HEIGHT) * 0.027
 simpleButtons.cornerRadius = simpleButtons.baseFontSize * 1.25
 simpleButtons.marginPaddingH = simpleButtons.baseFontSize * 0.55
 simpleButtons.marginPaddingW = simpleButtons.baseFontSize
-simpleButtons.ui = {}
 simpleButtons.useGrid = false
 simpleButtons.gridSpacing = math.min(WIDTH, HEIGHT) / 120
 
@@ -325,8 +325,14 @@ function button(bText, action, x, y, width, height, fontColor, imageAsset, radiu
                     if not buttonTable.assigned then 
                         --update it to use *this* traceback id
                         setTableToDrawUsingNewId(trace, buttonTable, buttonTable.key)
+                        
+                        if buttonTable[trace] == nil or simpleButtons.ui[trace] == nil then
+                        print(buttonTable[trace])
+                        print(simpleButtons.ui[trace])
+                            end
+                        
                         --mark it 'assigned'
-                        simpleButtons[trace].assigned = true
+                        simpleButtons.ui[trace].assigned = true
                     end
                 end 
             end
