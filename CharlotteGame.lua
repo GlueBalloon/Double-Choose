@@ -138,9 +138,9 @@ charlotteImages.charlotteImageLoader = coroutine.create(function()
     print("charlotte images loaded")
 end)
 charlotteInfoText = 
-[[Sun (who went by Charlotte then) made this game at 8, and she designed, wrote, art directed, and drew one of the ending screens for it. Later (at 13) she made its backround music.
+[[Sun (who went by Charlotte then) made this game at 8, and she designed, wrote, art directed, and drew one of the ending screens for it. Later (at 13) she made its background music.
 
-I was and am impressed that Sun made a genuine branching-choice inventory-based story puzzle, precocious for an 8-year-old. Plus it's a sweet bit of grace that she gave her heroine two possible happy endings.
+I'm still impressed that Sun made a genuine branching-choice inventory-based story puzzle. That's precocious for an 8-year-old! Plus it's a sweet bit of grace that she gave her heroine two possible happy endings.
 
 Both girls roughly copied the plot of the game that inspired this, 'The Story of Choices' by Behold Studios. 
 
@@ -198,10 +198,10 @@ end
 
 function drawInventory()
     
-    local inventoryX = 167--309.5
     local scaleFactor = HEIGHT * 0.00155
+    local inventoryX = 125 * scaleFactor--309.5
     for i, name in ipairs(inventory) do
-        simpleImage(name, charlotteImages[name], scaleFactor, inventoryX, 140)
+        simpleImage(name, charlotteImages[name], scaleFactor, inventoryX, 90 * scaleFactor)
         inventoryX = inventoryX + (charlotteImages[name].width * scaleFactor)
     end
 end
@@ -221,9 +221,13 @@ function charlotteStart()
     end
     pushStyle()
     stroke(0, 0)
+    --[[
     local circleButtonSize = WIDTH * 0.07
     button("i", function() currentScreen = charlotteGameInfo end, nil, nil, circleButtonSize, circleButtonSize, nil, nil, circleButtonSize/2)
     button("x", function() currentScreen = mainMenuStarter end, nil, nil, circleButtonSize, circleButtonSize, nil, nil, circleButtonSize/2)
+    popStyle()]]
+    button("info", function() currentScreen = charlotteGameInfo end, nil, nil, 50, 50, nil, nil, 25)
+    button("exit", function() currentScreen = mainMenu end, nil, nil, 50, 50, nil, nil, 25)
     popStyle()
 end
 
