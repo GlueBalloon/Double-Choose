@@ -226,8 +226,9 @@ function charlotteStart()
     button("i", function() currentScreen = charlotteGameInfo end, nil, nil, circleButtonSize, circleButtonSize, nil, nil, circleButtonSize/2)
     button("x", function() currentScreen = mainMenuStarter end, nil, nil, circleButtonSize, circleButtonSize, nil, nil, circleButtonSize/2)
     popStyle()]]
-    button("info", function() currentScreen = charlotteGameInfo end, nil, nil, 50, 50, nil, nil, 25)
-    button("exit", function() currentScreen = mainMenu end, nil, nil, 50, 50, nil, nil, 25)
+    local buttonSize = WIDTH * 0.08
+    button("info", function() currentScreen = charlotteGameInfo end, nil, nil, buttonSize, buttonSize, nil, nil, buttonSize / 2)
+    button("exit", function() currentScreen = mainMenu end, nil, nil, buttonSize, buttonSize, nil, nil, buttonSize / 2)
     popStyle()
 end
 

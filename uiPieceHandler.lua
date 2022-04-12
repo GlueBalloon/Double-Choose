@@ -21,7 +21,7 @@ uiPieceHandler.narrationY = deviceWnH.y / 2.1
 uiPieceHandler.narrationWrap = uiPieceHandler.narrationW * 0.84
 --specify the size of the choice buttons
 uiPieceHandler.choiceW = uiPieceHandler.narrationW
-uiPieceHandler.choiceH = deviceWnH.y / 8.5
+uiPieceHandler.choiceH = uiPieceHandler.narrationW * 0.125
 --align the horizontal position of the buttons with the narration box
 uiPieceHandler.choice1X = uiPieceHandler.narrationX
 uiPieceHandler.choice2X = uiPieceHandler.choice1X
