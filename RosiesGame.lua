@@ -60,8 +60,9 @@ function rosieStart()
     choice("stay in bed", sleepForDays)
     pushStyle()
     stroke(0, 0)
-    button("info", function() currentScreen = rosieGameInfo end, nil, nil, 50, 50, nil, nil, 25)
-    button("exit", function() currentScreen = mainMenu end, nil, nil, 50, 50, nil, nil, 25)
+    local buttonSize = WIDTH * 0.08
+    button("info", function() currentScreen = rosieGameInfo end, nil, nil, buttonSize, buttonSize, nil, nil, buttonSize / 2)
+    button("exit", function() currentScreen = mainMenu end, nil, nil, buttonSize, buttonSize, nil, nil, buttonSize / 2)
     popStyle()
 end
 
