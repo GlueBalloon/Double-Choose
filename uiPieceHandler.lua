@@ -15,7 +15,7 @@ uiPieceHandler.shouldUpdateScreenBlur = true
 uiPieceHandler.backgroundImage = 0 --not sure how this will be set irl
 uiPieceHandler.screenBlur = 0 --0 means "none drawn yet"; will normally be an image
 uiPieceHandler.narrationW = deviceWnH.x / 2.45
-uiPieceHandler.narrationH = deviceWnH.y / 2.17
+uiPieceHandler.narrationH = uiPieceHandler.narrationW
 uiPieceHandler.narrationX = deviceWnH.x - (uiPieceHandler.narrationW / 2) - 66
 uiPieceHandler.narrationY = deviceWnH.y / 2.1
 uiPieceHandler.narrationWrap = uiPieceHandler.narrationW * 0.84
@@ -43,7 +43,7 @@ self.choiceH = HEIGHT / 13.9
 self.choice1X = self.narrationX
 self.choice2X = self.choice1X
 ]]--
-
+--[[
 uiPieceHandler.defaultButton = function(name)
     uiPieceHandler.buttons[name] = {x=math.random(WIDTH),y=math.random(HEIGHT), 
     width = uiPieceHandler.defaultWidth, height = uiPieceHandler.defaultHeight,
@@ -158,7 +158,7 @@ end
 uiPieceHandler.savePositions = function (name, position)
     dataString = ""
     for name, buttonValues in pairs(uiPieceHandler.buttons) do
-        dataString = dataString.."uiPieceHandler.buttons[ [["..name.."]] ] = \n"
+        dataString = dataString.."uiPieceHandler.buttons[ [["..name.."] ] ] = \n"
         dataString = dataString.."    {x = "..buttonValues.x
         dataString = dataString..", y = "..buttonValues.y..",\n"
         dataString = dataString.."    width="..buttonValues.width..", "
@@ -221,3 +221,4 @@ uiPieceHandler.textFitToRect = function(textToFit, x, y, w, h)
     text(textToFit, x, y)
     popStyle()
 end
+]]
