@@ -32,7 +32,7 @@ function rosieFirstScreenDecider()
         currentScreen = rosieStart
     end
     --messy! shouldn't be here!
-    rosieInfoFontSize = uiPieceHandler.fontSizeForRect(rosieInfoText, WIDTH * 0.85, HEIGHT * 0.8)
+rosieInfoFontSize = simpleButtons.fontSizeForRect(rosieInfoText, WIDTH * 0.85, HEIGHT * 0.8)
 end
 
 function rosieGameInfo()

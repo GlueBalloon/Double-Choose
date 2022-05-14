@@ -145,10 +145,7 @@ I'm still impressed that Sun made a genuine branching-choice inventory-based sto
 Both girls roughly copied the plot of the game that inspired this, 'The Story of Choices' by Behold Studios. 
 
 But in their different spins on it we get a great glimpse of how their young brains were busy forming themselves.]]
-charlotteImageScale = 0.0045 * adjstmt.x * deviceWnH.x
-charKnightScale = charlotteImageScale * 0.55
-charQueenScale = charlotteImageScale * 0.825
-charPuppeteerScale = charlotteImageScale * 0.785
+
 
 
 function charlotteFirstScreenDecider()
@@ -159,7 +156,7 @@ function charlotteFirstScreenDecider()
         currentScreen = charlotteStart
     end
     fontSize(simpleButtons.baseFontSize)
-    charlotteInfoFontSize = uiPieceHandler.fontSizeForRect(charlotteInfoText, WIDTH * 0.6, HEIGHT * 0.8)
+    charlotteInfoFontSize = simpleButtons.fontSizeForRect(charlotteInfoText, WIDTH * 0.6, HEIGHT * 0.8)
     print("size", charlotteInfoFontSize)
 end
 
