@@ -3,6 +3,11 @@ menuImages.menu = readImage(asset.doubleMenuBackground)
 menuImages.charlotte = readImage(asset.doubleMenuCharlotte)
 menuImages.rosie = readImage(asset.doubleMenuRosie)
 menuratio = 0.0014
+parameter.number("menuratio", 0.0012, 0.002, menuratio, function()
+    print(menuratio)
+end)
+parameter.watch("menuratio")
+
 
 function mainMenuStarter()
     drawBackground(menuImages.menu)
@@ -12,11 +17,19 @@ function mainMenuStarter()
 end
 
 function mainMenu()
+    parameter.number("number", 0, 100, 50)
     drawBackground(menuImages.menu)
+    --[[
+    simpleImage("menuRosie", menuImages.rosie, HEIGHT * 0.0012969697)
+    simpleImage("menuCharlotte", menuImages.charlotte, HEIGHT * 0.0012969697)
+    ]]
+    --bText, action, x, y, width, height, fontColor, imageAsset, radius
+    print("menuImages.rosie.height ", menuImages.rosie.height)
+    print("ratio: ", menuImages.rosie.height / HEIGHT)
     button("menuRosie", function()
             sound(asset["Rosie_game_intro-2.wav"])
             currentScreen = rosieGreetingText 
-    end, nil, nil, nil, nil, nil, menuImages.rosie)
+    end, nil, nil, nil, 0.40234375, nil, menuImages.rosie)
     button("menuCharlotte", function() 
         sound(asset["Charlotte_Game_intro-3.wav"])
         currentScreen = charlotteGreetingText 

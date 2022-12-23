@@ -158,11 +158,13 @@ uiPieceHandler.buttons[ [[The queen tells you she's really bored.]] ] =
     fontColor=color(255.0,255.0,255.0,255.0),
     action = uiPieceHandler.defaultButtonAction}
 
-uiPieceHandler.buttons[ [[menuRosie]] ] = 
+--[[
+uiPieceHandler.buttons[ [[menuRosie] ] ] = 
     {x = 397.30734632684, y = 410.96533333333,
     width=654.7518075904, height=547.1759527936,
     fontColor=color(255.0,255.0,255.0,255.0),
     action = uiPieceHandler.defaultButtonAction}
+]]
 
 uiPieceHandler.buttons[ [[don't deliver]] ] = 
     {x = 864.0, y = 98.5,

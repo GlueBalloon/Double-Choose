@@ -166,7 +166,7 @@ simpleButtons.ui[ [[stack traceback:
 	Main:43: in global '_wrap_draw'
 	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
     {text = [[secret]],
-    x = 0.7496251874063, y = 0.51666666666667,
+x = 397.30734632684, y = 410.96533333333,
     width = 258.66259765625, height = 44.117647058824,
     action = simpleButtons.defaultButtonAction
 }
