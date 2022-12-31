@@ -7,7 +7,6 @@ viewer.mode = FULLSCREEN_NO_BUTTONS
 
 
 function setup()
-    if true then return end
     initSupportedOrientations()
     supportedOrientations(LANDSCAPE_ANY)
 
@@ -40,9 +39,7 @@ function coordinateMultipliers(originalW, originalH)
 end
 
 function draw()
-    if currentScreen then
-        currentScreen()
-    end
+    currentScreen()
     if currentOverlay then
         currentOverlay()
     end
