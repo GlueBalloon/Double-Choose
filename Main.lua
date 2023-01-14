@@ -10,6 +10,11 @@ function setup()
     initSupportedOrientations()
     supportedOrientations(LANDSCAPE_ANY)
 
+    --code recovered from a commit where the menu button sizes worked on ipad:
+    deviceWnH = vec2(WIDTH, HEIGHT)
+    adjstmt = coordinateMultipliers(1366, 1024)
+    --end recovered code
+    
     --when need to reset as if first time opened
     parameter.action("Clear local data", function()
         clearLocalData()
