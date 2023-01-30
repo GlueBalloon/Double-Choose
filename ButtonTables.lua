@@ -1181,9 +1181,17 @@ simpleButtons.ui[ [[stack traceback:
 	SupportedOrientations:262: in function <SupportedOrientations:244>]] ] = 
     {text = [[menuCharlotte]],
     x = 0.77773613193403, y = 0.56666666666667,
-    width = 186.764, height = 60.5702,
+    width=500.6925587456, height=531.23878912,
     action = simpleButtons.defaultButtonAction
 }
+
+--[[
+uiPieceHandler.buttons[ [[menuCharlotte] ] ] = 
+{x = 971.0, y = 514.5,
+width=500.6925587456, height=531.23878912,
+fontColor=color(255.0,255.0,255.0,255.0),
+action = uiPieceHandler.defaultButtonAction}
+]]
 
 simpleButtons.ui[ [[stack traceback:
 	SimpleButtons_B:269: in function 'button'

@@ -602,11 +602,6 @@ But in their different spins on it we get a great glimpse of how their young bra
     fontColor=color(255.0,255.0,255.0,255.0),
     action = uiPieceHandler.defaultButtonAction}
 
-uiPieceHandler.buttons[ [[menuCharlotte]] ] = 
-    {x = 968.69265367316, y = 510.63466666667,
-    width=500.6925587456, height=531.23878912,
-    fontColor=color(255.0,255.0,255.0,255.0),
-    action = uiPieceHandler.defaultButtonAction}
 
 uiPieceHandler.buttons[ [[...the end...]] ] = 
     {x = 1019.892053973, y = 101.03466666667,

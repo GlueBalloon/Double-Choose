@@ -379,7 +379,9 @@ function button(bText, action, x, y, width, height, fontColor, imageAsset, radiu
     
     --get the actual x and y from the percentages
     x, y = x*WIDTH, y*HEIGHT
+    
     pushStyle()
+    
     local startingFill = color(fill())
     if tableToDraw.isTapped == true and not specTable.isWindow then
         fill(fontColor)
