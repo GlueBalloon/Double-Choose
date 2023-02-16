@@ -19,21 +19,29 @@ end
 function mainMenu()
     parameter.number("number", 0, 100, 50)
     drawBackground(menuImages.menu)
-    --[[
+    
     simpleImage("menuRosie", menuImages.rosie, HEIGHT * 0.0012969697)
-    simpleImage("menuCharlotte", menuImages.charlotte, HEIGHT * 0.0012969697)
-    ]]
+   -- simpleImage("menuCharlotte", menuImages.charlotte, HEIGHT * 0.0012969697)
+    
     --bText, action, x, y, width, height, fontColor, imageAsset, radius
-    print("menuImages.rosie.height ", menuImages.rosie.height)
-    print("ratio: ", menuImages.rosie.height / HEIGHT)
+    --print("menuImages.rosie.height ", menuImages.rosie.height)
+    --print("ratio: ", menuImages.rosie.height / HEIGHT)
     button("menuRosie", function()
-            sound(asset["Rosie_game_intro-2.wav"])
-            currentScreen = rosieGreetingText 
+        sound(asset["Rosie_game_intro-2.wav"])
+        currentScreen = rosieGreetingText 
     end, nil, nil, nil, nil, nil, menuImages.rosie)
+    
+    adj = HEIGHT * 0.0012969697
+    charHeight = menuImages.charlotte.height * adj * simpleButtons.screenRatios.y
+    --charWidth = menuImages.charlotte.height * WIDTH * 0.00097225254231332
+    charWidth = menuImages.charlotte.height * adj * simpleButtons.screenRatios.x
+    
     button("menuCharlotte", function() 
         sound(asset["Charlotte_Game_intro-3.wav"])
         currentScreen = charlotteGreetingText 
-    end, nil, nil, nil, nil, nil, menuImages.charlotte)
+        print(hhh)
+    end, nil, nil, charWidth, charHeight, nil, menuImages.charlotte)
+    
 end
 
 function rosieGreetingText()

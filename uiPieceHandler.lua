@@ -5,6 +5,7 @@
 deviceWnH = vec2(math.max(WIDTH, HEIGHT), math.min(WIDTH, HEIGHT))
 adjstmt = vec2(deviceWnH.x / 1366, deviceWnH.y / 1024)
 
+--menuCharlotte: 	377.0	400.0 
 uiPieceHandler = {}
 uiPieceHandler.fontSizeDefault = deviceWnH.x * 0.028
 uiPieceHandler.defaultWidth = 160

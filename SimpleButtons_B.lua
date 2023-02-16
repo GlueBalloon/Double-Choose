@@ -7,6 +7,34 @@
 
 simpleButtons = {}
 simpleButtons.ui = {}
+simpleButtons.originalScreen = vec2(1366, 1024)
+simpleButtons.screenRatios = vec2(WIDTH / simpleButtons.originalScreen.x, 
+    HEIGHT / simpleButtons.originalScreen.y)
+--[[
+imageWidth * adjustment * x = finalWidth
+
+if i need to be 10 at width 300
+then i need to be x at width 400
+    so 10/300 = x/400
+    so x = 400 * 10 / 300 = 13.333
+    so uh...
+end
+
+feck feck feck okay each image needs a *multiplier*
+the multiplier has to include two components: a raw size multiplier and a multiplier that adjusts for the screen ratio
+so imagedimension * rawsizemultiplier (which will be identical for width and height) * appropriatedimensionmultiplier
+
+so lets say there's a 15x32 pixel image that needs to be magnified 2.6 times on a 1280x460 device
+the original calculations would be: 
+imagewidth(15) * rawsizemultiplier (2.6) * 1280/1280
+and
+imageheight(32) * rawsizemultiplier (2.6) * 460/460
+
+now lets try to find the math for a 700x320 device:
+imagewidth(15) * rawsizemultiplier (2.6) * 700/1280 
+and
+imageheight(32) * rawsizemultiplier (2.6) * 320/460
+]]
 simpleButtons.standardLineHeight = function() 
     pushStyle()
     textWrapWidth(0)
@@ -14,6 +42,7 @@ simpleButtons.standardLineHeight = function()
     popStyle()
     return lineHeight
 end
+
 simpleButtons.buttonDimensionsFor = function(thisText) 
     local boundsW, boundsH = textSize(thisText)
     lineHeight = simpleButtons.standardLineHeight()

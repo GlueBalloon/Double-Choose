@@ -36,6 +36,30 @@ function setup()
     strokeWidth(1)
     fill(255, 255, 255, 255)
     mainMenuStarter()
+    
+    print("menuCharlotte height: ", readImage(asset.doubleMenuCharlotte).height) -- 400
+    print("device: ", WIDTH, HEIGHT)
+    print("adjstmt: ", adjstmt.x, adjstmt.y)
+    print("height multiplier: ", HEIGHT * 0.0012969697)
+    print("target height: ", readImage(asset.doubleMenuCharlotte).height * HEIGHT * 0.0012969697)
+    -- 400 * x = 531.23878912
+    print(531.23878912 / 400)
+    print("image times multiplier: ", 400 * 1.3280969728)
+    print("multiplier / height = adjuster ", 1.3280969728 / HEIGHT) -- 	0.0012969697
+    print("height * adjuster: ", HEIGHT * 0.0012969697) -- 	1.3280969728
+    
+    print("WIDTH", WIDTH) --1366
+    
+    print("readImage(asset.doubleMenuCharlotte).width", readImage(asset.doubleMenuCharlotte).width) --377
+    print("width times multiplier: ", 377 * 1.3280969728) -- 	500.6925587456
+    print("multiplier / width = adjuster ", 1.3280969728 / WIDTH) -- 	0.00097225254231332
+    
+    print(377/1366) --0.27598828696925
+    print("target width: " , readImage(asset.doubleMenuCharlotte).width * WIDTH * 0.00097225254231332)
+    
+    
+    
+    --height * x = 1.3280969728
 end
 
 function coordinateMultipliers(originalW, originalH)
