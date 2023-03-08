@@ -38,7 +38,8 @@ function setup()
     mainMenuStarter()
     
     print("menuCharlotte height: ", readImage(asset.doubleMenuCharlotte).height) -- 400
-    print("device: ", WIDTH, HEIGHT)
+    print("device: ", WIDTH, " ", HEIGHT)--	1366, 	1024
+    
     print("adjstmt: ", adjstmt.x, adjstmt.y)
     print("height multiplier: ", HEIGHT * 0.0012969697)
     print("target height: ", readImage(asset.doubleMenuCharlotte).height * HEIGHT * 0.0012969697)

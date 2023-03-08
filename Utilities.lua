@@ -8,3 +8,13 @@ function Utilities.playSoundAndWaitUntilFinished(soundName)
         --nothing
     end
 end
+
+function Utilities.imageSizeForDevice(imageSizeOnOriginalPad, currentDeviceSize)
+    local iPadAspectRatio = vec2(1366, 1024)
+    local widthScalingFactor = currentDeviceSize.x / iPadAspectRatio.x
+    local heightScalingFactor = currentDeviceSize.y / iPadAspectRatio.y
+    local scaledWidth = imageSizeOnOriginalPad.x * widthScalingFactor
+    local scaledHeight = imageSizeOnOriginalPad.y * heightScalingFactor
+    return vec2(scaledWidth, scaledHeight)
+end
+

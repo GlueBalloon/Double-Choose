@@ -26,21 +26,27 @@ function mainMenu()
     --bText, action, x, y, width, height, fontColor, imageAsset, radius
     --print("menuImages.rosie.height ", menuImages.rosie.height)
     --print("ratio: ", menuImages.rosie.height / HEIGHT)
+    OGroVec = vec2(menuImages.rosie.width * 1.3280969728, menuImages.rosie.height * 1.3280969728)
+    newVec = Utilities.imageSizeForDevice(OGroVec, vec2(WIDTH, HEIGHT))
+    
     button("menuRosie", function()
         sound(asset["Rosie_game_intro-2.wav"])
         currentScreen = rosieGreetingText 
-    end, nil, nil, nil, nil, nil, menuImages.rosie)
+    end, nil, nil, newVec.x, newVec.y, nil, menuImages.rosie)
     
     adj = HEIGHT * 0.0012969697
     charHeight = menuImages.charlotte.height * adj * simpleButtons.screenRatios.y
     --charWidth = menuImages.charlotte.height * WIDTH * 0.00097225254231332
     charWidth = menuImages.charlotte.height * adj * simpleButtons.screenRatios.x
     
+    OGcharVec = vec2(menuImages.charlotte.width * 1.3280969728, menuImages.charlotte.height * 1.3280969728)
+    newVec = Utilities.imageSizeForDevice(OGcharVec, vec2(WIDTH, HEIGHT))
+    
     button("menuCharlotte", function() 
         sound(asset["Charlotte_Game_intro-3.wav"])
         currentScreen = charlotteGreetingText 
         print(hhh)
-    end, nil, nil, charWidth, charHeight, nil, menuImages.charlotte)
+    end, nil, nil, newVec.x, newVec.y, nil, menuImages.charlotte)
     
 end
 
