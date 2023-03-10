@@ -20,19 +20,19 @@ function mainMenu()
     parameter.number("number", 0, 100, 50)
     drawBackground(menuImages.menu)
     
-    simpleImage("menuRosie", menuImages.rosie, HEIGHT * 0.0012969697)
+    --simpleImage("menuRosie", menuImages.rosie, HEIGHT * 0.0012969697)
    -- simpleImage("menuCharlotte", menuImages.charlotte, HEIGHT * 0.0012969697)
     
     --bText, action, x, y, width, height, fontColor, imageAsset, radius
     --print("menuImages.rosie.height ", menuImages.rosie.height)
     --print("ratio: ", menuImages.rosie.height / HEIGHT)
     OGroVec = vec2(menuImages.rosie.width * 1.3280969728, menuImages.rosie.height * 1.3280969728)
-    newVec = Utilities.imageSizeForDevice(OGroVec, vec2(WIDTH, HEIGHT))
+    newRoVec = Utilities.imageSizeForDevice(OGroVec, vec2(WIDTH, HEIGHT))
     
     button("menuRosie", function()
         sound(asset["Rosie_game_intro-2.wav"])
         currentScreen = rosieGreetingText 
-    end, nil, nil, newVec.x, newVec.y, nil, menuImages.rosie)
+    end, nil, nil, newRoVec.x, newRoVec.y, nil, menuImages.rosie)
     
     adj = HEIGHT * 0.0012969697
     charHeight = menuImages.charlotte.height * adj * simpleButtons.screenRatios.y
