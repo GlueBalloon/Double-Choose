@@ -27,7 +27,7 @@ function mainMenu()
     --print("menuImages.rosie.height ", menuImages.rosie.height)
     --print("ratio: ", menuImages.rosie.height / HEIGHT)
     OGroVec = vec2(menuImages.rosie.width * 1.3280969728, menuImages.rosie.height * 1.3280969728)
-    newRoVec = Utilities.imageSizeForDevice(OGroVec, vec2(WIDTH, HEIGHT))
+    newRoVec = Utilities.sizeForDevice(OGroVec, vec2(WIDTH, HEIGHT))
     
     button("menuRosie", function()
         sound(asset["Rosie_game_intro-2.wav"])
@@ -40,7 +40,7 @@ function mainMenu()
     charWidth = menuImages.charlotte.height * adj * simpleButtons.screenRatios.x
     
     OGcharVec = vec2(menuImages.charlotte.width * 1.3280969728, menuImages.charlotte.height * 1.3280969728)
-    newVec = Utilities.imageSizeForDevice(OGcharVec, vec2(WIDTH, HEIGHT))
+    newVec = Utilities.sizeForDevice(OGcharVec, vec2(WIDTH, HEIGHT))
     
     button("menuCharlotte", function() 
         sound(asset["Charlotte_Game_intro-3.wav"])
@@ -93,6 +93,8 @@ function charlotteGreetingText()
     simpleImage("charlotteIntroFace", menuImages.charlotte, 0.95)
     popStyle()
 end
+
+
 
 function prepCharlottesGame()
     uiPieceHandler.shouldUpdateScreenBlur = true 
