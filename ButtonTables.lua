@@ -1,3 +1,5 @@
+--from iphone
+    
 simpleButtons.ui[ [[stack traceback:
 	SimpleButtons_B:269: in function 'button'
 	uiPieces:131: in function 'choice'
