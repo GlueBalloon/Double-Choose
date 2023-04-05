@@ -246,11 +246,13 @@ uiPieceHandler.buttons[ [[go outside]] ] =
     fontColor=color(255.0,255.0,255.0,255.0),
     action = uiPieceHandler.defaultButtonAction}
 
-uiPieceHandler.buttons[ [[break up]] ] = 
+--[[
+uiPieceHandler.buttons[ [[break up] ] ] = 
     {x = 977.90854572714, y = 109.22666666667,
     width=316.11374407583, height=53.571428571429,
     fontColor=color(255.0,255.0,255.0,255.0),
     action = uiPieceHandler.defaultButtonAction}
+]]
 
 uiPieceHandler.buttons[ [[I'm Charlotte and this is my game!]] ] = 
     {x = 840.69415292354, y = 342.69866666667,

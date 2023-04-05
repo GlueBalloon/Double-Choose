@@ -13,6 +13,7 @@ end
 
 
 --button only actually needs a name to work, the rest have defaults
+--[[
 function button(name, action, x, y, width, height, fontColor, imageAsset, radius)
     --TODO: make parameter list into varargs and detect image and color?
     local newButtonFlag = false
@@ -105,6 +106,7 @@ function button(name, action, x, y, width, height, fontColor, imageAsset, radius
         uiPieceHandler.savePositions() --atm saves *all* button positions, ergg
     end
 end
+]]
 
 --textArea is a button that has no action and defaults to black text
 function textArea(textToShow, x, y)

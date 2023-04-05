@@ -7,7 +7,7 @@ adjstmt = vec2(deviceWnH.x / 1366, deviceWnH.y / 1024)
 
 --menuCharlotte: 	377.0	400.0 
 uiPieceHandler = {}
-uiPieceHandler.fontSizeDefault = deviceWnH.x * 0.028
+-- uiPieceHandler.fontSizeDefault = deviceWnH.x * 0.008
 uiPieceHandler.defaultWidth = 160
 uiPieceHandler.defaultHeight = 80
 uiPieceHandler.defaultFontColor = color(255)
@@ -15,8 +15,8 @@ uiPieceHandler.buttons = {}
 uiPieceHandler.shouldUpdateScreenBlur = true
 uiPieceHandler.backgroundImage = 0 --not sure how this will be set irl
 uiPieceHandler.screenBlur = 0 --0 means "none drawn yet"; will normally be an image
-uiPieceHandler.narrationW = deviceWnH.x / 2.45
-uiPieceHandler.narrationH = uiPieceHandler.narrationW
+uiPieceHandler.narrationW = deviceWnH.x / 4.5 --2.45
+uiPieceHandler.narrationH = uiPieceHandler.narrationW * 0.76
 uiPieceHandler.narrationX = deviceWnH.x - (uiPieceHandler.narrationW / 2) - 66
 uiPieceHandler.narrationY = deviceWnH.y / 2.1
 uiPieceHandler.narrationWrap = uiPieceHandler.narrationW * 0.84

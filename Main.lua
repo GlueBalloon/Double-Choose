@@ -11,8 +11,10 @@ function setup()
     supportedOrientations(LANDSCAPE_ANY)
 
     --code recovered from a commit where the menu button sizes worked on ipad:
+    --[[
     deviceWnH = vec2(WIDTH, HEIGHT)
     adjstmt = coordinateMultipliers(1366, 1024)
+    ]]
     --end recovered code
     
     --when need to reset as if first time opened
@@ -63,18 +65,22 @@ function setup()
     --height * x = 1.3280969728
 end
 
+--[[
 function coordinateMultipliers(originalW, originalH)
     local multX, multY = deviceWnH.x / originalW, deviceWnH.y / originalH
     return vec2(multX, multY)
 end
+]]
 
 function draw()
     currentScreen()
     if currentOverlay then
         currentOverlay()
     end
+    --[[
     simpleButtons.baseFontSize = vFontSize
     uiPieceHandler.narrationW = vTextWidth
     uiPieceHandler.narrationH = vTextHeight
     uiPieceHandler.choiceW = vTextWidth
+    ]]
 end
